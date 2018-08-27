@@ -10,10 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_120516) do
+ActiveRecord::Schema.define(version: 2018_08_27_132654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.date "date_created"
+    t.date "date_due"
+    t.string "title"
+    t.text "description"
+    t.string "grading_type"
+    t.integer "maximum_score"
+    t.bigint "teaching_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teaching_group_id"], name: "index_assignments_on_teaching_group_id"
+  end
+
+  create_table "attempts", force: :cascade do |t|
+    t.boolean "completed"
+    t.integer "mark"
+    t.text "comment"
+    t.bigint "assignment_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignment_id"], name: "index_attempts_on_assignment_id"
+    t.index ["user_id"], name: "index_attempts_on_user_id"
+  end
+
+  create_table "student_group_memberships", force: :cascade do |t|
+    t.bigint "teaching_group_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teaching_group_id"], name: "index_student_group_memberships_on_teaching_group_id"
+    t.index ["user_id"], name: "index_student_group_memberships_on_user_id"
+  end
+
+  create_table "teacher_group_memberships", force: :cascade do |t|
+    t.bigint "teaching_group_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teaching_group_id"], name: "index_teacher_group_memberships_on_teaching_group_id"
+    t.index ["user_id"], name: "index_teacher_group_memberships_on_user_id"
+  end
+
+  create_table "teaching_groups", force: :cascade do |t|
+    t.string "group_code"
+    t.string "course"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +77,11 @@ ActiveRecord::Schema.define(version: 2018_08_27_120516) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "assignments", "teaching_groups"
+  add_foreign_key "attempts", "assignments"
+  add_foreign_key "attempts", "users"
+  add_foreign_key "student_group_memberships", "teaching_groups"
+  add_foreign_key "student_group_memberships", "users"
+  add_foreign_key "teacher_group_memberships", "teaching_groups"
+  add_foreign_key "teacher_group_memberships", "users"
 end
