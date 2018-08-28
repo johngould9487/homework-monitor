@@ -6,7 +6,14 @@ Rails.application.routes.draw do
   # routes for teachers
   resources :teaching_groups, only: %i[index show] do
     resources :assignments, except: [:show, :index ] do
-      resources :attempts, only: %i[index show edit update]
+      member do
+        get 'attempts/:attempts_id', to: 'attempts#teacher_show'
+        get 'attempts/:attempts_id/edit', to: 'attempts#teacher_edit'
+        patch 'attempts/:attempts_id', to: 'attempts#teacher_update'
+        put 'attempts/:attempts_id', to: 'attempts#teacher_update'
+        get 'attempts', to: 'attempts#teacher_index'
+      end
+      # resources :attempts, only: %i[index show edit update]
     end
     member do
       get 'assignments/:assignment_id', to: "assignments#teacher_show"
