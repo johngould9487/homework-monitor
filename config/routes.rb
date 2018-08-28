@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'children/index'
+  get 'children/show'
   get 'teaching_groups/index'
   get 'teaching_groups/show'
   devise_for :users
