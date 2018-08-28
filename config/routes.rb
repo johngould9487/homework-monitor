@@ -5,11 +5,12 @@ Rails.application.routes.draw do
 
   # routes for teachers
   resources :teaching_groups, only: %i[index show] do
-    resources :assignments, except: :show do
+    resources :assignments, except: [:show, :index ] do
       resources :attempts, only: %i[index show edit update]
     end
     member do
       get 'assignments/:assignment_id', to: "assignments#teacher_show"
+      get 'assignments', to: "assignments#teacher_index"
     end
   end
 
