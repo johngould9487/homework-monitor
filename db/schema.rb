@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_29_095939) do
+ActiveRecord::Schema.define(version: 2018_08_29_112225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 2018_08_29_095939) do
     t.integer "mark"
     t.text "comment"
     t.bigint "assignment_id"
-    t.bigint "user_id"
+    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["assignment_id"], name: "index_attempts_on_assignment_id"
-    t.index ["user_id"], name: "index_attempts_on_user_id"
+    t.index ["student_id"], name: "index_attempts_on_student_id"
   end
 
   create_table "family_connections", force: :cascade do |t|
@@ -50,21 +50,21 @@ ActiveRecord::Schema.define(version: 2018_08_29_095939) do
   end
 
   create_table "student_group_memberships", force: :cascade do |t|
-    t.bigint "teaching_group_id"
+    t.bigint "student_teaching_group_id"
     t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_student_group_memberships_on_student_id"
-    t.index ["teaching_group_id"], name: "index_student_group_memberships_on_teaching_group_id"
+    t.index ["student_teaching_group_id"], name: "index_student_group_memberships_on_student_teaching_group_id"
   end
 
   create_table "teacher_group_memberships", force: :cascade do |t|
-    t.bigint "teaching_group_id"
+    t.bigint "teacher_teaching_group_id"
     t.bigint "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["teacher_id"], name: "index_teacher_group_memberships_on_teacher_id"
-    t.index ["teaching_group_id"], name: "index_teacher_group_memberships_on_teaching_group_id"
+    t.index ["teacher_teaching_group_id"], name: "index_teacher_group_memberships_on_teacher_teaching_group_id"
   end
 
   create_table "teaching_groups", force: :cascade do |t|
@@ -95,11 +95,11 @@ ActiveRecord::Schema.define(version: 2018_08_29_095939) do
 
   add_foreign_key "assignments", "teaching_groups"
   add_foreign_key "attempts", "assignments"
-  add_foreign_key "attempts", "users"
+  add_foreign_key "attempts", "users", column: "student_id"
   add_foreign_key "family_connections", "users", column: "guardian_id"
   add_foreign_key "family_connections", "users", column: "student_id"
-  add_foreign_key "student_group_memberships", "teaching_groups"
+  add_foreign_key "student_group_memberships", "teaching_groups", column: "student_teaching_group_id"
   add_foreign_key "student_group_memberships", "users", column: "student_id"
-  add_foreign_key "teacher_group_memberships", "teaching_groups"
+  add_foreign_key "teacher_group_memberships", "teaching_groups", column: "teacher_teaching_group_id"
   add_foreign_key "teacher_group_memberships", "users", column: "teacher_id"
 end

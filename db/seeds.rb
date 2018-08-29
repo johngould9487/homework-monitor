@@ -1,31 +1,23 @@
-TeachingGroup.destroy_all
+teacher1 = User.create(email:"teacher1@teacher.com", password:"123123")
+teacher2 = User.create(email:"teacher2@teacher.com", password:"123123")
+student1 = User.create(email:"student1@student.com", password:"123123")
+student2 = User.create(email:"studetn2@student.com", password:"123123")
 
-subjects = %w[
-  maths english biology physics chemistry geography history french
-  spanish
-]
-courses = %w[
-  7 8 9 10 11 L1 L2 L3 BTEC
-]
-20.times do
-  subject = subjects.sample
-  course = courses.sample
-  group_code = subject[0..1].capitalize + %w[A B C D E F G].sample + '/' + course
-  TeachingGroup.create!(subject: subject, course: course,
-    group_code: group_code
+teaching_group = TeachingGroup.create(group_code:"ASDF")
+
+teacher_group_membership1 = TeacherGroupMembership.create(
+  teacher: teacher1,
+  teacher_teaching_group: teaching_group
   )
-end
-
-100.times do
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  digits = (1..99).to_a.sample
-  name = "#{first_name} #{last_name}"
-  email = "#{first_name}#{last_name}#{digits}@student.com"
-  password = "123123"
-  student = true
-  guardian = false
-  teacher = false
-  User.create!(name: name, email: email, password: password, teacher: teacher,
-    student: student, guardian: guardian)
-end
+teacher_group_membership2 = TeacherGroupMembership.create(
+  teacher: teacher2,
+  teacher_teaching_group: teaching_group
+  )
+student_group_membership1 = StudentGroupMembership.create(
+  student: student1,
+  student_teaching_group: teaching_group
+  )
+student_group_membership2 = StudentGroupMembership.create(
+  student: student2,
+  student_teaching_group: teaching_group
+  )
