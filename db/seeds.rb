@@ -1,3 +1,7 @@
+require 'json'
+require 'csv'
+
+
 puts "Deleting all data"
 
 FamilyConnection.destroy_all
@@ -62,4 +66,50 @@ indices.each do |index_pair|
   FamilyConnection.create!(student:students[index_pair[1]], guardian:guardians[index_pair[0]])
 end
 
+# create dates
+dates_set = []
+dates_due = []
+
+(1..30).to_a.each do |index|
+  dates_set << Date.today - (index * 7)
+  dates_due << Date.today - (index * 7) + 3
+end
+
+# create maths descriptions
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'maths_descriptions.csv'))
+maths_descriptions = CSV.parse(csv_text)
+maths_descriptions = maths_descriptions.flatten.select do |element|
+  element
+end
+
+dates_set.each_with_index do |date, index|
+  description = maths_descriptions[index]
+  Assignment.create!(
+    date_created: date,
+    date_due:dates_due[index],
+    title: "Mathematics",
+    grading_type: :score,
+    maximum_score: 10,
+    teaching_group: teaching_groups[0],
+    description: description
+  )
+end
+
+
+
+
+
+
 puts "Done."
+
+
+
+
+
+
+
+
+
+
+
+
