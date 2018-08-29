@@ -1,2 +1,9 @@
 <h1>Children#index</h1>
 <p>Find me in app/views/children/index.html.erb</p>
+<% @children.each do |child| %>
+<p>Child name: <%= child.first_name %> </p>
+<p>Teaching Group: <%= child.student_teaching_groups.first.group_code %> </p>
+<p><% child.guardians.each do |guardian| %></p>
+<p>Guardian name: <%= guardian.first_name %> </p>
+<% end %>
+<% end %>

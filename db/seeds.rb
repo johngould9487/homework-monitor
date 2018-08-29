@@ -66,6 +66,7 @@ indices.each do |index_pair|
   FamilyConnection.create!(student:students[index_pair[1]], guardian:guardians[index_pair[0]])
 end
 
+
 # create dates
 dates_set = []
 dates_due = []
@@ -175,6 +176,9 @@ dates_set.each_with_index do |date, index|
 end
 
 
+
+
+# create old assignments for all classes
 
 
 
