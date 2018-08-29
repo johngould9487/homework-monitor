@@ -11,10 +11,10 @@ class AssignmentsController < ApplicationController
 
   # teacher actions
   def create
-    @assignment = Assingment.new(assignment_params)
-    @assignment.teaching_group = TeachingGroup.find(params[:teaching_group_id])
+    @assignment = Assignment.new(assignment_params)
+    @assignment.teacher_teaching_group = TeachingGroup.find(params[:teaching_group_id])
     if @assignment.save
-      redirect_to teaching_group_assingment_path
+      redirect_to teaching_group_assignment_path
     else
       render :new
     end
@@ -29,7 +29,7 @@ class AssignmentsController < ApplicationController
 
   def update
     @assignment.update(assignment_params)
-    redirect_to teaching_group_assingment_path
+    redirect_to teaching_group_assignment_path
   end
 
   def destroy
@@ -46,16 +46,16 @@ class AssignmentsController < ApplicationController
 
   # parents index
   def parent_index
-    @assingments = User.find(params[:id]).assignments
+    @assignments = User.find(params[:id]).assignments
   end
   def parent_show
-    @assingment = Assignment.find(params[:assignment_id])
+    @assignment = Assignment.find(params[:assignment_id])
   end
 
   private
 
   def find_assignment
-    @assingment = Assignment.find(params[:id])
+    @assignment = Assignment.find(params[:id])
   end
 
   def assignment_params
