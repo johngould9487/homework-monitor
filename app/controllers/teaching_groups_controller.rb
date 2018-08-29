@@ -2,7 +2,7 @@ class TeachingGroupsController < ApplicationController
   before_action :find_assignment, only: %i[show]
 
   def index
-    @teaching_groups = current_user.teaching_groups
+    @teaching_groups = current_user.teacher_teaching_groups
   end
 
   def show
@@ -15,3 +15,4 @@ class TeachingGroupsController < ApplicationController
   end
 
 end
+
