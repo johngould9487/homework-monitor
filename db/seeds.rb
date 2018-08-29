@@ -62,4 +62,33 @@ indices.each do |index_pair|
   FamilyConnection.create!(student:students[index_pair[1]], guardian:guardians[index_pair[0]])
 end
 
+# create old assignments for all classes
+
+
+
 puts "Done."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
