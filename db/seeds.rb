@@ -1,3 +1,15 @@
+puts "Deleting all data"
+
+FamilyConnection.destroy_all
+StudentGroupMembership.destroy_all
+TeacherGroupMembership.destroy_all
+Attempt.destroy_all
+User.destroy_all
+Assignment.destroy_all
+TeachingGroup.destroy_all
+
+puts "Creating seed data"
+
 teachers = []
 teaching_groups = []
 students = []
@@ -50,3 +62,4 @@ indices.each do |index_pair|
   FamilyConnection.create!(student:students[index_pair[1]], guardian:guardians[index_pair[0]])
 end
 
+puts "Done."
