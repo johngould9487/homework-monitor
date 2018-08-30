@@ -50,6 +50,7 @@ class AssignmentsController < ApplicationController
 
   def teacher_index
     @assignments = policy_scope(Assignment).where(teaching_group_id: params[:id])
+    authorize @assignments.first
   end
 
   # parents index

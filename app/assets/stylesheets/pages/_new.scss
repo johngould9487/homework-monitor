@@ -1,16 +1,41 @@
+h1, h2, p {
+  color: $gray;
+}
+
 .new-homework-form {
   display: flex;
 }
 
 .left-column {
   margin: auto;
+  margin-right: 10px;
+  width: 900px;
+  height: 500px;
+  border-radius: 5px;
 }
 
 .right-column {
   margin: auto;
+  margin-left: 10px;
+  height: 500px;
 }
 
 
 .white-background {
   background-color: $white;
+  border-radius: 5px;
+}
+
+.save-btn input {
+  width: 100%;
+  background-color: $white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.set-btn input {
+  width: 100%;
+  background-color: $teacher-blue;
+  border-radius: 10px;
+  color: $white;
 }
