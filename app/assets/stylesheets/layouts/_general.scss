@@ -1,11 +1,7 @@
 body { background:
   linear-gradient(90deg,
 
-    #49B0B0 0%,
-    rgba(107, 82, 206, 0.7845) 21.55%,
-    rgba(130, 111, 204, 0.5801) 41.99%,
-    rgba(181, 177, 198, 0.1326) 86.74%,
-    rgba(196, 196, 196, 0) 100%
-
+    $teacher-blue 0%,
+    #7ccaff 100%
     );
 }
