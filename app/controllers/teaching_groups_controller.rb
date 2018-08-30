@@ -1,11 +1,12 @@
 class TeachingGroupsController < ApplicationController
-  before_action :find_assignment, only: %i[show]
+  before_action :find_teaching_group, only: %i[show]
 
   def index
-    @teaching_groups = current_user.teacher_teaching_groups
+    @teaching_groups = policy_scope(current_user.teacher_teaching_groups)
   end
 
   def show
+    authorize @teaching_group
   end
 
   private
