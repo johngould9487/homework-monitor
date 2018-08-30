@@ -8,4 +8,8 @@ class AttemptPolicy < ApplicationPolicy
   def teacher_index?
     user.teacher
   end
+
+  def teacher_show?
+    user.teacher
+  end
 end
