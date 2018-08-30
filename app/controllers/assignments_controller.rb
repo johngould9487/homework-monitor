@@ -4,7 +4,7 @@ class AssignmentsController < ApplicationController
 
   # student actions
   def index
-    @assignments = current_user.my_assignements_to_do
+    @assignments = policy_scope(current_user.my_assignements_to_do)
   end
 
   def show
@@ -49,7 +49,8 @@ class AssignmentsController < ApplicationController
   end
 
   def teacher_index
-    @assignments = Assignment.where(teaching_group_id: params[:id])
+    @assignments = policy_scope(Assignment).where(teaching_group_id: params[:id])
+    authorize @assignments.first
   end
 
   # parents index

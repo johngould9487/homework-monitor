@@ -14,5 +14,6 @@ class AssignmentPolicy < ApplicationPolicy
   end
 
   def teacher_index?
+    user.teacher
   end
 end
