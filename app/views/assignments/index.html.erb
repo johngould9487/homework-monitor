@@ -1,0 +1,18 @@
+<h1>Past Assignments</h1>
+<table style="border: 1px solid black;">
+<tr>
+  <th>Title</th>
+  <th>Description</th>
+  <th>Date created</th>
+  <th>Date due</th>
+</tr>
+<% @assignments.each do |assignment| %>
+<tr>
+<td><%= assignment.title %></td>
+<td><%= assignment.description %></td>
+<td><%= assignment.date_created %></td>
+<td><%= assignment.date_due %></td>
+</tr>
+<% end %>
+</table>
+

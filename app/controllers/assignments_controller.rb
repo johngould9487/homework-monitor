@@ -3,7 +3,7 @@ class AssignmentsController < ApplicationController
 
   # student actions
   def index
-    @assignments = current_user.assignments
+    @assignments = current_user.my_assignements_to_do
   end
 
   def show

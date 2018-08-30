@@ -10,7 +10,6 @@ class User < ApplicationRecord
   # has_many :teaching_groups, through: :teacher_group_memberships
 
   has_many :attempts, foreign_key: "student_id"
-  has_many :assignments, through: :attempts
 
   has_many :guardian_connections, class_name: "FamilyConnection", foreign_key: "student_id"
   has_many :guardians, through: :guardian_connections, source: :guardian
@@ -28,4 +27,12 @@ class User < ApplicationRecord
 
   has_many :student_group_memberships, foreign_key: "student_id"
   has_many :student_teaching_groups, through: :student_group_memberships
+
+  def my_assignements_to_do
+    assignments = []
+    student_teaching_groups.each do |tg|
+      assignments << tg.assignments
+    end
+    return assignments.flatten
+  end
 end
