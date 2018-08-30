@@ -1,0 +1,62 @@
+.cards {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card {
+  margin-bottom: 20px;
+  width: 640px;
+  min-height: 50px;
+  padding: 5px;
+  background: #FFF;
+  border-radius: 5px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    letter-spacing: 1px;
+    font-size: 1.3em;
+    color: #555;
+  }
+
+  p {
+    font-weight: 300;
+    line-height: 1.4em;
+    font-size: 0.95em;
+    color: #888;
+  }
+}
+
+.btn-set {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: #4A94AA;
+  transition: background 0.3s ease;
+  margin-right: 20px;
+}
+.btn-set:hover {
+  opacity: 1;
+  background: #909090;
+  text-decoration: none;
+  color: white;
+}
+
+.btn-mark {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: #9D8CD7;
+  transition: background 0.3s ease;
+}
+.btn-mark:hover {
+  opacity: 1;
+  background: #909090;
+  text-decoration: none;
+  color: white;
+}
