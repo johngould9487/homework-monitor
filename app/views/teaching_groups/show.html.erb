@@ -1,5 +1,7 @@
-<h1>TeachingGroups#show</h1>
-<%= render'shared/sidebar' %>
-
-
-<p>Find me in app/views/teaching_groups/show.html.erb</p>
+<div class="container">
+  <%= render'shared/sidebar' %>
+  <p>This page will default to the most recent open assignment</p>
+  <% @teaching_group.assignments.each do |assignment| %>
+    <p><%= assignment.date_created %></p>
+  <% end %>
+</div>
