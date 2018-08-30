@@ -1,9 +1,25 @@
-<h1>Mark Homework</h1>
-<% @assignments.each do |assignment| %>
-<li>
-<%= assignment.title %>
-<%= assignment.date_created %>
-<%= assignment.date_due %>
-</li>
-<% end %>
+<%= render 'shared/sidebar' %>
+<h2 style="text-align:center; color:white;">Mark Homework</h2>
+<style>
+  hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+  }
+</style>
+<div class="content-wrapper" >
+  <div class="white-background ">
+    <% @assignments.each do |assignment| %>
+    <%= assignment.title %>
+    <%= assignment.date_created %>
+    <%= assignment.date_due %>
+    <%= link_to "Details", teaching_group_assignment_path(assignment.teaching_group, assignment)  %>
+    <hr>
+    <% end %>
+  </div>
+</div>
 
