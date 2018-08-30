@@ -1,3 +1,7 @@
+require 'json'
+require 'csv'
+
+
 puts "Deleting all data"
 
 FamilyConnection.destroy_all
@@ -62,24 +66,124 @@ indices.each do |index_pair|
   FamilyConnection.create!(student:students[index_pair[1]], guardian:guardians[index_pair[0]])
 end
 
+
+# create dates
+dates_set = []
+dates_due = []
+
+(1..30).to_a.each do |index|
+  dates_set << Date.today - (index * 7)
+  dates_due << Date.today - (index * 7) + 3
+end
+
+# create maths descriptions
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'maths_descriptions.csv'))
+maths_descriptions = CSV.parse(csv_text)
+maths_descriptions = maths_descriptions.flatten.select do |element|
+  element
+end
+# create physics descriptions
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'physics_descriptions.csv'))
+physics_descriptions = CSV.parse(csv_text)
+physics_descriptions = physics_descriptions.flatten.select do |element|
+  element
+end
+# create chemistry descriptions
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'chemistry_descriptions.csv'))
+chemistry_descriptions = CSV.parse(csv_text)
+chemistry_descriptions = chemistry_descriptions.flatten.select do |element|
+  element
+end
+# create biology descriptions
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'biology_descriptions.csv'))
+biology_descriptions = CSV.parse(csv_text)
+biology_descriptions = biology_descriptions.flatten.select do |element|
+  element
+end
+# create english descriptions
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'english_descriptions.csv'))
+english_descriptions = CSV.parse(csv_text)
+english_descriptions = english_descriptions.flatten.select do |element|
+  element
+end
+
+# create maths assignments
+dates_set.each_with_index do |date, index|
+  description = maths_descriptions[index]
+  Assignment.create!(
+    date_created: date,
+    date_due:dates_due[index],
+    title: "Read up on the following:",
+    grading_type: :score,
+    maximum_score: 10,
+    teaching_group: teaching_groups[0],
+    description: description
+  )
+end
+
+# create physics assignments
+dates_set.each_with_index do |date, index|
+  description = physics_descriptions[index]
+  Assignment.create!(
+    date_created: date,
+    date_due:dates_due[index],
+    title: "Make notes on the following:",
+    grading_type: :score,
+    maximum_score: 10,
+    teaching_group: teaching_groups[1],
+    description: description
+  )
+end
+# create chemisty assignments
+dates_set.each_with_index do |date, index|
+  description = chemistry_descriptions[index]
+  Assignment.create!(
+    date_created: date,
+    date_due:dates_due[index],
+    title: "Make notes on the following:",
+    grading_type: :score,
+    maximum_score: 10,
+    teaching_group: teaching_groups[2],
+    description: description
+  )
+end
+# create biology assignments
+dates_set.each_with_index do |date, index|
+  description = biology_descriptions[index]
+  Assignment.create!(
+    date_created: date,
+    date_due:dates_due[index],
+    title: "Make notes on the following:",
+    grading_type: :score,
+    maximum_score: 10,
+    teaching_group: teaching_groups[3],
+    description: description
+  )
+end
+
+# create english assignments
+dates_set.each_with_index do |date, index|
+  description = english_descriptions[index]
+  Assignment.create!(
+    date_created: date,
+    date_due:dates_due[index],
+    title: "Read this book",
+    grading_type: :score,
+    maximum_score: 10,
+    teaching_group: teaching_groups[4],
+    description: description
+  )
+end
+
+
+
+
 # create old assignments for all classes
 
 
 
+
 puts "Done."
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,6 +1,6 @@
 <h2 style="text-align:center; color:white;">Set new homework</h2>
 
-<%= simple_form_for @assignment do |f| %>
+<%= simple_form_for ([@teaching_group, @assignment]) do |f| %>
   <div class="new-homework-form">
     <div class="left-column white-background ">
       <%= f.input :title, label: "Homework title:" %>
