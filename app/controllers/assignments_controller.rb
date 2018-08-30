@@ -1,6 +1,7 @@
 class AssignmentsController < ApplicationController
   before_action :find_assignment, only: %i[show edit update destroy]
 
+
   # student actions
   def index
     @assignments = current_user.my_assignements_to_do
@@ -12,16 +13,22 @@ class AssignmentsController < ApplicationController
   # teacher actions
   def create
     @assignment = Assignment.new(assignment_params)
-    @assignment.teacher_teaching_group = TeachingGroup.find(params[:teaching_group_id])
+    @assignment.teaching_group = TeachingGroup.find(params[:teaching_group_id])
+    authorize @assignment
     if @assignment.save
-      redirect_to teaching_group_assignment_path
+      redirect_to teaching_group_assignment_path(
+        teaching_group_id: @assignment.teaching_group,
+        id: @assignment
+        )
     else
       render :new
     end
   end
 
   def new
+    @teaching_group = TeachingGroup.find(params[:teaching_group_id])
     @assignment = Assignment.new
+    authorize @assignment
   end
 
   def edit
@@ -38,6 +45,7 @@ class AssignmentsController < ApplicationController
 
   def teacher_show
     @assignment = Assignment.find(params[:assignment_id])
+    authorize @assignment
   end
 
   def teacher_index
