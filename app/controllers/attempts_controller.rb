@@ -3,7 +3,7 @@ class AttemptsController < ApplicationController
   before_action :find_attempt_student, only: %i[show edit update]
   # teacher actions
   def teacher_index
-    @attempts = Attempt.where(assignment_id: params[:id])
+    @attempts = policy_scope(Assignment.find(params[:id]).attempts)
     authorize @attempts.first
   end
 
