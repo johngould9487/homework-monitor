@@ -18,11 +18,6 @@ class User < ApplicationRecord
   has_many :student_connections, class_name: "FamilyConnection", foreign_key: "guardian_id"
   has_many :students, through: :student_connections, source: :student
 
-
-
-
-
-
   has_many :teacher_group_memberships, foreign_key: "teacher_id"
   has_many :teacher_teaching_groups, through: :teacher_group_memberships
 
