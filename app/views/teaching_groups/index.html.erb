@@ -1,48 +1,20 @@
-<h1> Form List </h1>
-<<%= render'shared/sidebar' %>
+<div class="container">
+  <h1> Form List </h1>
+  <%= render'shared/sidebar' %>
 
-<div class="cards">
-  <div class="card">
-    <div class="card-titles">
-      <h1>LT/ MT 2</h1>
-      <p>LT/ MT 2  Maths GCSE </p>
-    </div>
-    <div class="card-actions">
-      <a href="#" class="btn-set">Set </a>
-      <a href="#" class="btn-mark">Mark </a>
-    </div>
+  <div class="cards">
+    <% @teaching_groups.each do |teaching_group| %>
+      <div class="card">
+        <div class="card-titles">
+          <h1><%= teaching_group.group_code %></h1>
+          <p><%= teaching_group.course %></p>
+        </div>
+        <div class="card-actions">
+          <%= link_to 'Go to class', teaching_group_path(teaching_group.id) %>
+          <%= link_to 'Set', new_teaching_group_assignment_path(teaching_group.id), class: 'btn-set' %>
+          <%= link_to 'Mark', assignments_teaching_group_path(teaching_group.id), class: 'btn-mark' %>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <div class="card">
-    <div class="card-titles">
-      <h1>LT/ MT 2</h1>
-      <p>LT/ MT 2  Maths GCSE </p>
-    </div>
-    <div class="card-actions">
-      <a href="#" class="btn-set">Set </a>
-      <a href="#" class="btn-mark">Mark </a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-titles">
-      <h1>LT/ MT 2</h1>
-      <p>LT/ MT 2  Maths GCSE </p>
-    </div>
-    <div class="card-actions">
-      <a href="#" class="btn-set">Set </a>
-      <a href="#" class="btn-mark">Mark </a>
-    </div>
-
-
-  </div>
-  <div class="card">
-    <div class="card-titles">
-      <h1>LT/ MT 2</h1>
-      <p>LT/ MT 2  Maths GCSE </p>
-    </div>
-    <div class="card-actions">
-      <a href="#" class="btn-set">Set </a>
-      <a href="#" class="btn-mark">Mark </a>
-    </div>
 </div>
