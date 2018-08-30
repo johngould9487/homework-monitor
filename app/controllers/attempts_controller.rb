@@ -8,6 +8,7 @@ class AttemptsController < ApplicationController
   end
 
   def teacher_show
+    authorize @attempt
   end
 
   def teacher_edit
