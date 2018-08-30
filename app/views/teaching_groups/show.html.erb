@@ -1,7 +1,20 @@
-<div class="container">
-  <%= render'shared/sidebar' %>
-  <p>This page will default to the most recent open assignment</p>
-  <% @teaching_group.assignments.each do |assignment| %>
-    <p><%= assignment.date_created %></p>
-  <% end %>
+
+<%= render'shared/sidebar' %>
+<div>
+<%= render'shared/bannerbar' %>
+</div>
+<div>
+<h1>Current homework </h1>
+
+
+<wrapper>
+<%= image_tag "mathshomework.jpg" %>
+
+</wrapper>
+
+
+
+
+
+
 </div>
