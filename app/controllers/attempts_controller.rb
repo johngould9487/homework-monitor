@@ -4,6 +4,7 @@ class AttemptsController < ApplicationController
   # teacher actions
   def teacher_index
     @attempts = Attempt.where(assignment_id: params[:id])
+    authorize @attempts.first
   end
 
   def teacher_show
