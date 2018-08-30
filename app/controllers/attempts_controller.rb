@@ -3,7 +3,7 @@ class AttemptsController < ApplicationController
   before_action :find_attempt_student, only: %i[show edit update]
   # teacher actions
   def teacher_index
-    @attempts = Attempts.where(assignment_id: params[:id])
+    @attempts = Attempt.where(assignment_id: params[:id])
   end
 
   def teacher_show
