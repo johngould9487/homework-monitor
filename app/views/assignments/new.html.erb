@@ -1,11 +1,15 @@
-<%#= render 'shared/sidebar' %>
+<%= render 'shared/sidebar' %>
 <h2 style="text-align:center; color:white;">Set new homework</h2>
 
 <%= simple_form_for ([@teaching_group, @assignment]) do |f| %>
   <div class="new-homework-form">
     <div class="left-column white-background ">
-      <%= f.input :title, label: "Homework title:" %>
-      <%= f.input :description, label: "Homework notes:" %>
+      <div class="remove-border">
+        <%= f.input :title, label: "Homework title:" %>
+      </div>
+      <div class="large-notes">
+        <%= f.input :description, label: "Homework notes:" %>
+      </div>
       <%= f.input :guardian_note, label: "Note to guardians:" %>
     </div>
     <div class="right-column">
