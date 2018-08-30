@@ -49,7 +49,7 @@ class AssignmentsController < ApplicationController
   end
 
   def teacher_index
-    @assignments = Assignment.where(teaching_group_id: params[:id])
+    @assignments = policy_scope(Assignment).where(teaching_group_id: params[:id])
   end
 
   # parents index
