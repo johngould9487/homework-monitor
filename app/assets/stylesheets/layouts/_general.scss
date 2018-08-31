@@ -5,3 +5,14 @@ body { background:
     #7ccaff 100%
     );
 }
+
+
+body {
+  background: linear-gradient(#782ef7, #23e8ef);
+}
+
+.min-height-content {
+  min-height: calc(100vh - 70px);
+  margin-left: 50px;
+}
+

@@ -1,5 +1,7 @@
-<%= render 'shared/sidebar' %>
-<h2 style="text-align:center; color:white;">This homework has now been set</h2>
+<div>
+<%= render 'shared/bannerbar' %>
+</div>
+<h2 style="text-align:center; color:white;">This homework has now been <strong>set</strong></h2>
 <p style="text-align:center; color:white;">Students and guardians can now see this</p>
 
 <div class="show-homework-form">
@@ -19,15 +21,14 @@
     <div class="show-page right-column">
       <div class="white-background-sub">
         <div>
-          <h3 class="show-dates">Date Set:</h3> <%= @assignment.date_created %>
+          <h3 class="show-dates">Date Set: <span class="date-format"> <%= @assignment.date_created.strftime("#{@assignment.date_created.day.ordinalize} %B") %></span> </h3>
         </div>
         <div>
-          <h3 class="show-dates">Date Due:</h3> <%= @assignment.date_due %>
+          <h3 class="show-dates">Date Due: <span class="date-format"><%= @assignment.date_due.strftime("#{@assignment.date_due.day.ordinalize} %B") %></span> </h3>
         </div>
       </div>
       <div class="white-background ">
-         <h3 class="show-dates">Grading structure:</h3>
-        <%= @assignment.grading_type %>
+         <h3 class="show-dates">Grading structure: <span class="date-format"> <%= @assignment.grading_type %></span></h3>
       </div>
     </div>
   </div>
