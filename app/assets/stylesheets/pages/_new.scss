@@ -31,6 +31,12 @@ h1, h2, p {
   padding-bottom: 10px;
 }
 
+.altered-width {
+  width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
 .save-btn input {
   width: 100%;
   background-color: $white;
