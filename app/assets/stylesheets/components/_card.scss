@@ -15,6 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   h1 {
     letter-spacing: 1px;
@@ -59,4 +60,19 @@
   background: #909090;
   text-decoration: none;
   color: white;
+}
+
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  // z-index: 2;
+  background: black;
+  opacity: 0;
+}
+
+.card-link:hover {
+  opacity: 0.1;
 }
