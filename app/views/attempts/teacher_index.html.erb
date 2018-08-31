@@ -1,5 +1,52 @@
 <%= render'shared/sidebar' %>
-<h1>Teachers attempts index</h1>
-<% @attempts.each do |attempt| %>
-<%= attempt.completed %>
-<% end %>
+<div>
+
+  <%= render'shared/bannerbar' %>
+
+</div>
+<h1>All student attempts</h1>
+
+<style>
+  td
+{
+    padding:10px 25px 10px 25px;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+.fa-check-circle {
+  color: green;
+}
+
+.fa-times {
+  color: red;
+</style>
+<div class="white-background altered-width">
+<table>
+      <tr>
+        <th style="text-align: center;">Student Name</th>
+        <th style="text-align: center;">Mark</th>
+        <th style="text-align: center;">Comment</th>
+        <th style="text-align: center;">Completed</th>
+      </tr>
+    <% @attempts.each do |attempt| %>
+      <tr>
+      <td><%= attempt.student.first_name %></td>
+<td><%= attempt.mark %></td>
+<td><%= attempt.comment %></td>
+
+        <td>
+          <% if attempt.completed %>
+            <i class="fas fa-check-circle"></i>
+          <% else %>
+            <i class="fas fa-times"></i>
+          <% end %>
+        </td>
+        </tr>
+        <% end %>
+        </table>
+ </div>
