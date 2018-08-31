@@ -4,27 +4,28 @@
     <img src="#" alt=".">
   </a>
 
+  <h3>Class: <%= TeachingGroup.find(params[:id]).group_code %></h3>
+
   <!-- Right Navigation -->
   <div class="banner_bar-wagon-right hidden-xs hidden-sm">
 
 
-    <a href="" class="banner_bar-wagon-item banner_bar-wagon-link">Options </a>
+    <a href="" class="banner_bar-wagon-item banner_bar-wagon-link"></a>
 
     <!-- Profile picture with dropdown list -->
     <div class="banner_bar-wagon-item">
       <div class="dropdown">
-        <%= image_tag "chevron_4.png", height: 50, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <i class="fas fa-chevron-down fa-2x avatar dropdown-toggle"
+         id="navbar-wagon-menu" data-toggle="dropdown"></i>
         <ul class="dropdown-menu dropdown-menu-right banner_bar-wagon-dropdown-menu">
-
-          <li><%= link_to teaching_groups_path do  %> Change Form group <% end %></li>
-
-          <li><% teaching_group = current_user.teacher_teaching_groups.first %>
-        <%= link_to new_teaching_group_assignment_path(teaching_group) do %> Set new homework <% end %></li>
-
-          <li><%= link_to assignments_teaching_group_path(teaching_group) do %> Select Mark book <% end %></li>
-
-          <li><a href="#">Calender</a></li>
+          <% current_user.teacher_teaching_groups.each do |teaching_group| %>
+            <%= link_to teaching_group_path(teaching_group) do %>
+              <li><p><%= teaching_group.group_code %></p> </li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
     </div>
   </div>
+</div>
+
