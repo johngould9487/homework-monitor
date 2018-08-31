@@ -5,7 +5,7 @@
 }
 
 .card {
-  transition: .5s;
+  transition: .2s;
   margin-bottom: 20px;
   width: 640px;
   min-height: 50px;
@@ -40,35 +40,36 @@
   }
 }
 .btn-set {
-  color: white;
+  color: #555;
+  background: #ccc;
   padding: 10px 15px;
   border-radius: 4px;
   font-weight: bold;
-  background: #4A94AA;
   transition: background 0.3s ease;
   margin-right: 20px;
   z-index: 2;
 }
 .btn-set:hover {
+  color: white;
   opacity: 1;
-  background: #909090;
+  background: #4A94AA;
   text-decoration: none;
   color: white;
   z-index: 2;
 }
 
 .btn-mark {
-  color: white;
+  color: #555;
+  background: #ccc;
   padding: 10px 15px;
   border-radius: 4px;
   font-weight: bold;
-  background: #9D8CD7;
   transition: background 0.3s ease;
   z-index: 2;
 }
 .btn-mark:hover {
   opacity: 1;
-  background: #909090;
+  background: #9D8CD7;
   text-decoration: none;
   color: white;
 }
@@ -83,5 +84,6 @@
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
+  border: 2px solid $teacher-blue;
 }
