@@ -2,23 +2,31 @@
 <h2 style="text-align:center; color:white;">This homework has now been set</h2>
 <p style="text-align:center; color:white;">Students and guardians can now see this</p>
 
-<div class="new-homework-form">
-    <div class="left-column white-background ">
-      <div class="remove-border">
-      <h2 class="show-text">Homework Title:<%= @assignment.title %></h2>
-
+<div class="show-homework-form">
+    <div class="show-page left-column white-background-main-show">
+      <div class="main-show-padding">
+        <div class="remove-border">
+          <h2 style="text-align:center; margin-top: 0px;", class="show-title"><%= @assignment.title %></h2>
+        </div>
+          <h3 class="show-body"> Homework instructions:</h3>
+            <%= @assignment.description %>
       </div>
-      <div class="large-notes">
-        <%= @assignment.description %>
-      </div>
-        <%= @assignment.guardian_note %>
+        <div class="guardian-box">
+          <h3 class="show-body"> Guardian notes:</h3>
+            <%= @assignment.guardian_note %>
+        </div>
     </div>
-    <div class="right-column">
-      <div class="white-background">
-        <%= @assignment.date_created %>
-        <%= @assignment.date_due %>
+    <div class="show-page right-column">
+      <div class="white-background-sub">
+        <div>
+          <h3 class="show-dates">Date Set:</h3> <%= @assignment.date_created %>
+        </div>
+        <div>
+          <h3 class="show-dates">Date Due:</h3> <%= @assignment.date_due %>
+        </div>
       </div>
       <div class="white-background ">
+         <h3 class="show-dates">Grading structure:</h3>
         <%= @assignment.grading_type %>
       </div>
     </div>
