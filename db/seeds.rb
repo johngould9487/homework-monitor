@@ -112,6 +112,7 @@ dates_set.each_with_index do |date, index|
   title = maths_titles[index]
   Assignment.create!(
     published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
     description: "Read up on the following:",
@@ -136,6 +137,7 @@ dates_set.each_with_index do |date, index|
   title = physics_titles[index]
   Assignment.create!(
     published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
     description: "Make notes on the following:",
@@ -158,6 +160,7 @@ Assignment.create!(
 dates_set.each_with_index do |date, index|
   title = chemistry_titles[index]
   Assignment.create!(
+    marked: true,
     published: true,
     date_created: date,
     date_due:dates_due[index],
@@ -182,6 +185,7 @@ dates_set.each_with_index do |date, index|
   title = biology_titles[index]
   Assignment.create!(
     published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
     description: "Make notes on the following:",
@@ -206,6 +210,7 @@ dates_set.each_with_index do |date, index|
   title = english_titles[index]
   Assignment.create!(
     published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
     description: "Read this book",
@@ -225,7 +230,12 @@ Assignment.create!(
   title: "Transitive/Intransitive Verbs"
 )
 
-
+TeachingGroup.all.each do |teaching_group|
+  teaching_group.assignments.last(3).each do |assignment|
+    assignment.marked = false
+    assignment.save
+  end
+end
 
 
 
