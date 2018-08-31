@@ -1,7 +1,43 @@
-<div class="container">
-  <%= render'shared/sidebar' %>
-  <p>This page will default to the most recent open assignment</p>
-  <% @teaching_group.assignments.each do |assignment| %>
-    <p><%= assignment.date_created %></p>
-  <% end %>
+
+<%= render'shared/sidebar' %>
+<div>
+  <%= render'shared/bannerbar' %>
 </div>
+<div>
+<h1>Current homework </h1>
+
+
+<div class="new-homework-form">
+  <div class="left-column white-background ">
+    <div class="remove-border">
+      <p>Homework Title: <%= @teaching_group.assignments.last.title %></p>
+      <%#= f.input :title, label: "Homework title:" %>
+    </div>
+    <div class="large-notes">
+      <p> Homework notes; </p>
+      <p><%= @teaching_group.assignments.last.description%></p>
+      <%#= f.input :description, label: "Homework notes:" %>
+    </div>
+    <%#= @teaching_group.assignments.guardian.note%>
+    <%#= f.input :guardian_note, label: "Note to guardians:" %>
+  </div>
+  <div class="right-column">
+    <div class="white-background">
+
+    </div>
+    <div class="white-background ">
+      <%#= f.input :grading_type, collection: [ "A-F", "Percentage", "0-10", "0-100", "Other"]%>
+    </div>
+    <div class="save-btn">
+      <%#= f.button :submit, "Save" %>
+    </div>
+    <div class="set-btn">
+      <%#= f.button :submit, "Set"%>
+    </div>
+  </div>
+</div>
+
+
+
+
+
