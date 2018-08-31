@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'teaching_groups/index'
   get 'teaching_groups/show'
   devise_for :users
-  root to: 'pages#home'
+  root to: 'teaching_groups#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # routes for teachers
