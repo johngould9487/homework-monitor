@@ -37,6 +37,7 @@ class AssignmentsController < ApplicationController
   end
 
   def edit
+    @teaching_group = TeachingGroup.find(params[:id])
   end
 
   def update
@@ -49,11 +50,13 @@ class AssignmentsController < ApplicationController
   end
 
   def teacher_show
+    @teaching_group = TeachingGroup.find(params[:id])
     @assignment = Assignment.find(params[:assignment_id])
     authorize @assignment
   end
 
   def teacher_index
+    @teaching_group = TeachingGroup.find(params[:id])
     @assignments = policy_scope(Assignment).where(teaching_group_id: params[:id])
     authorize @assignments.first
   end
