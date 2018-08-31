@@ -1,4 +1,7 @@
 <%= render 'shared/sidebar' %>
+<div>
+  <%= render 'shared/bannerbar' %>
+</div>
 <h2 style="text-align:center; color:white;">Mark Homework</h2>
 <style>
   hr {
@@ -54,8 +57,13 @@ tr:nth-child(even) {background-color: #f2f2f2;}
             <i class="fas fa-times"></i>
           <% end %>
         </td>
-
-        <td><%= assignment.marked = true %></td>
+        <td>
+        <% if assignment.marked %>
+            <i class="fas fa-check-circle"></i>
+          <% else %>
+            <i class="fas fa-times"></i>
+          <% end %>
+        </td>
         <td><%= link_to "View", teaching_group_assignment_path(assignment.teaching_group, assignment)  %></td>
       </tr>
         <% end %>
