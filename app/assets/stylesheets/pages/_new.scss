@@ -4,19 +4,21 @@ h1, h2, p {
 
 .new-homework-form {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .left-column {
   margin: auto;
+  margin-top: 0px;
   margin-right: 10px;
   width: 900px;
-  height: 500px;
+  height: auto;
   border-radius: 5px;
-  padding: 30px !important;
 }
 
 .right-column {
   margin: auto;
+  margin-top: 0px;
   margin-left: 10px;
   height: 500px;
   width: 265px;
@@ -25,6 +27,20 @@ h1, h2, p {
 }
 
 .white-background {
+  background-color: $white;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.white-background-main {
+  background-color: $white;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.white-background-sub {
   background-color: $white;
   border-radius: 5px;
   padding: 20px;
@@ -71,7 +87,11 @@ h1, h2, p {
 }
 
 .large-notes textarea.form-control  {
-  height: 200px;
+  height: 180px;
+}
+
+.small-notes textarea.form-control  {
+  height: 80px;
 }
 
 .datepicker {

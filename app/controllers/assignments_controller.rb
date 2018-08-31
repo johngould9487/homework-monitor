@@ -74,7 +74,7 @@ class AssignmentsController < ApplicationController
 
   def assignment_params
     params.require(:assignment).permit(:date_created, :date_due,
-      :title, :description, :grading_type, :maximum_score
+      :title, :description, :guardian_note, :grading_type, :maximum_score
     )
   end
 end
