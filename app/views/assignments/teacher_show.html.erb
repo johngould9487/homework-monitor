@@ -1,5 +1,25 @@
-<h1>Mark Homework</h1>
-<%= @assignment.title  %>
-<%= @assignment.description %>
-<%= @assignment.date_created %>
-<%= @assignment.date_due %>
+<%= render 'shared/sidebar' %>
+<h2 style="text-align:center; color:white;">This homework has now been set</h2>
+<p style="text-align:center; color:white;">Students and guardians can now see this</p>
+
+<div class="new-homework-form">
+    <div class="left-column white-background ">
+      <div class="remove-border">
+      <h2 class="show-text">Homework Title:<%= @assignment.title %></h2>
+
+      </div>
+      <div class="large-notes">
+        <%= @assignment.description %>
+      </div>
+        <%= @assignment.guardian_note %>
+    </div>
+    <div class="right-column">
+      <div class="white-background">
+        <%= @assignment.date_created %>
+        <%= @assignment.date_due %>
+      </div>
+      <div class="white-background ">
+        <%= @assignment.grading_type %>
+      </div>
+    </div>
+  </div>

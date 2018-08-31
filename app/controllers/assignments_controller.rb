@@ -15,6 +15,11 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new(assignment_params)
     @assignment.teaching_group = TeachingGroup.find(params[:teaching_group_id])
     authorize @assignment
+      if params[:commit] == 'Save'
+        @assignment.published = false
+    elsif params[:commit] == 'Set'
+        @assignment.published = true
+    end
     if @assignment.save
       redirect_to teaching_group_assignment_path(
         teaching_group_id: @assignment.teaching_group,
