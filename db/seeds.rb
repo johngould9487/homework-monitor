@@ -76,109 +76,168 @@ dates_due = []
   dates_due << Date.today - (index * 7) + 3
 end
 
-# create maths descriptions
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'maths_descriptions.csv'))
-maths_descriptions = CSV.parse(csv_text)
-maths_descriptions = maths_descriptions.flatten.select do |element|
+# create maths titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'maths_titles.csv'))
+maths_titles = CSV.parse(csv_text)
+maths_titles = maths_titles.flatten.select do |element|
   element
 end
-# create physics descriptions
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'physics_descriptions.csv'))
-physics_descriptions = CSV.parse(csv_text)
-physics_descriptions = physics_descriptions.flatten.select do |element|
+# create physics titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'physics_titles.csv'))
+physics_titles = CSV.parse(csv_text)
+physics_titles = physics_titles.flatten.select do |element|
   element
 end
-# create chemistry descriptions
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'chemistry_descriptions.csv'))
-chemistry_descriptions = CSV.parse(csv_text)
-chemistry_descriptions = chemistry_descriptions.flatten.select do |element|
+# create chemistry titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'chemistry_titles.csv'))
+chemistry_titles = CSV.parse(csv_text)
+chemistry_titles = chemistry_titles.flatten.select do |element|
   element
 end
-# create biology descriptions
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'biology_descriptions.csv'))
-biology_descriptions = CSV.parse(csv_text)
-biology_descriptions = biology_descriptions.flatten.select do |element|
+# create biology titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'biology_titles.csv'))
+biology_titles = CSV.parse(csv_text)
+biology_titles = biology_titles.flatten.select do |element|
   element
 end
-# create english descriptions
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'english_descriptions.csv'))
-english_descriptions = CSV.parse(csv_text)
-english_descriptions = english_descriptions.flatten.select do |element|
+# create english titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'english_titles.csv'))
+english_titles = CSV.parse(csv_text)
+english_titles = english_titles.flatten.select do |element|
   element
 end
 
 # create maths assignments
 dates_set.each_with_index do |date, index|
-  description = maths_descriptions[index]
+  title = maths_titles[index]
   Assignment.create!(
+    published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
-    title: "Read up on the following:",
+    description: "Read up on the following:",
     grading_type: :score,
     maximum_score: 10,
     teaching_group: teaching_groups[0],
-    description: description
+    title: title
   )
 end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[0],
+  title: "Differentiate from first principles"
+)
 
 # create physics assignments
 dates_set.each_with_index do |date, index|
-  description = physics_descriptions[index]
+  title = physics_titles[index]
   Assignment.create!(
+    published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
-    title: "Make notes on the following:",
+    description: "Make notes on the following:",
     grading_type: :score,
     maximum_score: 10,
     teaching_group: teaching_groups[1],
-    description: description
+    title: title
   )
 end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[1],
+  title: "Find the cross-section for a typical Compton-Scattering event"
+)
 # create chemisty assignments
 dates_set.each_with_index do |date, index|
-  description = chemistry_descriptions[index]
+  title = chemistry_titles[index]
   Assignment.create!(
+    marked: true,
+    published: true,
     date_created: date,
     date_due:dates_due[index],
-    title: "Make notes on the following:",
+    description: "Make notes on the following:",
     grading_type: :score,
     maximum_score: 10,
     teaching_group: teaching_groups[2],
-    description: description
+    title: title
   )
 end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[2],
+  title: "Write up experiment from today's lesson"
+)
 # create biology assignments
 dates_set.each_with_index do |date, index|
-  description = biology_descriptions[index]
+  title = biology_titles[index]
   Assignment.create!(
+    published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
-    title: "Make notes on the following:",
+    description: "Make notes on the following:",
     grading_type: :score,
     maximum_score: 10,
     teaching_group: teaching_groups[3],
-    description: description
+    title: title
   )
 end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[3],
+  title: "Mitosis/Mieosis"
+)
 
 # create english assignments
 dates_set.each_with_index do |date, index|
-  description = english_descriptions[index]
+  title = english_titles[index]
   Assignment.create!(
+    published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
-    title: "Read this book",
+    description: "Read this book",
     grading_type: :score,
     maximum_score: 10,
     teaching_group: teaching_groups[4],
-    description: description
+    title: title
   )
+end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[4],
+  title: "Transitive/Intransitive Verbs"
+)
+
+TeachingGroup.all.each do |teaching_group|
+  teaching_group.assignments.last(3).each do |assignment|
+    assignment.marked = false
+    assignment.save
+  end
 end
 
 
-
-
-# create old assignments for all classes
 
 
 

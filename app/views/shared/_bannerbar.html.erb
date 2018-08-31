@@ -8,16 +8,22 @@
   <div class="banner_bar-wagon-right hidden-xs hidden-sm">
 
 
-    <a href="" class="banner_bar-wagon-item banner_bar-wagon-link">Subject and Form group</a>
+    <a href="" class="banner_bar-wagon-item banner_bar-wagon-link">Options </a>
 
     <!-- Profile picture with dropdown list -->
     <div class="banner_bar-wagon-item">
       <div class="dropdown">
         <%= image_tag "chevron_4.png", height: 50, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <ul class="dropdown-menu dropdown-menu-right banner_bar-wagon-dropdown-menu">
-          <li><a href="#">ForM group and subject name</a></li>
-          <li><a href="#">ForM group and subject name</a></li>
-          <li><a href="#">ForM group and subject name</a></li>
+
+          <li><%= link_to teaching_groups_path do  %> Change Form group <% end %></li>
+
+          <li><% teaching_group = current_user.teacher_teaching_groups.first %>
+        <%= link_to new_teaching_group_assignment_path(teaching_group) do %> Set new homework <% end %></li>
+
+          <li><%= link_to assignments_teaching_group_path(teaching_group) do %> Select Mark book <% end %></li>
+
+          <li><a href="#">Calender</a></li>
         </ul>
       </div>
     </div>
