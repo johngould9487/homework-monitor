@@ -111,6 +111,8 @@ end
 dates_set.each_with_index do |date, index|
   title = maths_titles[index]
   Assignment.create!(
+    published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
     description: "Read up on the following:",
@@ -120,11 +122,22 @@ dates_set.each_with_index do |date, index|
     title: title
   )
 end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[0],
+  title: "Differentiate from first principles"
+)
 
 # create physics assignments
 dates_set.each_with_index do |date, index|
   title = physics_titles[index]
   Assignment.create!(
+    published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
     description: "Make notes on the following:",
@@ -134,10 +147,21 @@ dates_set.each_with_index do |date, index|
     title: title
   )
 end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[1],
+  title: "Find the cross-section for a typical Compton-Scattering event"
+)
 # create chemisty assignments
 dates_set.each_with_index do |date, index|
   title = chemistry_titles[index]
   Assignment.create!(
+    marked: true,
+    published: true,
     date_created: date,
     date_due:dates_due[index],
     description: "Make notes on the following:",
@@ -147,10 +171,21 @@ dates_set.each_with_index do |date, index|
     title: title
   )
 end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[2],
+  title: "Write up experiment from today's lesson"
+)
 # create biology assignments
 dates_set.each_with_index do |date, index|
   title = biology_titles[index]
   Assignment.create!(
+    published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
     description: "Make notes on the following:",
@@ -160,11 +195,22 @@ dates_set.each_with_index do |date, index|
     title: title
   )
 end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[3],
+  title: "Mitosis/Mieosis"
+)
 
 # create english assignments
 dates_set.each_with_index do |date, index|
   title = english_titles[index]
   Assignment.create!(
+    published: true,
+    marked: true,
     date_created: date,
     date_due:dates_due[index],
     description: "Read this book",
@@ -174,11 +220,24 @@ dates_set.each_with_index do |date, index|
     title: title
   )
 end
+Assignment.create!(
+  date_created: Date.today + 3,
+  date_due:Date.today + 5,
+  description: "Read up on the following:",
+  grading_type: :score,
+  maximum_score: 10,
+  teaching_group: teaching_groups[4],
+  title: "Transitive/Intransitive Verbs"
+)
+
+TeachingGroup.all.each do |teaching_group|
+  teaching_group.assignments.last(3).each do |assignment|
+    assignment.marked = false
+    assignment.save
+  end
+end
 
 
-
-
-# create old assignments for all classes
 
 
 
