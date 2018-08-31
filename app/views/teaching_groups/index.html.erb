@@ -8,9 +8,9 @@
         <div class="card-titles">
           <h1><%= teaching_group.group_code %></h1>
           <p><%= teaching_group.course %></p>
+          <%= link_to '', teaching_group_path(teaching_group.id), class: 'card-link' %>
         </div>
         <div class="card-actions">
-          <%= link_to '', teaching_group_path(teaching_group.id), class: 'card-link' %>
           <%= link_to 'Set', new_teaching_group_assignment_path(teaching_group.id), class: 'btn-set' %>
           <%= link_to 'Mark', assignments_teaching_group_path(teaching_group.id), class: 'btn-mark' %>
         </div>

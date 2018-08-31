@@ -5,6 +5,7 @@
 }
 
 .card {
+  transition: .5s;
   margin-bottom: 20px;
   width: 640px;
   min-height: 50px;
@@ -31,6 +32,13 @@
   }
 }
 
+.card-titles {
+  position: relative;
+  flex: 1 0 auto;
+  h1 {
+    text-align: left;
+  }
+}
 .btn-set {
   color: white;
   padding: 10px 15px;
@@ -39,12 +47,14 @@
   background: #4A94AA;
   transition: background 0.3s ease;
   margin-right: 20px;
+  z-index: 2;
 }
 .btn-set:hover {
   opacity: 1;
   background: #909090;
   text-decoration: none;
   color: white;
+  z-index: 2;
 }
 
 .btn-mark {
@@ -54,6 +64,7 @@
   font-weight: bold;
   background: #9D8CD7;
   transition: background 0.3s ease;
+  z-index: 2;
 }
 .btn-mark:hover {
   opacity: 1;
@@ -68,11 +79,9 @@
   bottom: 0;
   right: 0;
   width: 100%;
-  // z-index: 2;
-  background: black;
-  opacity: 0;
+  z-index: 1;
 }
 
-.card-link:hover {
-  opacity: 0.1;
+.card:hover {
+  transform: scale(1.03);
 }
