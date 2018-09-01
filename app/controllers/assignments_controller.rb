@@ -4,10 +4,14 @@ class AssignmentsController < ApplicationController
 
   # student actions
   def index
-    @assignments = policy_scope(current_user.my_assignements_to_do)
+    @assignments = policy_scope(Assignment).all.select do |assignment|
+      assignment.students.include?(current_user)
+    end
+    authorize @assignments.first
   end
 
   def show
+    authorize @assignment
   end
 
   # teacher actions

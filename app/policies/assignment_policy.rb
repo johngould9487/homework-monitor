@@ -9,6 +9,14 @@ class AssignmentPolicy < ApplicationPolicy
     user.teacher
   end
 
+  def index?
+    user.student
+  end
+
+  def show?
+    user.student
+  end
+
   def teacher_show?
     user.teacher
   end

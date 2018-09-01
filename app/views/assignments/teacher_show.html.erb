@@ -1,34 +1,34 @@
 <div>
-<%= render 'shared/bannerbar' %>
+  <%= render 'shared/bannerbar' %>
 </div>
 <h2 style="text-align:center; color:white;">This homework has now been <strong>set</strong></h2>
 <p style="text-align:center; color:white;">Students and guardians can now see this</p>
 
 <div class="show-homework-form">
-    <div class="show-page left-column white-background-main-show">
-      <div class="main-show-padding">
-        <div class="remove-border">
-          <h2 style="text-align:center; margin-top: 0px;", class="show-title"><%= @assignment.title %></h2>
-        </div>
-          <h3 class="show-body"> Homework instructions:</h3>
-            <%= @assignment.description %>
+  <div class="show-page left-column white-background-main-show">
+    <div class="main-show-padding">
+      <div class="remove-border">
+        <h2 style="text-align:center; margin-top: 0px;", class="show-title"><%= @assignment.title %></h2>
       </div>
-        <div class="guardian-box">
-          <h3 class="show-body"> Guardian notes:</h3>
-            <%= @assignment.guardian_note %>
-        </div>
+      <h3 class="show-body"> Homework instructions:</h3>
+      <%= @assignment.description %>
     </div>
-    <div class="show-page right-column">
-      <div class="white-background-sub">
-        <div>
-          <h3 class="show-dates">Date Set: <span class="date-format"> <%= @assignment.date_created.strftime("#{@assignment.date_created.day.ordinalize} %B") %></span> </h3>
-        </div>
-        <div>
-          <h3 class="show-dates">Date Due: <span class="date-format"><%= @assignment.date_due.strftime("#{@assignment.date_due.day.ordinalize} %B") %></span> </h3>
-        </div>
-      </div>
-      <div class="white-background ">
-         <h3 class="show-dates">Grading structure: <span class="date-format"> <%= @assignment.grading_type %></span></h3>
-      </div>
+    <div class="guardian-box">
+      <h3 class="show-body"> Guardian notes:</h3>
+      <%= @assignment.guardian_note %>
     </div>
   </div>
+  <div class="show-page right-column">
+    <div class="white-background-sub">
+      <div>
+        <h3 class="show-dates">Date Set: <span class="date-format"> <%= @assignment.date_created.strftime("#{@assignment.date_created.day.ordinalize} %B") %></span> </h3>
+      </div>
+      <div>
+        <h3 class="show-dates">Date Due: <span class="date-format"><%= @assignment.date_due.strftime("#{@assignment.date_due.day.ordinalize} %B") %></span> </h3>
+      </div>
+    </div>
+    <div class="white-background ">
+     <h3 class="show-dates">Grading structure: <span class="date-format"> <%= @assignment.grading_type %></span></h3>
+   </div>
+ </div>
+</div>
