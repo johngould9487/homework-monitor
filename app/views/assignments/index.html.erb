@@ -1,18 +1,25 @@
-<h1>Past Assignments</h1>
-<table style="border: 1px solid black;">
-<tr>
-  <th>Title</th>
-  <th>Description</th>
-  <th>Date created</th>
-  <th>Date due</th>
-</tr>
-<% @assignments.each do |assignment| %>
-<tr>
-<td><%= assignment.title %></td>
-<td><%= assignment.description %></td>
-<td><%= assignment.date_created %></td>
-<td><%= assignment.date_due %></td>
-</tr>
-<% end %>
-</table>
+<div class="container">
 
+  <h1>Your homework:</h1>
+
+  <div class="homeworks">
+    <% @assignments.each do |assignment| %>
+    <div class="homework">
+      <div class="homework-title">
+        Title: <%= assignment.title %>
+      </div>
+      <div class="homework-description">
+        Description: <%= assignment.description %>
+      </div>
+      <div class="homework-date-due">
+        Date due: <%= assignment.date_due %>
+      </div>
+      <div class="homework-subject">
+        <%= assignment.teaching_group.subject %>
+      </div>
+      <%= link_to '', assignment_path(assignment), class: 'homework-link' %>
+    </div>
+    <% end %>
+  </div>
+
+</div>

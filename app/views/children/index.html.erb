@@ -1,9 +1,23 @@
-<h1>Children#index</h1>
-<p>Find me in app/views/children/index.html.erb</p>
-<% @children.each do |child| %>
-<p>Child name: <%= child.first_name %> </p>
-<p>Teaching Group: <%= child.student_teaching_groups.first.group_code %> </p>
-<p><% child.guardians.each do |guardian| %></p>
-<p>Guardian name: <%= guardian.first_name %> </p>
-<% end %>
-<% end %>
+<div class="container">
+  <h1>Your children:</h1>
+  <div class="children">
+    <div class="row">
+      <% @children.each do |child| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="child">
+            <div class="child-name">
+              <%= child.first_name %> <%= child.last_name %>
+            </div>
+            <div class="child-classes">
+              Classes:
+              <% child.student_teaching_groups.each do |teaching_group| %>
+                <p><%= teaching_group.group_code %> - <%= teaching_group.subject %></p>
+              <% end %>
+            </div>
+            <%= link_to '', child_path(child), class: 'child-link' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
