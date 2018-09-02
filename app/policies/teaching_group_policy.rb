@@ -5,7 +5,11 @@ class TeachingGroupPolicy < ApplicationPolicy
     end
   end
 
-  def show?
+  def index?
     user.teacher
+  end
+
+  def show?
+    index?
   end
 end

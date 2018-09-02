@@ -26,10 +26,9 @@ Rails.application.routes.draw do
   end
 
   # routes for guardians
-  resources :children, only: %i[index show] do
+  resources :children, only: %i[index] do
     member do
       get 'assignments', to: 'assignments#parent_index'
-      get 'assignments/:assignment_id', to: 'assignments#parent_show'
     end
   end
 

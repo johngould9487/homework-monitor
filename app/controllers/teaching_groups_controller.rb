@@ -3,6 +3,7 @@ class TeachingGroupsController < ApplicationController
 
   def index
     @teaching_groups = policy_scope(current_user.teacher_teaching_groups)
+    authorize @teaching_groups.first
   end
 
   def show
