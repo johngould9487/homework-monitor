@@ -67,7 +67,9 @@ class AssignmentsController < ApplicationController
 
   # parents index
   def parent_index
-    @assignments = User.find(params[:id]).assignments
+    @child = User.find(params[:id])
+    @assignments = policy_scope(User).find(params[:id]).assignments
+    authorize @assignments.first
   end
   def parent_show
     @assignment = Assignment.find(params[:assignment_id])

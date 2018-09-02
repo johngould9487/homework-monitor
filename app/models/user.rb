@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # has_many :teaching_groups, through: :teacher_group_memberships
 
   has_many :attempts, foreign_key: "student_id"
+  has_many :assignments, through: :attempts
 
   has_many :guardian_connections, class_name: "FamilyConnection", foreign_key: "student_id"
   has_many :guardians, through: :guardian_connections, source: :guardian

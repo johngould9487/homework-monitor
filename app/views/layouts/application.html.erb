@@ -34,7 +34,11 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <%#= render 'shared/sidebar' %>
+    <% if user_signed_in? %>
+      <% if current_user.teacher %>
+        <%= render 'shared/sidebar' %>
+      <% end %>
+    <% end %>
     <div class="min-height-content">
       <%= yield %>
     </div>

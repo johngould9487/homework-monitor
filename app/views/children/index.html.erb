@@ -14,7 +14,7 @@
                 <p><%= teaching_group.group_code %> - <%= teaching_group.subject %></p>
               <% end %>
             </div>
-            <%= link_to '', child_path(child), class: 'child-link' %>
+            <%= link_to '', assignments_child_path(child.id), class: 'child-link' %>
           </div>
         </div>
       <% end %>
