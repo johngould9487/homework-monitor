@@ -4,20 +4,19 @@
 }
 
 .main-menu {
-  background:#FFFFFF;
-  border-right:1px solid #e5e5e5;
-  position: sticky;
-  height: calc(100vh - 70px);
-  top: 0;
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:60px;
-  overflow:hidden;
-  -webkit-transition:width .05s linear;
-  transition:width .05s linear;
-  -webkit-transform:translateZ(0) scale(1,1);
-  z-index:1000;
+background:#FFFFFF;
+border-right:1px solid #e5e5e5;
+position:absolute;
+bottom:0;
+height:100vh;
+left:0;
+width:60px;
+overflow:hidden;
+transition:width .05s linear;
+z-index:1000;
+// -webkit-transition:width .05s linear;
+// -webkit-transform:translateZ(0) scale(1,1);
+
 }
 
 #sidebar {
@@ -37,17 +36,17 @@
 }
 
 .main-menu li>a {
-  position:relative;
-  display:table;
-  border-collapse:collapse;
-  border-spacing:0;
-  color:#999;
-  font-family: arial;
-  font-size: 14px;
-  text-decoration:none;
-  -webkit-transform:translateZ(0) scale(1,1);
-  -webkit-transition:all .1s linear;
-  transition:all .1s linear;
+
+position:relative;
+display:table;
+border-collapse:collapse;
+border-spacing:0;
+color:#999;
+font-size: 14px;
+text-decoration:none;
+-webkit-transform:translateZ(0) scale(1,1);
+-webkit-transition:all .1s linear;
+transition:all .1s linear;
 
 }
 
@@ -62,11 +61,10 @@
 }
 
 .main-menu .nav-text {
-  position:relative;
-  display:table-cell;
-  vertical-align:middle;
-  width:190px;
-  font-family: 'Titillium Web', sans-serif;
+position:relative;
+display:table-cell;
+vertical-align:middle;
+width:190px;
 }
 
 .main-menu>ul.logout {
@@ -85,3 +83,108 @@
   background: #e2e2e2;
 }
 
+
+
+.fa-2x {
+font-size: 2em;
+}
+.fa {
+position: relative;
+display: table-cell;
+width: 60px;
+height: 36px;
+text-align: center;
+vertical-align: middle;
+font-size:20px;
+}
+
+
+.no-touch .scrollable.hover {
+overflow-y:hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+overflow-y:auto;
+overflow:visible;
+}
+
+a:hover,a:focus {
+text-decoration:none;
+}
+
+
+nav ul,nav li {
+outline:0;
+margin:0;
+padding:0;
+}
+
+@-webkit-keyframes bg-in {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+
+@keyframes bg-in {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+}
+
+
+
+.fa-2x {
+font-size: 2em;
+}
+.fa {
+position: relative;
+display: table-cell;
+width: 60px;
+height: 36px;
+text-align: center;
+vertical-align: middle;
+font-size:20px;
+}
+
+
+.no-touch .scrollable.hover {
+overflow-y:hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+overflow-y:auto;
+overflow:visible;
+}
+
+a:hover,a:focus {
+text-decoration:none;
+}
+
+
+@media screen and (max-width: 600px) {
+  header {
+    height: 50vh;
+  }
+  .floating-button {
+    top: 90vh;
+    bottom: 10px;
+    right: 10px;
+  }
+  .teacher_button {
+    display: block;
+  }
+  section h1 {
+    margin: 30px 0 0 0;
+  }
+  .added h1 {
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .floating-button {
+    right: 10px;
+  }
+}
