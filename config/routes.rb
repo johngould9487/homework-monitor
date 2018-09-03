@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     get '/upcoming_homeworks', to: "assignments#upcoming", as: :upcoming
     get '/past_homeworks', to: "assignments#past", as: :past
     get '/markbook', to: "assignments#markbook", as: :markbook
-    resources :assignments, only: [:new, :create, :show, :edit, :update]
+    resources :assignments, only: [:new, :create, :show, :edit, :update] do
+      member do
+        patch 'set_assignment', to: 'assignments#set_assignment'
+      end
+    end
   end
 
   resources :children, only: [:show] do

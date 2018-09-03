@@ -1,5 +1,11 @@
 <%= render 'shared/tabs', teaching_group: @teaching_group %>
 
+<div class="center-cards">
+  <%= render 'shared/homework_card' %>
+  <%= render 'shared/homework_card' %>
+  <%= render 'shared/homework_card' %>
+</div>
+
 <div class="container">
   <% @assignments.each do |assignment| %>
     <p><%= assignment.title %></p>

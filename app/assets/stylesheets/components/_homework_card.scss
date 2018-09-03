@@ -1,0 +1,78 @@
+.center-cards {
+ // TO BE DONE
+}
+
+.homework_cards {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.homework_card {
+  height: 100px;
+  transition: .2s;
+  margin-bottom: 20px;
+  width: 1000px;
+  padding: 0px 15px;
+  background: #FFF;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  h2 {
+    letter-spacing: 1px;
+    font-size: 1.7em;
+    color: $teacher-blue;
+    margin-top: 15px;
+  }
+
+  p {
+    line-height: 1.4em;
+    font-size: 0.95em;
+    color: $gray;
+  }
+}
+
+.h3-card {
+    color: $gray;
+    font-size: 20px;
+}
+
+.not-set-btn {
+  color: white;
+  background: #eaa459;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  margin-right: 20px;
+  z-index: 2;
+  text-decoration: none;
+  border: none;
+}
+
+.not-set-btn:hover {
+  color: white;
+  opacity: 1;
+  background: $teacher-blue;
+  text-decoration: none;
+  color: white;
+  z-index: 2;
+}
+
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  border: 2px solid $teacher-blue;
+}
+

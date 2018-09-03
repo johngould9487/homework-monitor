@@ -1,7 +1,10 @@
-<!-- if statement for save VS set -->
-
-<h2 style="text-align:center; color:white;">This homework has now been <strong>set</strong></h2>
-<p style="text-align:center; color:white;">Students and guardians can now see this</p>
+<% if %>
+  <% @assignment.published == true %>
+    <h2 style="text-align:center;">This homework has now been <strong>set</strong></h2>
+    <p style="text-align:center;">Students and guardians can now see this</p>
+<% else %>
+    <h2 style="text-align:center;">This homework has not been <strong>set</strong></h2>
+<% end %>
 
 <div class="show-homework-form">
   <div class="show-page left-column white-background-main-show">
@@ -30,6 +33,10 @@
      <h3 class="show-dates">Grading structure: <span class="date-format"> <%= @assignment.grading_type %></span></h3>
    </div>
  </div>
- <!-- Link to edit this assignment -->
- <!-- Link to set this assignment if it's only been saved -->
+      <div>
+        <% if @assignment.published == false %>
+          <%= link_to 'Edit Homework', edit_teaching_group_assignment_path(@teaching_group, @assignment), class: 'btn btn-primary'  %>
+          <%= link_to 'Set', set_assignment_teaching_group_assignment_path(@teaching_group, @assignment), class: 'btn btn-default', method: :patch %>
+        <% end %>
+      </div>
 </div>

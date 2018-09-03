@@ -1,4 +1,5 @@
-<div class="tabs">
+<div></div>
+<div class="tabs", style="text-align:center">
   <% if !current_user.guardian %>
     <%= link_to "Upcoming homeworks", teaching_group_upcoming_path(teaching_group), class: "tab-link #{'active' if params[:action] == 'upcoming'}"  %>
     <%= link_to "Past homeworks", teaching_group_past_path(teaching_group), class: "tab-link" , class: "tab-link #{'active' if params[:action] == 'past'}"  %>
