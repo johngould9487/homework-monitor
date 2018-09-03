@@ -1,0 +1,7 @@
+<%= render 'shared/tabs', teaching_group: @teaching_group %>
+
+<div class="container">
+  <% @assignments.each do |assignment| %>
+    <p><%= assignment.title %></p>
+  <% end %>
+</div>

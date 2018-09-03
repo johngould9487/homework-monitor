@@ -5,27 +5,57 @@ class AssignmentPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    user.teacher
+  end
+
   def create?
     user.teacher
   end
 
-  def index?
-    user.student
+  def upcoming?
+    true
   end
 
   def show?
-    user.student
+    true
   end
 
-  def teacher_show?
+  def upcoming?
+    true
+  end
+
+  def past?
+    true
+  end
+
+  def markbook?
     user.teacher
   end
 
-  def teacher_index?
+  def edit?
     user.teacher
   end
 
-  def parent_index?
-    user.guardian
+  def update?
+    edit?
   end
+
+  ############################################################
+
+  # def index?
+  #   user.student
+  # end
+
+  # def teacher_show?
+  #   user.teacher
+  # end
+
+  # def teacher_index?
+  #   user.teacher
+  # end
+
+  # def parent_index?
+  #   user.guardian
+  # end
 end

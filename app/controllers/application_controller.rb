@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   include Pundit
 
-  after_action :verify_authorized, except: [  ], unless: :skip_pundit?
-  after_action :verify_policy_scoped, only: [ :index, :teacher_index ], unless: :skip_pundit?
+  after_action :verify_authorized, unless: :skip_pundit?
+  # after_action :verify_policy_scoped, only: [ :index, :teacher_index ], unless: :skip_pundit?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -19,11 +19,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.teacher
-      teaching_groups_path
+      teaching_group_upcoming_path(teaching_group_id: resource.teacher_teaching_groups.first)
     elsif resource.guardian
-      children_path
+      child_upcoming_path(child_id: resource.students.first)
     else
-      assignments_path
+      teaching_group_upcoming_path(teaching_group_id: resource.student_teaching_groups.first)
     end
   end
 
