@@ -1,39 +1,6 @@
-<div>
-  <%= render'shared/bannerbar' %>
-</div>
 <h2 style="text-align:center; color:white;">Set new homework</h2>
 
-<%= simple_form_for ([@teaching_group, @assignment]) do |f| %>
-  <div class="new-homework-form">
-    <div class="left-column white-background-main">
-      <div class="remove-border">
-        <%= f.input :title, label: "Homework title:", placeholder: "Give your homework a title"%>
-      </div>
-      <div class="large-notes">
-        <%= f.input :description, label: "Homework instructions:" %>
-      </div>
-      <div class="small-notes">
-      <%= f.input :guardian_note, label: "Note to guardians:" %>
-      </div>
-    </div>
-    <div class="right-column">
-      <div class="white-background-sub">
-        <%= f.input :date_created, as: :string, required: false, input_html: {class: "datepicker"} %>
-        <%= f.input :date_due, as: :string, required: false, input_html: {
-          class: "datepicker"} %>
-      </div>
-      <div class="white-background ">
-        <%= f.input :grading_type, collection: [ "1-9", "A-F", "Percentages", "Out of ten", "Out of 100", "Other"]%>
-      </div>
-      <div class="save-btn">
-        <%= f.button :submit, "Save" %>
-      </div>
-      <div class="set-btn">
-        <%= f.button :submit, "Set"%>
-      </div>
-    </div>
-  </div>
-<% end %>
+<%= render 'form', teaching_group: @teaching_group, assignment: @assignment %>
 
 
 <!-- .strftime("#{@poster.date.day.ordinalize} %B %Y" -->

@@ -3,7 +3,6 @@
   <head>
     <title>Homework Monitor | Parents and teachers collaborating on students' homework</title>
     <%= favicon_link_tag 'logo.ico' %>
-    <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
 
     <!-- Facebook Open Graph data -->
@@ -25,20 +24,14 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar', teaching_group: @teaching_group %>
     <%= render 'shared/flashes' %>
-    <% if user_signed_in? %>
-      <% if current_user.teacher %>
-        <%= render 'shared/sidebar' %>
-      <% end %>
-    <% end %>
     <div class="min-height-content">
       <%= yield %>
     </div>

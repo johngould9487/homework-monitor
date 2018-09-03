@@ -1,29 +1,50 @@
 class AssignmentsController < ApplicationController
   before_action :find_assignment, only: %i[show edit update destroy]
+  before_action :find_teaching_group, only: [:show, :update]
 
-
-  # student actions
-  def index
-    @assignments = policy_scope(Assignment).all.select do |assignment|
-      assignment.students.include?(current_user)
+  def upcoming
+    if !current_user.guardian
+      @teaching_group = TeachingGroup.find(params[:teaching_group_id])
+      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due > ?', Date.today)
+      authorize(@assignments.first)
+    else
+      @child = User.find(params[:child_id])
+      @assignments = @child.assignments.where('date_due > ?', Date.today)
+      authorize(@assignments.first)
     end
-    authorize @assignments.first
+  end
+
+  def past
+    if !current_user.guardian
+      @teaching_group = TeachingGroup.find(params[:teaching_group_id])
+      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due < ?', Date.today)
+      authorize(@assignments.first)
+    else
+      @child = User.find(params[:child_id])
+      @assignments = @child.assignments.where('date_due < ?', Date.today)
+      authorize(@assignments.first)
+    end
+  end
+
+  def markbook
+    @teaching_group = TeachingGroup.find(params[:teaching_group_id])
+    @assignments = Assignment.where(teaching_group: @teaching_group)
+    authorize(@assignments.first)
   end
 
   def show
-    authorize @assignment
   end
 
   # teacher actions
   def create
     @assignment = Assignment.new(assignment_params)
     @assignment.teaching_group = TeachingGroup.find(params[:teaching_group_id])
-    authorize @assignment
-      if params[:commit] == 'Save'
-        @assignment.published = false
+    if params[:commit] == 'Save'
+      @assignment.published = false
     elsif params[:commit] == 'Set'
-        @assignment.published = true
+      @assignment.published = true
     end
+    authorize @assignment
     if @assignment.save
       redirect_to teaching_group_assignment_path(
         teaching_group_id: @assignment.teaching_group,
@@ -41,44 +62,71 @@ class AssignmentsController < ApplicationController
   end
 
   def edit
-    @teaching_group = TeachingGroup.find(params[:id])
+    @teaching_group = TeachingGroup.find(params[:teaching_group_id])
   end
 
   def update
     @assignment.update(assignment_params)
-    redirect_to teaching_group_assignment_path
-  end
-
-  def destroy
-    @assignment.delete
-  end
-
-  def teacher_show
-    @teaching_group = TeachingGroup.find(params[:id])
-    @assignment = Assignment.find(params[:assignment_id])
+    @assignment.teaching_group = @teaching_group
+    if params[:commit] == 'Save'
+      @assignment.published = false
+    elsif params[:commit] == 'Set'
+      @assignment.published = true
+    end
     authorize @assignment
+    if @assignment.save
+      redirect_to teaching_group_assignment_path(
+        teaching_group_id: @assignment.teaching_group,
+        id: @assignment
+        )
+    else
+      render :edit
+    end
   end
 
-  def teacher_index
-    @teaching_group = TeachingGroup.find(params[:id])
-    @assignments = policy_scope(Assignment).where(teaching_group_id: params[:id])
-    authorize @assignments.first
-  end
+  # student actions
+  # def index
+  #   @assignments = policy_scope(Assignment).all.select do |assignment|
+  #     assignment.students.include?(current_user)
+  #   end
+  #   authorize @assignments.first
+  # end
 
-  # parents index
-  def parent_index
-    @child = User.find(params[:id])
-    @assignments = policy_scope(User).find(params[:id]).assignments
-    authorize @assignments.first
-  end
-  def parent_show
-    @assignment = Assignment.find(params[:assignment_id])
-  end
+  # def destroy
+  #   @assignment.delete
+  # end
+
+  # def teacher_show
+  #   @teaching_group = TeachingGroup.find(params[:id])
+  #   @assignment = Assignment.find(params[:assignment_id])
+  #   authorize @assignment
+  # end
+
+  # def teacher_index
+  #   @teaching_group = TeachingGroup.find(params[:id])
+  #   @assignments = policy_scope(Assignment).where(teaching_group_id: params[:id])
+  #   authorize @assignments.first
+  # end
+
+  # # parents index
+  # def parent_index
+  #   @child = User.find(params[:id])
+  #   @assignments = policy_scope(User).find(params[:id]).assignments
+  #   authorize @assignments.first
+  # end
+  # def parent_show
+  #   @assignment = Assignment.find(params[:assignment_id])
+  # end
 
   private
 
+  def find_teaching_group
+    @teaching_group = TeachingGroup.find(params[:teaching_group_id])
+  end
+
   def find_assignment
     @assignment = Assignment.find(params[:id])
+    authorize @assignment
   end
 
   def assignment_params

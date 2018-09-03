@@ -1,0 +1,8 @@
+<%= render 'shared/tabs', teaching_group: @teaching_group %>
+
+<% if current_user.teacher %>
+  <%= link_to 'Add new assignment', new_teaching_group_assignment_path(@teaching_group), class: 'btn btn-default' %>
+<% end %>
+<% @assignments.each do |assignment| %>
+  <p><%= assignment.title %></p>
+<% end %>
