@@ -1,4 +1,4 @@
-class TeachingGroupPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -6,7 +6,7 @@ class TeachingGroupPolicy < ApplicationPolicy
   end
 
   def index?
-    user.teacher
+    user.guardian
   end
 
   def show?

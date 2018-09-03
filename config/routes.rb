@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'teaching_groups/index' #this seems to be the landing page
   get 'teaching_groups/show'
   devise_for :users
-  root to: 'teaching_groups#index'
+  root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # routes for teachers
@@ -26,10 +26,9 @@ Rails.application.routes.draw do
   end
 
   # routes for guardians
-  resources :children, only: %i[index show] do
+  resources :children, only: %i[index] do
     member do
       get 'assignments', to: 'assignments#parent_index'
-      get 'assignments/:assignment_id', to: 'assignments#parent_show'
     end
   end
 

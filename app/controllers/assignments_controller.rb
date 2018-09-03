@@ -4,10 +4,14 @@ class AssignmentsController < ApplicationController
 
   # student actions
   def index
-    @assignments = policy_scope(current_user.my_assignements_to_do)
+    @assignments = policy_scope(Assignment).all.select do |assignment|
+      assignment.students.include?(current_user)
+    end
+    authorize @assignments.first
   end
 
   def show
+    authorize @assignment
   end
 
   # teacher actions
@@ -37,6 +41,7 @@ class AssignmentsController < ApplicationController
   end
 
   def edit
+    @teaching_group = TeachingGroup.find(params[:id])
   end
 
   def update
@@ -49,18 +54,22 @@ class AssignmentsController < ApplicationController
   end
 
   def teacher_show
+    @teaching_group = TeachingGroup.find(params[:id])
     @assignment = Assignment.find(params[:assignment_id])
     authorize @assignment
   end
 
   def teacher_index
+    @teaching_group = TeachingGroup.find(params[:id])
     @assignments = policy_scope(Assignment).where(teaching_group_id: params[:id])
     authorize @assignments.first
   end
 
   # parents index
   def parent_index
-    @assignments = User.find(params[:id]).assignments
+    @child = User.find(params[:id])
+    @assignments = policy_scope(User).find(params[:id]).assignments
+    authorize @assignments.first
   end
   def parent_show
     @assignment = Assignment.find(params[:assignment_id])

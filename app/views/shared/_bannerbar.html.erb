@@ -1,5 +1,13 @@
 <div class="banner_bar-wagon">
-  <h3>Class: <%#= TeachingGroup.find(params[:id]).group_code %></h3>
+
+
+  <!-- Logo -->
+  <a href="/" class="banner_bar-wagon-brand">
+    <!-- <img src="#" alt="."> -->
+  </a>
+
+  <h3>Class: <%= @teaching_group.group_code %></h3>
+
 
   <!-- Right Navigation -->
   <div class="banner_bar-wagon-right hidden-xs hidden-sm">
@@ -14,8 +22,18 @@
          id="navbar-wagon-menu" data-toggle="dropdown"></i>
         <ul class="dropdown-menu dropdown-menu-right banner_bar-wagon-dropdown-menu">
           <% current_user.teacher_teaching_groups.each do |teaching_group| %>
-            <%= link_to teaching_group_path(teaching_group) do %>
-              <li><p><%= teaching_group.group_code %></p> </li>
+            <% if params[:controller] == 'assignments' && params[:action] == 'new' %>
+              <%= link_to new_teaching_group_assignment_path(teaching_group) do %>
+                <li><p><%= teaching_group.group_code %></p> </li>
+              <% end %>
+            <% elsif params[:controller] == 'teaching_groups' && params[:action] == 'show' %>
+              <%= link_to teaching_group_path(teaching_group) do %>
+                <li><p><%= teaching_group.group_code %></p> </li>
+              <% end %>
+            <% elsif params[:controller] == 'assignments' && params[:action] == 'teacher_index' %>
+              <%= link_to assignments_teaching_group_path(teaching_group) do %>
+                <li><p><%= teaching_group.group_code %></p> </li>
+              <% end %>
             <% end %>
           <% end %>
         </ul>

@@ -1,0 +1,24 @@
+<div class="container">
+
+  <h1><%= @child.first_name %>'s homework:</h1>
+
+  <div class="homeworks">
+    <% @assignments.each do |assignment| %>
+    <div class="homework">
+      <div class="homework-title">
+        Title: <%= assignment.title %>
+      </div>
+      <div class="homework-description">
+        Description: <%= assignment.description %>
+      </div>
+      <div class="homework-date-due">
+        Date due: <%= assignment.date_due %>
+      </div>
+      <div class="homework-subject">
+        <%= assignment.teaching_group.subject %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+</div>

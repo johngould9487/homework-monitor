@@ -1,19 +1,24 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 35 %>
+  <% if user_signed_in? %>
+    <% if current_user.teacher %>
+      <%= link_to teaching_groups_path, class: "navbar-wagon-brand" do %>
+        <%= image_tag "logo-teacher.png", height: 35 %>
+      <% end %>
+    <% elsif current_user.guardian %>
+      <%= link_to children_path, class: "navbar-wagon-brand" do %>
+        <%= image_tag "logo-guardian.png", height: 35 %>
+      <% end %>
+    <% else %>
+      <%= link_to assignments_path, class: "navbar-wagon-brand" do %>
+        <%= image_tag "logo-student.png", height: 35 %>
+      <% end %>
+    <% end %>
   <% end %>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-
     <% if user_signed_in? %>
-
-      <!-- Links when logged in -->
-      <%#= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%#= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%#= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
