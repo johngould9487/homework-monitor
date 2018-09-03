@@ -34,6 +34,10 @@
               <%= link_to assignments_teaching_group_path(teaching_group) do %>
                 <li><p><%= teaching_group.group_code %></p> </li>
               <% end %>
+            <% elsif params[:controller] == 'attempts' && params[:action] == 'teacher_index' %>
+              <%= link_to attempts_teaching_group_assignment_path(teaching_group, params[:id]) do %>
+                <li><p><%= teaching_group.group_code %></p> </li>
+              <% end %>
             <% end %>
           <% end %>
         </ul>
