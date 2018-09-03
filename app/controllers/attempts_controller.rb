@@ -4,6 +4,7 @@ class AttemptsController < ApplicationController
   # teacher actions
   def teacher_index
     @attempts = policy_scope(Assignment.find(params[:id]).attempts)
+    @teaching_group = TeachingGroup.find(params[:teaching_group_id])
     authorize @attempts.first
   end
 
