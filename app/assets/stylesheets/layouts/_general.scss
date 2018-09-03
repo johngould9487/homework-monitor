@@ -1,14 +1,5 @@
 body { background:
-  linear-gradient(90deg,
-
-    $teacher-blue 0%,
-    #7ccaff 100%
-    );
-}
-
-
-body {
-  background: linear-gradient(#782ef7, #23e8ef);
+  linear-gradient(90deg, $teacher-blue 0%, #7ccaff 100%);
 }
 
 .min-height-content {
