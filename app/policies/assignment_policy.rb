@@ -13,6 +13,10 @@ class AssignmentPolicy < ApplicationPolicy
     user.teacher
   end
 
+  def set_assignment?
+    user.teacher
+  end
+
   def upcoming?
     true
   end

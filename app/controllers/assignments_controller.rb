@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
-  before_action :find_assignment, only: %i[show edit update destroy]
-  before_action :find_teaching_group, only: [:show, :update]
+  before_action :find_assignment, only: %i[show edit update destroy set_assignment]
+  before_action :find_teaching_group, only: [:show, :update, :set_assignment]
 
   def upcoming
     if !current_user.guardian
@@ -82,6 +82,12 @@ class AssignmentsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def set_assignment
+    @assignment.published = true
+    @assignment.save
+    redirect_to teaching_group_assignment_path(@teaching_group, @assignment)
   end
 
   # student actions

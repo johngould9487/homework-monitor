@@ -1,11 +1,7 @@
-
-// body { background:
-//   // linear-gradient(90deg, $teacher-blue 0%, #7ccaff 100%);
-// }
-
-
-.min-height-content {
+.main-body {
   min-height: calc(100vh - 70px);
-  margin-left: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 10px;
 }
 
