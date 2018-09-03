@@ -1,86 +1,115 @@
-<div>
+<%= render'shared/bannerbar' %>
+<div class="container">
+  <h2 style="text-align:center; color:white;">Mark Homework</h2>
+  <div class="homeworks">
+    <% @assignments.each do |assignment| %>
+      <div class="homework">
+        <div class="homework-title">
+          Title: <%= assignment.title %>
+        </div>
+        <div class="homework-description">
+          Description: <%= assignment.description %>
+        </div>
+        <div class="homework-date-due">
+          Date due: <%= assignment.date_due %>
+        </div>
+        <div class="homework-subject">
+          <%= assignment.teaching_group.subject %>
+        </div>
+        <div class="homework-set-details">
+          <% if assignment.marked %>
+            <p>Marked: <i class="fas fa-check-circle"></i></p>
+          <% else %>
+            <p>Marked: <i class="fas fa-times"></i></p>
+          <% end %>
+          <% if assignment.published %>
+            <p>Released: <i class="fas fa-check-circle"></i></p>
+          <% else %>
+            <p>Released: <i class="fas fa-times"></i></p>
+          <% end %>
+        </div>
+        <%= link_to '', attempts_teaching_group_assignment_path(assignment.teaching_group.id, assignment.id), class: 'homework-link' %>
+      </div>
+    <% end %>
+  </div>
+  <style>
+    hr {
+      display: block;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: inset;
+      border-width: 1px;
+    }
 
-  <%= render'shared/bannerbar' %>
-
-</div>
-<h2 style="text-align:center; color:white;">Mark Homework</h2>
-<style>
-  hr {
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 1px;
+  tr
+  {
+      padding:10px 55px 10px 25px;
   }
 
-tr
-{
-    padding:10px 55px 10px 25px;
-}
+  td {
+    height: 80px;
+  }
 
-td {
-  height: 80px;
-}
+  th, td {
+      border-bottom: 1px solid #ddd;
+  }
 
-th, td {
-    border-bottom: 1px solid #ddd;
-}
+  tr:nth-child(even) {background-color: #f2f2f2;}
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+  .fa-check-circle {
+    color: green;
+  }
 
-.fa-check-circle {
-  color: green;
-}
+  .fa-times {
+    color: red;
+  }
 
-.fa-times {
-  color: red;
-}
+  table.fixed { table-layout:fixed; }
+  table.fixed td { overflow: hidden; }
 
-table.fixed { table-layout:fixed; }
-table.fixed td { overflow: hidden; }
-
-</style>
-<div class="content-wrapper" >
-  <div class="white-background altered-width">
-    <table class="fixed">
-      <col width="400px" />
-      <col width="200px" />
-      <col width="200px" />
-      <col width="100px" />
-      <col width="100px" />
-      <tr>
-        <th style="text-align: center;">Title</th>
-        <th style="text-align: center;">Date Created</th>
-        <th style="text-align: center;">Date Due</th>
-        <th style="text-align: center;">Set</th>
-        <th style="text-align: center;">Marked</th>
-        <th style="text-align: center;">Details</th>
-      </tr>
-        <% @assignments.each do |assignment| %>
-      <tr>
-        <td style="font-weight: bold;"><%= assignment.title %></td>
-        <td><%= assignment.date_created.strftime("#{assignment.date_created.day.ordinalize} %B %Y") %></td>
-        <td><%= assignment.date_due.strftime("#{assignment.date_due.day.ordinalize} %B %Y") %></td>
-        <td>
-          <% if assignment.published %>
-            <i class="fas fa-check-circle"></i>
-          <% else %>
-            <i class="fas fa-times"></i>
+  </style>
+  <div class="content-wrapper" >
+    <div class="white-background altered-width">
+      <table class="fixed">
+        <col width="400px" />
+        <col width="200px" />
+        <col width="200px" />
+        <col width="100px" />
+        <col width="100px" />
+        <tr>
+          <th style="text-align: center;">Title</th>
+          <th style="text-align: center;">Date Created</th>
+          <th style="text-align: center;">Date Due</th>
+          <th style="text-align: center;">Set</th>
+          <th style="text-align: center;">Marked</th>
+          <th style="text-align: center;">Details</th>
+        </tr>
+          <% @assignments.each do |assignment| %>
+        <tr>
+          <td style="font-weight: bold;"><%= assignment.title %></td>
+          <td><%= assignment.date_created.strftime("#{assignment.date_created.day.ordinalize} %B %Y") %></td>
+          <td><%= assignment.date_due.strftime("#{assignment.date_due.day.ordinalize} %B %Y") %></td>
+          <td>
+            <% if assignment.published %>
+              <i class="fas fa-check-circle"></i>
+            <% else %>
+              <i class="fas fa-times"></i>
+            <% end %>
+          </td>
+          <td>
+          <% if assignment.marked %>
+              <i class="fas fa-check-circle"></i>
+            <% else %>
+              <i class="fas fa-times"></i>
+            <% end %>
+          </td>
+          <td><%= link_to "View", teaching_group_assignment_path(assignment.teaching_group, assignment)  %></td>
+        </tr>
           <% end %>
-        </td>
-        <td>
-        <% if assignment.marked %>
-            <i class="fas fa-check-circle"></i>
-          <% else %>
-            <i class="fas fa-times"></i>
-          <% end %>
-        </td>
-        <td><%= link_to "View", teaching_group_assignment_path(assignment.teaching_group, assignment)  %></td>
-      </tr>
-        <% end %>
-    </table>
+      </table>
+    </div>
   </div>
 </div>
 
