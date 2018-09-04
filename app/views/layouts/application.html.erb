@@ -30,7 +30,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
   <body>
-    <%= render 'shared/navbar', teaching_group: @teaching_group %>
+    <%= render 'shared/navbar', teaching_group: @teaching_group, child: @child %>
     <%= render 'shared/flashes' %>
     <div class="main-body">
       <%= yield %>
