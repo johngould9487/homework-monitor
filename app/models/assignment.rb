@@ -3,6 +3,12 @@ class Assignment < ApplicationRecord
   has_many :attempts, foreign_key:"assignment_id"
   has_many :students, through: :attempts
 
+  after_create do |assignment|
+    assignment.teaching_group.students.each do |student|
+      Attempt.create(assignment: assignment, student: student, completed: false)
+    end
+  end
+
   def attempt_percentage
     (attempts.count / students.count) * 100
   end
