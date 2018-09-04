@@ -19,7 +19,7 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right">
 
-    <% if user_signed_in? && !current_user.guardian %>
+    <% if user_signed_in? && current_user.teacher %>
       <div class="dropdown">
         <div id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= teaching_group.group_code %>
@@ -28,6 +28,29 @@
 
         <ul class="dropdown-menu" aria-labelledby="dLabel">
           <% current_user.teacher_teaching_groups.each do |teaching_group| %>
+            <% if params[:action] == "upcoming" %>
+              <li><%= link_to teaching_group.group_code, teaching_group_upcoming_path(teaching_group)  %></li>
+            <% elsif params[:action] == "past" %>
+              <li><%= link_to teaching_group.group_code, teaching_group_past_path(teaching_group)  %></li>
+            <% elsif params[:action] == "markbook" %>
+              <li><%= link_to teaching_group.group_code, teaching_group_markbook_path(teaching_group)  %></li>
+            <% elsif params[:action] == "new" %>
+              <li><%= link_to teaching_group.group_code, new_teaching_group_assignment_path(teaching_group)  %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% if user_signed_in? && current_user.student %>
+      <div class="dropdown">
+        <div id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= teaching_group.group_code %>
+          <span class="caret"></span>
+        </div>
+
+        <ul class="dropdown-menu" aria-labelledby="dLabel">
+          <% current_user.student_teaching_groups.each do |teaching_group| %>
             <% if params[:action] == "upcoming" %>
               <li><%= link_to teaching_group.group_code, teaching_group_upcoming_path(teaching_group)  %></li>
             <% elsif params[:action] == "past" %>
