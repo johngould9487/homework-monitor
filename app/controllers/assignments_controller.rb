@@ -39,9 +39,9 @@ class AssignmentsController < ApplicationController
   def create
     @assignment = Assignment.new(assignment_params)
     @assignment.teaching_group = TeachingGroup.find(params[:teaching_group_id])
-    if params[:commit] == 'Save'
+    if params[:commit] == 'Save draft'
       @assignment.published = false
-    elsif params[:commit] == 'Set'
+    elsif params[:commit] == 'Set homework'
       @assignment.published = true
     end
     authorize @assignment

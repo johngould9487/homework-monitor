@@ -1,0 +1,29 @@
+.btn-white {
+  background-color: $white;
+  padding: 10px 25px;
+  color: gray;
+  border-radius: 10px;
+  border-color: $light-gray;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+}
+
+.btn-white:hover{
+  color: $teacher-blue;
+  border-color: $teacher-blue;
+}
+
+.btn-blue {
+  background-color: $teacher-blue;
+  border-radius: 10px;
+  padding: 10px 25px;
+}
+
+.btn-blue:hover {
+  color: black;
+}
+
+.btn-orange {
+
+}

@@ -8,4 +8,13 @@ class Assignment < ApplicationRecord
       Attempt.create(assignment:assignment, student:student, completed:false)
     end
   end
+
+  def attempt_percentage
+    (attempts.count / students.count) * 100
+  end
+
+  def days_left
+    (date_due.to_date - DateTime.now).to_i
+  end
+
 end

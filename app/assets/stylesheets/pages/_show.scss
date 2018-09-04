@@ -1,0 +1,82 @@
+.white-container {
+  background: white;
+  margin-bottom: 10px;
+  padding: 30px;
+  position: relative;
+}
+
+.show-page-header {
+  display: flex;
+  justify-content: space-between;
+  h2 {
+    border-bottom: 2px solid $teacher-blue;
+    padding-bottom: 5px;
+    font-size: 20px;
+    margin: 0;
+  }
+  h3 {
+    font-size:20px;
+    background-color: $teacher-blue;
+    border-radius: 5px;
+    color: white;
+    margin: 0;
+    padding: 10px 20px;
+  }
+  .warning {
+    background-color: orange;
+  }
+}
+
+.show-page-dates {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  .date {
+    span {
+      font-family: $headers-font;
+      font-size: 10px;
+      font-weight: bold;
+      opacity: .7;
+    }
+    p {
+// to do
+    }
+  }
+}
+
+.show-commands {
+  display: flex;
+  justify-content: flex-end;
+  .btn-white {
+    margin-right: 10px;
+  }
+}
+
+.show-instructions {
+  margin-top: 10px;
+  span {
+    font-family: $headers-font;
+    font-size: 10px;
+    font-weight: bold;
+    opacity: .7;
+    }
+    p {
+// to do
+    }
+  .show-instructions-guardian {
+  background-color: #f9e8bb;
+  border-radius: 0 0 5px 5px;
+  padding: 10px;
+  padding-top: 2px;
+  }
+
+}
+
+.show-completed {
+  margin-top: 10px;
+  span {
+    font-size: 10px;
+    font-weight: bold;
+    opacity: .7;
+  }
+}
