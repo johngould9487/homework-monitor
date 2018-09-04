@@ -65,7 +65,7 @@
       </div>
     <% end %>
 
-    <% if user_signed_in? && current_user.guardian %>
+    <% if user_signed_in? && current_user.guardian && params[:action] != "show" %>
       <div class="dropdown">
         <div id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= child.first_name %>

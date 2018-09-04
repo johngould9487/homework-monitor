@@ -18,5 +18,9 @@
       <p>Released</p>
     </div>
   <% end %>
-  <%= link_to '', teaching_group_assignment_path(params[:teaching_group_id], assignment), class: 'homework-link' %>
+  <% if !current_user.guardian %>
+    <%= link_to '', teaching_group_assignment_path(params[:teaching_group_id], assignment), class: 'homework-link' %>
+  <% else %>
+    <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link' %>
+  <% end %>
 </div>

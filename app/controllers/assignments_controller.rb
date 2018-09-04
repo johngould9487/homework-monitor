@@ -33,6 +33,7 @@ class AssignmentsController < ApplicationController
   end
 
   def show
+    @child = current_user.students.first
   end
 
   # teacher actions
