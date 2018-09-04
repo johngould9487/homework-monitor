@@ -34,7 +34,7 @@
   .date {
     span {
       font-family: $headers-font;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: bold;
       opacity: .7;
     }
@@ -56,7 +56,7 @@
   margin-top: 10px;
   span {
     font-family: $headers-font;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     opacity: .7;
     }
@@ -76,15 +76,39 @@
   display: flex;
   margin-top: 10px;
   span {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     opacity: .7;
   }
+  .display-student-avatars {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-left: -75px;
+    text-align: center;
+      span {
+      font-size: 15px;
+      color: $teacher-blue;
+      opacity: .7;
+    }
+    p {
+      margin-bottom: 1px;
+      font-weight: bold;
+      opacity: .7;
+    }
+  }
 }
 
-
-.avatar {
+.avatar-student {
   height: 35px;
   width: 35px;
   border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+
+.avatar-student-all {
+  padding-right: 30px;
+  margin-bottom: 5px;
 }
