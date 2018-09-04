@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :attempts, only: :update
+
   resources :children, only: [:show] do
     get '/upcoming_homeworks', to: "assignments#upcoming", as: :upcoming
     get '/past_homeworks', to: "assignments#past", as: :past

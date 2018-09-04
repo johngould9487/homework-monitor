@@ -5,11 +5,15 @@ class AttemptPolicy < ApplicationPolicy
     end
   end
 
-  def teacher_index?
+  def update?
     user.teacher
   end
 
-  def teacher_show?
-    user.teacher
-  end
+  # def teacher_index?
+  #   user.teacher
+  # end
+
+  # def teacher_show?
+  #   user.teacher
+  # end
 end

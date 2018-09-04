@@ -1,3 +1,24 @@
+class AttemptsController < ApplicationController
+  def update
+    @attempt = Attempt.find(params[:id])
+    authorize @attempt
+    if @attempt.update(attempt_params)
+      redirect_to teaching_group_markbook_path(teaching_group_id: @attempt.assignment.teaching_group)
+    else
+      render 'assignments/markbook'
+    end
+  end
+
+  private
+
+  def attempt_params
+    params.require(:attempt).permit(:mark, :comment)
+  end
+end
+
+
+
+
 # class AttemptsController < ApplicationController
 #   before_action :find_attempt_teacher, only: %i[teacher_show teacher_edit teacher_update]
 #   before_action :find_attempt_student, only: %i[show edit update]
