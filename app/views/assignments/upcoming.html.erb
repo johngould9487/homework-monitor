@@ -1,16 +1,12 @@
 <%= render 'shared/tabs', teaching_group: @teaching_group %>
-<div>
+
+<div class="container">
   <% if current_user.teacher %>
-    <%= link_to 'Add new homework', new_teaching_group_assignment_path(@teaching_group), class: 'btn btn-default add-button' %>
+  <%= link_to 'Add new homework', new_teaching_group_assignment_path(@teaching_group), class: 'btn btn-default add-button' %>
   <% end %>
-
-<%= render 'shared/homework_card' %>
-<%= render 'shared/homework_card' %>
-<%= render 'shared/homework_card' %>
-
-  <div>
+  <div class="center-cards">
     <% @assignments.each do |assignment| %>
-      <p><%= assignment.title %></p>
+      <%= render 'shared/homework_card', assignment: assignment %>
     <% end %>
   </div>
 </div>

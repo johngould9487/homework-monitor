@@ -1,11 +1,22 @@
 <div class="homework_card">
   <div class="homework_card-titles">
     <span>
-    <h2>Mt5/Pt7 <span class="h3-card"> - Maths A Level</span></h2>
+    <p class="homework-title"><%= assignment.title %></p>
     </span>
-    <p>Due 22nd September 2018</p>
+    <p class="homework-date">Due <%= assignment.date_due.strftime("%A #{assignment.date_due.day.ordinalize} %B") %></p>
   </div>
-  <div class="not-set-btn btn btn-default">
-    <%= link_to 'Not set yet'%>
-  </div>
+  <% if assignment.marked %>
+    <div class="homework-status homework-marked">
+      <p>Marked</p>
+    </div>
+  <% elsif assignment.published %>
+    <div class="homework-status homework-set">
+      <p>Set</p>
+    </div>
+  <% else %>
+    <div class="homework-status homework-draft">
+      <p>Released</p>
+    </div>
+  <% end %>
+  <%= link_to '', teaching_group_assignment_path(params[:teaching_group_id], assignment), class: 'homework-link' %>
 </div>

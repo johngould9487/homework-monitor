@@ -5,11 +5,11 @@ class AssignmentsController < ApplicationController
   def upcoming
     if !current_user.guardian
       @teaching_group = TeachingGroup.find(params[:teaching_group_id])
-      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due > ?', Date.today)
+      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due > ?', Date.today).sort{ |a, b| a <=> b }
       authorize(@assignments.first)
     else
       @child = User.find(params[:child_id])
-      @assignments = @child.assignments.where('date_due > ?', Date.today)
+      @assignments = @child.assignments.where('date_due > ?', Date.today).sort{ |a, b| a <=> b }
       authorize(@assignments.first)
     end
   end
@@ -17,18 +17,18 @@ class AssignmentsController < ApplicationController
   def past
     if !current_user.guardian
       @teaching_group = TeachingGroup.find(params[:teaching_group_id])
-      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due < ?', Date.today)
+      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due < ?', Date.today).sort{ |a, b| a <=> b }
       authorize(@assignments.first)
     else
       @child = User.find(params[:child_id])
-      @assignments = @child.assignments.where('date_due < ?', Date.today)
+      @assignments = @child.assignments.where('date_due < ?', Date.today).sort{ |a, b| a <=> b }
       authorize(@assignments.first)
     end
   end
 
   def markbook
     @teaching_group = TeachingGroup.find(params[:teaching_group_id])
-    @assignments = Assignment.where(teaching_group: @teaching_group)
+    @assignments = Assignment.where(teaching_group: @teaching_group).sort{ |a, b| a <=> b }
     authorize(@assignments.first)
   end
 
