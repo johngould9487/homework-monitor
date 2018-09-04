@@ -4,7 +4,7 @@
 .homework-card {
   height: 100px;
   transition: .2s;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   padding: 0px 15px;
   background: #FFF;
   border-radius: 5px;
@@ -22,9 +22,20 @@
   flex: 1 1 400px;
   // width: 400px;
   letter-spacing: 1px;
-  color: $teacher-blue;
+  // color: $teacher-blue;
   margin-top: 15px;
+}
 
+.homework-teacher {
+  color: $teacher-blue;
+}
+
+.homework-student {
+  color: $student-orange;
+}
+
+.homework-guardian {
+  color: $parent-green;
 }
 
 .homework-date {
@@ -35,7 +46,7 @@
 
 .homework-status {
   text-align: center;
-  width: 120px;
+  width: 180px;
   padding: 10px 15px;
   border-radius: 4px;
   transition: background 0.3s ease;
@@ -53,16 +64,20 @@
   background: $medium-gray;
 }
 
-// .homework-set {
-//   background: $orange;
-// }
-
-.homework-marked {
+.homework-fully-marked {
   background: $green;
 }
 
-.homework-incomplete {
+.homework-partially-marked {
+  background: $orange;
+}
+
+.homework-under-marked {
   background: $red;
+}
+
+.homework-student-mark {
+  background: $student-orange;
 }
 
 .homework-link {

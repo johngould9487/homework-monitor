@@ -2,24 +2,24 @@
   padding-bottom: 25px;
 }
 
-.tab-link {
+.tab-link-student, .tab-link-teacher, .tab-link-teacher {
   color: #333333;
   padding: 20px;
 }
 
-.tab-link.active {
+.tab-link-student.active {
+  border-bottom: 4px solid $student-orange;
+  padding-bottom: 5px;
+}
+
+.tab-link-teacher.active {
   border-bottom: 4px solid $teacher-blue;
   padding-bottom: 5px;
 }
 
-
-
-
-
-/////
-
-.teacher-color {
-  background-color: red;
+.tab-link-guardian.active {
+  border-bottom: 4px solid $parent-green;
+  padding-bottom: 5px;
 }
 
 
