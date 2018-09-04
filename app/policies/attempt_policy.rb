@@ -9,6 +9,14 @@ class AttemptPolicy < ApplicationPolicy
     user.teacher
   end
 
+  def upcoming?
+    true
+  end
+
+  def past?
+    true
+  end
+
   # def teacher_index?
   #   user.teacher
   # end

@@ -1,12 +1,32 @@
 <%= render 'shared/tabs', teaching_group: @teaching_group %>
 
 <div class="container">
-  <% if current_user.teacher %>
-  <%= link_to 'Add new homework', new_teaching_group_assignment_path(@teaching_group), class: "btn btn-default add-button" %>
-  <% end %>
-  <div class="center-cards">
-    <% @assignments.each do |assignment| %>
-      <%= render 'shared/homework_card', assignment: assignment %>
+  <div class="homework-cards">
+    <% if current_user.teacher %>
+      <%= link_to 'Add new homework', new_teaching_group_assignment_path(@teaching_group), class: 'btn btn-default add-button' %>
+      <div class="row">
+        <% @assignments.each do |assignment| %>
+          <div class="col-xs-12">
+            <%= render 'shared/homework_card', assignment: assignment %>
+          </div>
+        <% end %>
+      </div>
+    <% elsif current_user.guardian %>
+      <div class="row">
+        <% @attempts.each do |attempt| %>
+          <div class="col-xs-12">
+            <%= render 'shared/homework_card', attempt: attempt %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="row">
+        <% @attemptss.each do |attempts| %>
+          <div class="col-xs-12">
+            <%= render 'shared/homework_card', attempts: attempts %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

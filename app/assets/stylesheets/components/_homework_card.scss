@@ -1,18 +1,10 @@
-.center-cards {
- // TO BE DONE
+.homework-cards {
 }
 
-.homework_cards {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.homework_card {
+.homework-card {
   height: 100px;
   transition: .2s;
   margin-bottom: 20px;
-  width: 1000px;
   padding: 0px 15px;
   background: #FFF;
   border-radius: 5px;
@@ -27,10 +19,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 400px;
+  flex: 1 1 400px;
+  // width: 400px;
   letter-spacing: 1px;
   color: $teacher-blue;
   margin-top: 15px;
+
 }
 
 .homework-date {
@@ -65,6 +59,10 @@
 
 .homework-marked {
   background: $green;
+}
+
+.homework-incomplete {
+  background: $red;
 }
 
 .homework-link {
