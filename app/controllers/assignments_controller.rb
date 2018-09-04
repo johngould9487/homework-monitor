@@ -3,32 +3,48 @@ class AssignmentsController < ApplicationController
   before_action :find_teaching_group, only: [:show, :update, :set_assignment]
 
   def upcoming
-    if !current_user.guardian
+    if current_user.teacher
       @teaching_group = TeachingGroup.find(params[:teaching_group_id])
-      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due > ?', Date.today).sort{ |a, b| a <=> b }
+      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due > ?', Date.today)
       authorize(@assignments.first)
+    elsif current_user.student
+      @teaching_group = TeachingGroup.find(params[:teaching_group_id])
+      @attempts = Attempt.all.select do |attempt|
+        attempt.student == current_user && attempt.assignment.date_due > Date.today && attempt.assignment.teaching_group == @teaching_group
+      end
+      authorize(@attempts.first)
     else
       @child = User.find(params[:child_id])
-      @assignments = @child.assignments.where('date_due > ?', Date.today).sort{ |a, b| a <=> b }
-      authorize(@assignments.first)
+      @attempts = Attempt.all.select do |attempt|
+        attempt.student == User.find(params[:child_id]) && attempt.assignment.date_due > Date.today
+      end
+      authorize(@attempts.first)
     end
   end
 
   def past
-    if !current_user.guardian
+    if current_user.teacher
       @teaching_group = TeachingGroup.find(params[:teaching_group_id])
-      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due < ?', Date.today).sort{ |a, b| a <=> b }
+      @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due < ?', Date.today)
       authorize(@assignments.first)
+    elsif current_user.student
+      @teaching_group = TeachingGroup.find(params[:teaching_group_id])
+      @attempts = Attempt.all.select do |attempt|
+        attempt.student == current_user && attempt.assignment.date_due <= Date.today && attempt.assignment.teaching_group == @teaching_group
+      end
+      authorize(@attempts.first)
     else
       @child = User.find(params[:child_id])
-      @assignments = @child.assignments.where('date_due < ?', Date.today).sort{ |a, b| a <=> b }
-      authorize(@assignments.first)
+      @attempts = Attempt.all.select do |attempt|
+        attempt.student == User.find(params[:child_id]) && attempt.assignment.date_due <= Date.today
+      end
+      authorize(@attempts.first)
     end
   end
 
   def markbook
     @teaching_group = TeachingGroup.find(params[:teaching_group_id])
-    @assignments = Assignment.where(teaching_group: @teaching_group).sort{ |a, b| a <=> b }
+    @assignments = Assignment.where(teaching_group: @teaching_group)
     authorize(@assignments.first)
   end
 

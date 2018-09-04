@@ -1,26 +1,62 @@
-<div class="homework_card">
-  <div class="homework_card-titles">
-    <span>
-    <p class="homework-title"><%= assignment.title %></p>
-    </span>
-    <p class="homework-date">Due <%= assignment.date_due.strftime("%A #{assignment.date_due.day.ordinalize} %B") %></p>
-  </div>
-  <% if assignment.marked %>
-    <div class="homework-status homework-marked">
-      <p>Marked</p>
+<div class="homework-card">
+  <% if current_user.teacher %>
+    <div class="homework-card-titles">
+      <span>
+      <p class="homework-title"><%= assignment.title %></p>
+      </span>
+      <p class="homework-date">Due <%= assignment.date_due.strftime("%A #{assignment.date_due.day.ordinalize} %B") %></p>
     </div>
-  <% elsif assignment.published %>
-    <div class="homework-status homework-set">
-      <p>Set</p>
+    <% if assignment.marked %>
+      <div class="homework-status homework-marked">
+        <p>Marked</p>
+      </div>
+    <% elsif assignment.published %>
+      <div class="homework-status homework-set">
+        <p>Set</p>
+      </div>
+    <% else %>
+      <div class="homework-status homework-draft">
+        <p>Released</p>
+      </div>
+    <% end %>
+  <% elsif current_user.guardian %>
+    <div class="homework-card-titles">
+      <span>
+      <p class="homework-title"><%= attempt.assignment.title %></p>
+      </span>
+      <p class="homework-date">Due <%= attempt.assignment.date_due.strftime("%A #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
     </div>
-  <% else %>
-    <div class="homework-status homework-draft">
-      <p>Released</p>
+    <% if attempt.mark %>
+      <div class="homework-status homework-marked">
+        <p><%= attempt.comment %></p>
+      </div>
+    <% else %>
+      <div class="homework-status homework-incomplete">
+        <p><%= attempt.mark %></p>
+        <p><%= attempt.comment %></p>
+      </div>
+    <% end %>
+  <% elsif current_user.student %>
+    <div class="homework-card-titles">
+      <span>
+      <p class="homework-title"><%= attempt.assignment.title %></p>
+      </span>
+      <p class="homework-date">Due <%= attempt.assignment.date_due.strftime("%A #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
     </div>
+    <% if attempt.mark %>
+      <div class="homework-status homework-marked">
+        <p><%= attempt.comment %></p>
+      </div>
+    <% else %>
+      <div class="homework-status homework-incomplete">
+        <p><%= attempt.mark %></p>
+        <p><%= attempt.comment %></p>
+      </div>
+    <% end %>
   <% end %>
-  <% if !current_user.guardian %>
-    <%= link_to '', teaching_group_assignment_path(params[:teaching_group_id], assignment), class: 'homework-link' %>
-  <% else %>
-    <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link' %>
-  <% end %>
+  <%# if !current_user.guardian %>
+    <%#= link_to '', teaching_group_assignment_path(params[:teaching_group_id], assignment), class: 'homework-link' %>
+  <%# else %>
+    <%#= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link' %>
+  <%# end %>
 </div>
