@@ -39,15 +39,20 @@
     </div>
   </div>
   <div class="show-completed">
-    <% if @assignment.marked_percentage < 100 %>
+    <% if current_user.teacher && @assignment.marked_percentage < 100 %>
       <span>COMPLETED BY</span>
-      <% @assignment.attempts.each do |attempt| %>
-        <div class="avatar-student">
-          <%= image_tag "Einstein.jpg", class: "avatar"%>
-          <p> <%= attempt.student.first_name%></p>
-          <p> <%= attempt.mark %></p>
-        </div>
-      <% end %>
+      <div class="display-student-avatars">
+        <% @assignment.attempts.each do |attempt| %>
+          <div class="avatar-student-all">
+            <%= image_tag "Einstein.jpg", class: "avatar-student"%>
+            <p> <%= attempt.student.first_name%></p>
+            <span><p> <%= attempt.mark %> mark</p></span>
+          </div>
+        <% end %>
+      </div>
+      <% elsif current_user.student %>
+        <span> YOUR MARK</span>
+        <p> <%= student.mark %></p>
     <% end %>
   </div>
   <div class="show-commands">
