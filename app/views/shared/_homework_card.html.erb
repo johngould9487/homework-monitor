@@ -2,7 +2,7 @@
   <% if current_user.teacher %>
     <div class="homework-card-titles">
       <span>
-      <p class="homework-title"><%= assignment.title %></p>
+      <p class="homework-title homework-teacher"><%= assignment.title %></p>
       </span>
       <p class="homework-date">Due <%= assignment.date_due.strftime("%A #{assignment.date_due.day.ordinalize} %B") %></p>
     </div>
@@ -23,7 +23,7 @@
   <% elsif current_user.guardian %>
     <div class="homework-card-titles">
       <span>
-      <p class="homework-title"><%= attempt.assignment.title %></p>
+      <p class="homework-title homework-guardian"><%= attempt.assignment.title %></p>
       </span>
       <p class="homework-date">Due <%= attempt.assignment.date_due.strftime("%A #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
     </div>
