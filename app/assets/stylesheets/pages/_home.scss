@@ -1,7 +1,12 @@
 // Specific CSS for your home-page
-h1 {
-  text-align: center;
+h1, h2, h3, p {
   color: $gray;
+}
+
+h3 {
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 a {
