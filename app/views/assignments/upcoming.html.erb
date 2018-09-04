@@ -21,9 +21,9 @@
       </div>
     <% else %>
       <div class="row">
-        <% @attemptss.each do |attempts| %>
+        <% @attempts.each do |attempt| %>
           <div class="col-xs-12">
-            <%= render 'shared/homework_card', attempts: attempts %>
+            <%= render 'shared/homework_card', attempt: attempt %>
           </div>
         <% end %>
       </div>

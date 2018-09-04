@@ -6,19 +6,20 @@
       </span>
       <p class="homework-date">Due <%= assignment.date_due.strftime("%A #{assignment.date_due.day.ordinalize} %B") %></p>
     </div>
-    <% if assignment.marked %>
-      <div class="homework-status homework-marked">
-        <p>Marked</p>
+    <% if assignment.marked_percentage < 50 %>
+      <div class="homework-status homework-under-marked">
+        <p><%= assignment.marked_percentage %>% marked</p>
       </div>
-    <% elsif assignment.published %>
-      <div class="homework-status homework-set">
-        <p>Set</p>
+    <% elsif assignment.marked_percentage < 100 %>
+      <div class="homework-status homework-partially-marked">
+        <p><%= assignment.marked_percentage %>% marked</p>
       </div>
     <% else %>
-      <div class="homework-status homework-draft">
-        <p>Released</p>
+      <div class="homework-status homework-fully-marked">
+        <p><%= assignment.marked_percentage %>% marked</p>
       </div>
     <% end %>
+    <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link' %>
   <% elsif current_user.guardian %>
     <div class="homework-card-titles">
       <span>
@@ -36,27 +37,18 @@
         <p><%= attempt.comment %></p>
       </div>
     <% end %>
+    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
   <% elsif current_user.student %>
     <div class="homework-card-titles">
       <span>
-      <p class="homework-title"><%= attempt.assignment.title %></p>
+      <p class="homework-title homework-student"><%= attempt.assignment.title %></p>
       </span>
       <p class="homework-date">Due <%= attempt.assignment.date_due.strftime("%A #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
     </div>
-    <% if attempt.mark %>
-      <div class="homework-status homework-marked">
-        <p><%= attempt.comment %></p>
-      </div>
-    <% else %>
-      <div class="homework-status homework-incomplete">
-        <p><%= attempt.mark %></p>
-        <p><%= attempt.comment %></p>
-      </div>
-    <% end %>
+    <div class="homework-status homework-student-mark">
+      <p><%= attempt.mark %> - Mark</p>
+      <p><%= attempt.comment %> - Comment</p>
+    </div>
+    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
   <% end %>
-  <%# if !current_user.guardian %>
-    <%#= link_to '', teaching_group_assignment_path(params[:teaching_group_id], assignment), class: 'homework-link' %>
-  <%# else %>
-    <%#= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link' %>
-  <%# end %>
 </div>
