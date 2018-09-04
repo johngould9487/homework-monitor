@@ -18,7 +18,13 @@
 
         <ul class="dropdown-menu" aria-labelledby="dLabel">
           <% current_user.teacher_teaching_groups.each do |teaching_group| %>
-            <li><%= link_to teaching_group.group_code, teaching_group_upcoming_path(teaching_group)  %></li>
+            <% if params[:action] == "upcoming" %>
+              <li><%= link_to teaching_group.group_code, teaching_group_upcoming_path(teaching_group)  %></li>
+            <% elsif params[:action] == "past" %>
+              <li><%= link_to teaching_group.group_code, teaching_group_past_path(teaching_group)  %></li>
+            <% elsif params[:action] == "markbook" %>
+              <li><%= link_to teaching_group.group_code, teaching_group_markbook_path(teaching_group)  %></li>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -33,7 +39,11 @@
 
         <ul class="dropdown-menu" aria-labelledby="dLabel">
           <% current_user.students.each do |child| %>
-            <li><%= link_to child.first_name, child_upcoming_path(child)  %></li>
+            <% if params[:action] == "upcoming" %>
+              <li><%= link_to child.first_name, child_upcoming_path(child)  %></li>
+            <% elsif params[:action] == "past" %>
+              <li><%= link_to child.first_name, child_past_path(child)  %></li>
+            <% end %>
           <% end %>
         </ul>
       </div>
