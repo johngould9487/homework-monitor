@@ -1,10 +1,22 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-
-      <%= link_to root_path, class: "navbar-wagon-brand" do %>
-        <%= image_tag "logo-teacher.png", height: 35 %>
+  <% if !current_user.guardian %>
+    <%= link_to teaching_group_upcoming_path(teaching_group), class: "navbar-wagon-brand" do %>
+      <% if user_signed_in? %>
+        <% if current_user.teacher %>
+          <%= image_tag "logo-teacher.png", height: 35 %>
+        <% else %>
+          <%= image_tag "logo-student.png", height: 35 %>
+        <% end %>
       <% end %>
-
+    <% end %>
+  <% else %>
+    <%= link_to child_upcoming_path(child), class: "navbar-wagon-brand" do %>
+      <% if user_signed_in? %>
+        <%= image_tag "logo-guardian.png", height: 35 %>
+      <% end %>
+    <% end %>
+  <% end %>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right">
@@ -24,6 +36,8 @@
               <li><%= link_to teaching_group.group_code, teaching_group_past_path(teaching_group)  %></li>
             <% elsif params[:action] == "markbook" %>
               <li><%= link_to teaching_group.group_code, teaching_group_markbook_path(teaching_group)  %></li>
+            <% elsif params[:action] == "new" %>
+              <li><%= link_to teaching_group.group_code, new_teaching_group_assignment_path(teaching_group)  %></li>
             <% end %>
           <% end %>
         </ul>
@@ -33,7 +47,7 @@
     <% if user_signed_in? && current_user.guardian %>
       <div class="dropdown">
         <div id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= @child.first_name %>
+          <%= child.first_name %>
           <span class="caret"></span>
         </div>
 

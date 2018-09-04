@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   # get 'teaching_groups/index' #this seems to be the landing page
   # get 'teaching_groups/show'
   devise_for :users
-  root to: 'pages#home'
+  # root to: redirect('/teaching_groups/:teaching_group_id/upcoming_homeworks')
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # routes for teachers
