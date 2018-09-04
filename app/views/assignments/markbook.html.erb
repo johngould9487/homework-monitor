@@ -1,19 +1,20 @@
 <%= render 'shared/tabs', teaching_group: @teaching_group %>
-
 <% @assignments.each do |assignment| %>
   <div class="markbook-card">
     <h3><%= assignment.title %></h3>
     <% assignment.attempts.each do |attempt| %>
-      <p><%= attempt.student.first_name %> <%= attempt.student.last_name %></p>
-      <% if attempt.mark && attempt.comment %>
-        <%= attempt.mark %> - <%= attempt.comment %>
-      <% end %>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Grade
-      </button>
+      <div class="attempt-flex">
+        <p><%= attempt.student.first_name %> <%= attempt.student.last_name %></p>
+        <p><%= attempt.mark if attempt.mark %> <%= attempt.comment if attempt.comment %></p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#markModal<%= attempt.id %>">
+            <%= attempt.mark ? "Update mark" : "Select mark"  %>
+          </button>
+        </div>
+      </div>
 
       <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="markModal<%= attempt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -28,21 +29,13 @@
                 <%= f.submit %>
               <% end %>
 
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
       </div>
-
-
     <% end %>
   </div>
 <% end %>
-
 
 
 
