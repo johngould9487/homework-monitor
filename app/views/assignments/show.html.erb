@@ -3,8 +3,10 @@
     <h2><%= @assignment.title %></h2>
     <% if @assignment.published == false %>
       <h3 class="warning">NOT SET</h3>
+    <% elsif @assignment.marked_percentage < 100%>
+      <h3><%= @assignment.marked_percentage %>% of homework marked</h3>
     <% else %>
-      <h3><%= @assignment.attempt_percentage %>% students submitted</h3>
+      <h3 class="great">100% Marked</h3>
     <% end %>
 
   </div>
@@ -37,16 +39,21 @@
     </div>
   </div>
   <div class="show-completed">
-    <span>COMPLETED BY</span>
+    <% if @assignment.marked_percentage < 100 %>
+      <span>COMPLETED BY</span>
+      <% @assignment.attempts.each do |attempt| %>
+        <div class="avatar-student">
+          <%= image_tag "Einstein.jpg", class: "avatar"%>
+          <p> <%= attempt.student.first_name%></p>
+          <p> <%= attempt.mark %></p>
+        </div>
+      <% end %>
+    <% end %>
   </div>
   <div class="show-commands">
   <% if @assignment.published == false %>
       <%= link_to 'Edit Homework', edit_teaching_group_assignment_path(@teaching_group, @assignment), class: ' btn-white'  %>
-      <%= link_to 'Set homework', set_assignment_teaching_group_assignment_path(@teaching_group, @assignment), class: 'btn-blue', method: :patch %>
+      <%= link_to 'Set homework', teaching_group_assignment_path(@teaching_group, @assignment, assignment: {published: true}), class: 'btn-blue', method: :patch %>
     <% end %>
   </div>
 </div>
-
-
-
-
