@@ -56,9 +56,9 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new(assignment_params)
     @assignment.teaching_group = @teaching_group
     @assignment.published = params[:commit] == "Set homework"
-    @assignment.teaching_group.students.each do |student|
-      Attempt.create(assignment: @assignment, student: student, completed: false)
-    end
+    # @assignment.teaching_group.students.each do |student|
+    #   Attempt.create(assignment: @assignment, student: student, completed: false)
+    # end
     authorize @assignment
     if @assignment.save
       redirect_to teaching_group_assignment_path(teaching_group_id: @assignment.teaching_group, id: @assignment)
@@ -78,6 +78,7 @@ class AssignmentsController < ApplicationController
   end
 
   def update
+    @assignment.published = params[:commit] == "Set homework"
     if @assignment.update(assignment_params)
       redirect_to teaching_group_assignment_path(teaching_group_id: @assignment.teaching_group, id: @assignment)
     else
