@@ -1,18 +1,16 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <% if !current_user.guardian %>
-    <%= link_to teaching_group_upcoming_path(teaching_group), class: "navbar-wagon-brand" do %>
-      <% if user_signed_in? %>
+  <% if user_signed_in? %>
+    <% if !current_user.guardian %>
+      <%= link_to teaching_group_upcoming_path(teaching_group), class: "navbar-wagon-brand" do %>
         <% if current_user.teacher %>
           <%= image_tag "logo-teacher.png", height: 35 %>
         <% else %>
           <%= image_tag "logo-student.png", height: 35 %>
         <% end %>
       <% end %>
-    <% end %>
-  <% else %>
-    <%= link_to child_upcoming_path(child), class: "navbar-wagon-brand" do %>
-      <% if user_signed_in? %>
+    <% else %>
+      <%= link_to child_upcoming_path(child), class: "navbar-wagon-brand" do %>
         <%= image_tag "logo-guardian.png", height: 35 %>
       <% end %>
     <% end %>
