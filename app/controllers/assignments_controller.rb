@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
   before_action :find_assignment, only: %i[show edit update destroy set_assignment]
-  before_action :find_teaching_group, only: [:show, :update, :set_assignment]
+  before_action :find_teaching_group, only: [:show, :update, :set_assignment, :create]
 
   def upcoming
     if !current_user.guardian
@@ -36,21 +36,16 @@ class AssignmentsController < ApplicationController
     @child = current_user.students.first
   end
 
-  # teacher actions
   def create
     @assignment = Assignment.new(assignment_params)
-    @assignment.teaching_group = TeachingGroup.find(params[:teaching_group_id])
-    if params[:commit] == 'Save draft'
-      @assignment.published = false
-    elsif params[:commit] == 'Set homework'
-      @assignment.published = true
+    @assignment.teaching_group = @teaching_group
+    @assignment.published = params[:commit] == "Set homework"
+    @assignment.teaching_group.students.each do |student|
+      Attempt.create(assignment: @assignment, student: student, completed: false)
     end
     authorize @assignment
     if @assignment.save
-      redirect_to teaching_group_assignment_path(
-        teaching_group_id: @assignment.teaching_group,
-        id: @assignment
-        )
+      redirect_to teaching_group_assignment_path(teaching_group_id: @assignment.teaching_group, id: @assignment)
     else
       render :new
     end
@@ -67,31 +62,37 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-    @assignment.update(assignment_params)
-    @assignment.teaching_group = @teaching_group
-    if params[:commit] == 'Save'
-      @assignment.published = false
-    elsif params[:commit] == 'Set'
-      @assignment.published = true
-    end
-    authorize @assignment
-    if @assignment.save
-      redirect_to teaching_group_assignment_path(
-        teaching_group_id: @assignment.teaching_group,
-        id: @assignment
-        )
+    if @assignment.update(assignment_params)
+      redirect_to teaching_group_assignment_path(teaching_group_id: @assignment.teaching_group, id: @assignment)
     else
       render :edit
     end
   end
 
-  def set_assignment
-    @assignment.published = true
-    @assignment.save
-    redirect_to teaching_group_assignment_path(@teaching_group, @assignment)
+  private
+
+  def find_teaching_group
+    @teaching_group = TeachingGroup.find(params[:teaching_group_id])
   end
 
-  # student actions
+  def find_assignment
+    @assignment = Assignment.find(params[:id])
+    authorize @assignment
+  end
+
+  def assignment_params
+    params.require(:assignment).permit(:date_created, :date_due, :title, :description, :guardian_note, :grading_type, :maximum_score, :published)
+  end
+end
+
+  # def set_assignment
+  #   @assignment.published = true
+  #   @assignment.save
+  #   redirect_to teaching_group_assignment_path(@teaching_group, @assignment)
+  # end
+
+
+ # student actions
   # def index
   #   @assignments = policy_scope(Assignment).all.select do |assignment|
   #     assignment.students.include?(current_user)
@@ -124,21 +125,3 @@ class AssignmentsController < ApplicationController
   # def parent_show
   #   @assignment = Assignment.find(params[:assignment_id])
   # end
-
-  private
-
-  def find_teaching_group
-    @teaching_group = TeachingGroup.find(params[:teaching_group_id])
-  end
-
-  def find_assignment
-    @assignment = Assignment.find(params[:id])
-    authorize @assignment
-  end
-
-  def assignment_params
-    params.require(:assignment).permit(:date_created, :date_due,
-      :title, :description, :guardian_note, :grading_type, :maximum_score
-    )
-  end
-end

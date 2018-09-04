@@ -73,10 +73,18 @@
 }
 
 .show-completed {
+  display: flex;
   margin-top: 10px;
   span {
     font-size: 10px;
     font-weight: bold;
     opacity: .7;
   }
+}
+
+
+.avatar {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
 }
