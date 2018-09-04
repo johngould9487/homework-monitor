@@ -21,58 +21,63 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-
-  h2 {
-    letter-spacing: 1px;
-    font-size: 1.7em;
-    color: $teacher-blue;
-    margin-top: 15px;
-  }
-
-  p {
-    line-height: 1.4em;
-    font-size: 0.95em;
-    color: $gray;
-  }
 }
 
-.h3-card {
-    color: $gray;
-    font-size: 20px;
+.homework-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 400px;
+  letter-spacing: 1px;
+  color: $teacher-blue;
+  margin-top: 15px;
 }
 
-.not-set-btn {
-  color: white;
-  background: #eaa459;
+.homework-date {
+  line-height: 1.4em;
+  font-size: 0.95em;
+  color: $medium-gray;
+}
+
+.homework-status {
+  text-align: center;
+  width: 120px;
   padding: 10px 15px;
   border-radius: 4px;
   transition: background 0.3s ease;
   margin-right: 20px;
-  z-index: 2;
+  z-index: 3;
   text-decoration: none;
   border: none;
+  p {
+    color: white;
+    margin: 0;
+  }
 }
 
-.not-set-btn:hover {
-  color: white;
-  opacity: 1;
-  background: $teacher-blue;
-  text-decoration: none;
-  color: white;
-  z-index: 2;
+.homework-draft {
+  background: $medium-gray;
 }
 
-.card-link {
+.homework-set {
+  background: $orange;
+}
+
+.homework-marked {
+  background: $green;
+}
+
+.homework-link {
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
+  background: black;
+  opacity: 0;
 }
 
-.card:hover {
-  transform: scale(1.02);
-  border: 2px solid $teacher-blue;
+.homework-link:hover {
+  opacity: 0.05;
 }
-
