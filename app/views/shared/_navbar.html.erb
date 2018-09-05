@@ -78,20 +78,20 @@
          <% elsif params[:action] == "past" %>
           <span><%= link_to child.first_name, child_past_path(child), class: "child-navbar #{'active' if params[:child_id] == child.id.to_s}"%></span>
         <% end %>
-      <% end %>
-      <% end %>
 
         <ul class="dropdown-menu" aria-labelledby="dLabel">
           <div id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <% current_user.students.each do |child| %>
-            <% if params[:action] == "upcoming" %>
-              <li><%= link_to child.first_name, child_upcoming_path(child)  %></li>
-            <% elsif params[:action] == "past" %>
-              <li><%= link_to child.first_name, child_past_path(child)  %></li>
+            <% current_user.students.each do |child| %>
+              <% if params[:action] == "upcoming" %>
+                <li><%= link_to child.first_name, child_upcoming_path(child)  %></li>
+              <% elsif params[:action] == "past" %>
+                <li><%= link_to child.first_name, child_past_path(child)  %></li>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </ul>
-      </div>
+      <%# end %>
+      <% end %>
     <% end %>
 
     <% if user_signed_in? %>
