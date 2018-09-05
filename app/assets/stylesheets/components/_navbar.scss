@@ -86,3 +86,13 @@
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+
+.child-navbar {
+  color: #333333 !important;
+  text-decoration: none !important;
+  margin-left: 20px;
+}
+
+.child-navbar.active {
+  border-bottom: 4px solid $parent-green;
+}
