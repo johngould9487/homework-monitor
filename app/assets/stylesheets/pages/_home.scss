@@ -1,27 +1,33 @@
 // Specific CSS for your home-page
-h1, h2, h3, p {
-  color: $gray;
+
+.home-banner {
+  display: flex;
+  width: 100vh;
 }
 
-h3 {
-  font-size: 20px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
 
-a {
-  text-decoration: none;
-  color: $white;
-}
 
-a:hover {
-  text-decoration: none;
-  color: $white;
-}
 
-#home-page {
-  position: relative;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #home-page {
+//   position: relative;
+// }
 
 #overlay-title {
   padding-top: 100px;
@@ -33,13 +39,13 @@ a:hover {
   }
 }
 
-#carousel-example-generic {
-  position: absolute;
-  width: 100vw;
-  top: 0;
-  z-index: 1;
-}
+// #carousel-example-generic {
+//   position: absolute;
+//   width: 100vw;
+//   top: 0;
+//   z-index: 1;
+// }
 
-.padded-top {
-  padding-top: 70px;
-}
+// .padded-top {
+//   padding-top: 70px;
+// }

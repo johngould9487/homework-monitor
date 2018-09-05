@@ -5,26 +5,25 @@
         <%= f.input :title, label: "Homework title:", placeholder: "Give your homework a title"%>
       </div>
       <div class="large-notes">
-        <%= f.input :description, label: "Homework instructions:" %>
+        <%= f.input :description, label: "Homework instructions:", placeholder: "Give your students homework instructions..."%>
       </div>
       <div class="small-notes">
-      <%= f.input :guardian_note, label: "Note to guardians:" %>
+      <%= f.input :guardian_note, label: "Note to guardians:", placeholder: "Only guardians can see these notes..." %>
       </div>
     </div>
     <div class="right-column">
       <div class="white-background-sub">
-        <%= f.input :date_created, as: :string, required: false, input_html: {class: "datepicker"} %>
-        <%= f.input :date_due, as: :string, required: false, input_html: {
-          class: "datepicker"} %>
+        <%= f.input :date_created, as: :string, required: false, input_html: {class: "datepicker"}, label: "Date set", placeholder: "Monday 8th" %>
+        <%= f.input :date_due, as: :string, required: false, input_html: {class: "datepicker"}, label: "Date due", placeholder: "Wednesday 10th" %>
       </div>
       <div class="white-background ">
-        <%= f.input :grading_type, collection: [ "1-9", "A-F", "Percentages", "Out of ten", "Out of 100", "Other"]%>
+        <%= f.input :grading_type, collection: [ "1-9", "A-F", "Percentages", "Out Of Ten", "Out Of 100", "Other"]%>
       </div>
       <div class="save-btn">
-        <%= f.button :submit, "Save draft" %>
+        <%= f.button :submit, "Save draft", class: "btn-white" %>
       </div>
       <div class="set-btn">
-        <%= f.button :submit, "Set homework"%>
+        <%= f.button :submit, "Set homework", class: "btn-blue" %>
       </div>
     </div>
   </div>
