@@ -1,0 +1,51 @@
+.markbook-card {
+}
+
+.markbook-name {
+  flex: 0 0 200px;
+}
+
+.markbook-mark {
+  flex: 0 0 40px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.markbook-comment {
+  flex: 1 0 auto;
+}
+
+.markbook-action {
+  flex: 0 0 auto;
+}
+
+.attempt-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $light-gray;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.panel-teacher {
+  color: $teacher-blue;
+}
+
+.panel-panel-default {
+  transition: .2s;
+  margin-bottom: 5px;
+  background: #FFF;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.markbook-p {
+  color: #0070BA ;
+  margin: 0;
+}
