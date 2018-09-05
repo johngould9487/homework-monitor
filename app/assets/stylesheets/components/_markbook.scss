@@ -1,4 +1,42 @@
 .markbook-card {
+  height: 100px;
+  // transition: .2s;
+  // padding: 0px 15px;
+  background: #FFF !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // position: relative;
+}
+
+.markbook-button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.markbook-status {
+  text-align: right;
+  flex: 0 1 40vw;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  margin-right: 20px;
+  z-index: 3;
+  text-decoration: none;
+  border: none;
+  p {
+    color: $teacher-blue;
+    margin: 0;
+  }
+}
+
+.markbook-group {
+  margin-bottom: 5px !important;
+  border-radius: 5px !important;
 }
 
 .markbook-name {
@@ -6,8 +44,8 @@
 }
 
 .markbook-mark {
-  flex: 0 0 40px;
-  text-align: right;
+  flex: 0 0 100px;
+  text-align: center;
   margin-right: 10px;
 }
 
@@ -19,33 +57,32 @@
   flex: 0 0 auto;
 }
 
+.header {
+  color: $teacher-blue;
+}
+
 .attempt-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid $light-gray;
+  padding: 5px 0;
   p {
     margin-bottom: 0;
   }
 }
 
-.panel-teacher {
+.panel-heading {
+  position: relative !important;
+}
+
+.panel-title {
   color: $teacher-blue;
-}
-
-.panel-panel-default {
-  transition: .2s;
-  margin-bottom: 5px;
-  background: #FFF;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-
-.markbook-p {
-  color: #0070BA ;
-  margin: 0;
+  a {
+    text-decoration: none !important;
+  }
+  a:hover {
+    text-decoration: none !important;
+    color: $teacher-blue !important;
+  }
 }
