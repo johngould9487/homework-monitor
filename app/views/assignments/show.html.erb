@@ -1,12 +1,14 @@
 <div class="white-container">
   <div class="show-page-header">
     <h2><%= @assignment.title %></h2>
-    <% if @assignment.published == false %>
-      <h3 class="warning">NOT SET</h3>
-    <% elsif @assignment.marked_percentage < 100%>
-      <h3><%= @assignment.marked_percentage %>% of homework marked</h3>
-    <% else %>
-      <h3 class="great">100% Marked</h3>
+    <% if current_user.teacher && @assignment.published == false %>
+        <h3 class="warning">NOT SET</h3>
+      <% elsif current_user.teacher && @assignment.marked_percentage < 100%>
+        <h3><%= @assignment.marked_percentage %>% of homework marked</h3>
+      <% elsif current_user.teacher %>
+        <h3 class="great">100% Marked</h3>
+      <% else %>
+
     <% end %>
 
   </div>
@@ -51,12 +53,24 @@
         <% end %>
       </div>
       <% elsif current_user.student %>
-        <span> YOUR MARK</span>
-<!--         <p> <%#= student.mark %></p> -->
+        <div>
+          <% if !@attempt.mark == nil %>
+            <span> YOUR MARK <p> <%= @attempt.mark %> mark</p></span>
+            <span> TEACHER COMMENTS <p> <%= @attempt.comment %>comment</p> </span>
+          <% else %>
+            <span> YOUR MARK <p> --pending-- </p></span>
+            <span> TEACHER COMMENTS <p> --pending-- </p> </span>
+          <% end %>
+        </div>
+      <% else %>
+        <div>
+          <span> <%= @child.first_name %>'s MARK <p> <%= @attempt.mark %> mark</p></span>
+          <span> TEACHER COMMENTS <p> <%= @attempt.comment %>comment</p> </span>
+        </div>
     <% end %>
   </div>
   <div class="show-commands">
-  <% if @assignment.published == false %>
+  <% if current_user.teacher && @assignment.published == false %>
       <%= link_to 'Edit Homework', edit_teaching_group_assignment_path(@teaching_group, @assignment), class: ' btn-white'  %>
       <%= link_to 'Set homework', teaching_group_assignment_path(@teaching_group, @assignment, assignment: {published: true}), class: 'btn-blue', method: :patch %>
     <% end %>

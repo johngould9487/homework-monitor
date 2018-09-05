@@ -50,6 +50,17 @@ class AssignmentsController < ApplicationController
 
   def show
     @child = current_user.students.first
+    if current_user.student
+      attempts = Attempt.all.select do |attempt|
+        attempt.student == current_user && attempt.assignment == @assignment
+      end
+      @attempt = attempts.first
+    elsif current_user.guardian
+      attempts = Attempt.all.select do |attempt|
+        attempt.student == @child && attempt.assignment == @assignment
+      end
+      @attempt = attempts.first
+    end
   end
 
   def create
