@@ -2,7 +2,7 @@
 
   <% if user_signed_in? %>
     <% if !current_user.guardian %>
-      <%= link_to teaching_group_upcoming_path(teaching_group), class: "navbar-wagon-brand", data: { toggle: "tooltip", placement: "bottom" }, title: "Home" do %>
+      <%= link_to teaching_group_upcoming_path(teaching_group), class: "navbar-wagon-brand", data: { delay: 0, toggle: "tooltip", placement: "bottom" }, title: "Home" do %>
         <% if current_user.teacher %>
           <%= image_tag "logo-teacher.png", height: 35 %>
         <% else %>
