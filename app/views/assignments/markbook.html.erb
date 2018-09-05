@@ -6,7 +6,7 @@
   <div class="panel panel-default" id="target-<%= assignment.id %>">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#accordion-<%= assignment.id %>" aria-expanded="true" aria-controls="collapseOne">
+        <a role=" markbook-button" data-toggle="collapse" data-parent="#accordion" href="#accordion-<%= assignment.id %>" aria-expanded="true" aria-controls="collapseOne">
            <h3><%= assignment.title %></h3>
         </a>
       </h4>
@@ -17,10 +17,10 @@
           <div class="markbook-card">
     <% assignment.attempts.each do |attempt| %>
       <div class="attempt-flex">
-        <p><%= attempt.student.first_name %> <%= attempt.student.last_name %></p>
-        <p><%= attempt.mark if attempt.mark %> <%= attempt.comment if attempt.comment %></p>
-        <div class="card-actions">
-          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#markModal<%= attempt.id %>">
+        <p class="markbook-p"><%= attempt.student.first_name %> <%= attempt.student.last_name %></p>
+        <p class="markbook-p"><%= attempt.mark if attempt.mark %> <%= attempt.comment if attempt.comment %></p>
+        <div class=" markbook-card-actions">
+          <button type="button" class=" markbook-btn btn-primary btn-lg" data-toggle="modal" data-target="#markModal<%= attempt.id %>">
             <%= attempt.mark ? "Update mark" : "Select mark"  %>
           </button>
         </div>
