@@ -2,16 +2,24 @@
 
 .home-banner {
   display: flex;
-  width: 100vh;
+  height: 100vh;
 }
 
 
+.banner-title {
+  flex: 0 0 50%;
+}
 
-
-
-
-
-
+.banner-sign-up {
+  flex: 0 0 50%;
+  padding-top: 100px;
+  position: relative;
+  z-index: 10;
+  h1 {
+    text-align: center;
+    margin: 0px;
+  }
+}
 
 
 
@@ -29,15 +37,15 @@
 //   position: relative;
 // }
 
-#overlay-title {
-  padding-top: 100px;
-  position: relative;
-  z-index: 10;
-  h1 {
-    text-align: center;
-    margin: 0px;
-  }
-}
+// #overlay-title {
+//   padding-top: 100px;
+//   position: relative;
+//   z-index: 10;
+//   h1 {
+//     text-align: center;
+//     margin: 0px;
+//   }
+// }
 
 // #carousel-example-generic {
 //   position: absolute;
