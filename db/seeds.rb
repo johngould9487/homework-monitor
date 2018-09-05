@@ -14,40 +14,60 @@ TeachingGroup.destroy_all
 
 puts "Creating seed data"
 
-teachers = []
+# teachers = []
 teaching_groups = []
-students = []
-guardians = []
+# students = []
+# guardians = []
 
-7.times do
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  email = "#{first_name}.#{last_name}@lewagon.ac.uk"
-  password = "123123"
-  teachers << User.create!(email:email, password: password, first_name:first_name, last_name:last_name, teacher: true)
-end
+#TEACHERS
+teachers = [
+User.create!(email: "Romain@lewagon.ac.uk", password: "123123", first_name: "Romain", last_name: "Campech" , teacher: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140971/Homework%20monitor/Romain.jpg"),
+User.create!(email: "Sarah@lewagon.ac.uk", password: "123123", first_name: "Sarah" , last_name: "Lafer" , teacher: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140971/Homework%20monitor/Sarag.jpg"),
+User.create!(email: "Sandrine@lewagon.ac.uk", password: "123123", first_name: "Sandrine", last_name: "Ayral" , teacher: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140971/Homework%20monitor/Sandrine.jpg"),
+User.create!(email: "Sam@lewagon.ac.uk", password: "123123", first_name: "Sam" , last_name: "Willis" , teacher: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140971/Homework%20monitor/Sam.jpg"),
+User.create!(email: "Phelim@lewagon.ac.uk", password: "123123", first_name: "Phelim" , last_name: "Dunleavy" , teacher: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140970/Homework%20monitor/Phelim.jpg"),
+User.create!(email: "Ben@lewagon.ac.uk", password: "123123", first_name: "Ben" , last_name: "Baranger", teacher: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140969/Homework%20monitor/Ben.jpg"),
+User.create!(email: "Arthur@lewagon.ac.uk", password: "123123", first_name: "Arthur" , last_name: "Littmann" , teacher: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140969/Homework%20monitor/Arthur.jpg" )
+]
 
-10.times do
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  email = "#{first_name}.#{last_name}@lewagon.ac.uk"
-  password = "123123"
-  students << User.create!(email:email, password: password, first_name:first_name, last_name:last_name, student: true)
-end
+# STUDENTS
+students = [
+User.create!(email: "Rinus@lewagon.ac.uk", password: "123123", first_name: "Rinus", last_name: "Strobel", student: true, avatar:"https://res.cloudinary.com/duspt82gb/image/upload/v1536140144/Homework%20monitor/Linus.jpg" ),
+User.create!(email: "Barry@lewagon.ac.uk", password: "123123", first_name: "Barry" , last_name: "Kingdon" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Harry.jpg" ),
+User.create!(email: "Neddie@lewagon.ac.uk", password: "123123", first_name: "Neddie" , last_name: "Scadding", student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Freddie.jpg"),
+User.create!(email: "Christian@lewagon.ac.uk", password: "123123", first_name: "Christian" , last_name:"Bale" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Christian.jpg"),
+User.create!(email: "Chesley@lewagon.ac.uk", password: "123123", first_name: "Chesley", last_name: "Hawkes" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Wesley_S.jpg"),
+User.create!(email: "Taria@lewagon.ac.uk", password: "123123", first_name: "Taria" , last_name: "Sanchez-Barrueta" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Maria.jpg"),
+User.create!(email: "Ronan@lewagon.ac.uk", password: "123123", first_name: "Ronan", last_name: "Keeting" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Roan_M.jpg"),
+User.create!(email: "Suiza@lewagon.ac.uk", password: "123123", first_name: "Suiza", last_name: "Pinto" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Luiza.jpg" ),
+User.create!(email: "Woli@lewagon.ac.uk", password: "123123", first_name: "Woli", last_name: "Where's", student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Oli_M.jpg"),
+User.create!(email: "Bess@lewagon.ac.uk", password: "123123", first_name: "Bess", last_name: "Lee" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Jess.jpg")
+]
 
-13.times do
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  email = "#{first_name}.#{last_name}@gmail.com"
-  password = "123123"
-  guardians << User.create!(email:email, password: password, first_name:first_name, last_name:last_name, guardian: true)
-end
+#GUARDIANS
+guardians = [
+User.create!(email: "Ed@lewagon.ac.uk", password: "123123", first_name: "Edward" , last_name: "Ward" , guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536146768/Homework%20monitor/Ed.jpg" ),
+User.create!(email: "Boris@lewagon.ac.uk", password: "123123", first_name: "Boris" , last_name: "Paillard" , guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536146768/Homework%20monitor/Boris.jpg" ),
+User.create!(email: "Seb@lewagon.ac.uk", password: "123123", first_name: "Seb" , last_name: "Saunier", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536146768/Homework%20monitor/Seb.jpg"),
+User.create!(email: "Wonda@lewagon.ac.uk", password: "123123", first_name: "Wonda", last_name: "Smith", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026988/Avatar/Andy.jpg" ),
+User.create!(email: "Bonda@lewagon.ac.uk", password: "123123", first_name: "Bonda", last_name: "Smith", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026989/Avatar/Alex_Kelly.png" ),
+User.create!(email: "Sonda@lewagon.ac.uk", password: "123123", first_name:"Sonda" , last_name: "Smith", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026989/Avatar/John_Gould.png"),
+User.create!(email: "Londa@lewagon.ac.uk", password: "123123", first_name: "Londa" , last_name: "Smith", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026988/Avatar/Syed.png"),
+User.create!(email: "Conda@lewagon.ac.uk", password: "123123", first_name: "Conda" , last_name: "Smith", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026988/Avatar/Andy.jpg"),
+User.create!(email: "Honda@lewagon.ac.uk", password: "123123", first_name: "Honda" , last_name: "Smith", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026989/Avatar/Alex_Kelly.png"),
+User.create!(email: "Yonda@lewagon.ac.uk", password: "123123", first_name: "Yonda" , last_name: "Smith", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026989/Avatar/John_Gould.png"),
+User.create!(email: "Andy@lewagon.ac.uk", password: "123123", first_name: "Andy" , last_name: "Levis", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026988/Avatar/Andy.jpg" ),
+User.create!(email: "Syed@lewagon.ac.uk", password: "123123", first_name: "Syed", last_name: "Abdullah-Ali", guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026988/Avatar/Syed.png" ),
+User.create!(email: "Alex@lewagon.ac.uk", password: "123123", first_name: "Alex" , last_name: "Kelly" , guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026989/Avatar/Alex_Kelly.png" ),
+User.create!(email: "John@lewagon.ac.uk", password: "123123", first_name: "John", last_name: "Gould" , guardian: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1535026989/Avatar/John_Gould.png" )
+]
 
-teaching_groups << TeachingGroup.create!(group_code:"A1B/Mt1", course:"A-level", subject:"Mathematics")
-teaching_groups << TeachingGroup.create!(group_code:"A1B/Ph2", course:"A-level", subject:"Physics")
-teaching_groups << TeachingGroup.create!(group_code:"A1C/Ch3", course:"A-level", subject:"Chemistry")
-teaching_groups << TeachingGroup.create!(group_code:"A1C/Bi1", course:"A-level", subject:"Biology")
-teaching_groups << TeachingGroup.create!(group_code:"A1D/En2", course:"A-level", subject:"English Language")
+
+teaching_groups << TeachingGroup.create!(group_code:"LE1/W173", course:"Full-stack", subject:"Ruby on Rails")
+teaching_groups << TeachingGroup.create!(group_code:"HT1/ML1", course:"Front-end", subject:"HTML")
+teaching_groups << TeachingGroup.create!(group_code:"C55/Ss5", course:"Front-end", subject:"CSS")
+teaching_groups << TeachingGroup.create!(group_code:"D4t/B45", course:"Back-end", subject:"Databases")
+teaching_groups << TeachingGroup.create!(group_code:"RU8/Yop", course:"Back-end", subject:"Ruby basics")
 
 indices = [[0, 0], [0, 1], [1, 0], [2, 1], [3, 2], [4, 2], [4, 3], [5, 4], [6, 3], [6, 4]]
 indices.each do |index_pair|
@@ -66,169 +86,352 @@ indices.each do |index_pair|
   FamilyConnection.create!(student:students[index_pair[1]], guardian:guardians[index_pair[0]])
 end
 
+#set lorem ipsum
+lorem_ipsum = "dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 # create dates
 dates_set = []
 dates_due = []
 
-(1..30).to_a.each do |index|
+(1..13).to_a.each do |index|
   dates_set << Date.today - (index * 7)
   dates_due << Date.today - (index * 7) + 3
 end
 
-# create maths titles
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'maths_titles.csv'))
-maths_titles = CSV.parse(csv_text)
-maths_titles = maths_titles.flatten.select do |element|
+# create Ruby on Rails titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'rails_titles.csv'))
+rails_titles = CSV.parse(csv_text)
+rails_titles = rails_titles.flatten.select do |element|
   element
 end
-# create physics titles
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'physics_titles.csv'))
-physics_titles = CSV.parse(csv_text)
-physics_titles = physics_titles.flatten.select do |element|
+# create HTML titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'html_titles.csv'))
+html_titles = CSV.parse(csv_text)
+html_titles = html_titles.flatten.select do |element|
   element
 end
-# create chemistry titles
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'chemistry_titles.csv'))
-chemistry_titles = CSV.parse(csv_text)
-chemistry_titles = chemistry_titles.flatten.select do |element|
+# create CSS titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'css_titles.csv'))
+css_titles = CSV.parse(csv_text)
+css_titles = css_titles.flatten.select do |element|
   element
 end
-# create biology titles
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'biology_titles.csv'))
-biology_titles = CSV.parse(csv_text)
-biology_titles = biology_titles.flatten.select do |element|
+# create Database titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'database_titles.csv'))
+database_titles = CSV.parse(csv_text)
+database_titles = database_titles.flatten.select do |element|
   element
 end
-# create english titles
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'english_titles.csv'))
-english_titles = CSV.parse(csv_text)
-english_titles = english_titles.flatten.select do |element|
+# create Ruby titles
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'ruby_titles.csv'))
+ruby_titles = CSV.parse(csv_text)
+ruby_titles = ruby_titles.flatten.select do |element|
   element
 end
 
-# create maths assignments
+# create ruby on rails assignments
 dates_set.each_with_index do |date, index|
-  title = maths_titles[index]
+  title = rails_titles[index]
   Assignment.create!(
     published: true,
     marked: true,
     date_created: date,
     date_due:dates_due[index],
-    description: "Read up on the following:",
-    grading_type: :score,
+    description: "Today's Ruby on Rails homework is: #{lorem_ipsum}",
+    guardian_note: "It is important that this homework is completed on time and that all resources are used and carefully referenced.",
+    grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[0],
     title: title
   )
 end
-Assignment.create!(
-  date_created: Date.today + 3,
-  date_due:Date.today + 5,
-  description: "Read up on the following:",
-  grading_type: :score,
-  maximum_score: 10,
-  teaching_group: teaching_groups[0],
-  title: "Differentiate from first principles"
-)
 
-# create physics assignments
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 5,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 173",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[0],
+    title: "Advanced Rails and setting up main project"
+  )
+
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 4,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[0],
+    title: "Integrating pundit"
+  )
+
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 3,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[0],
+    title: "Blocs and yields"
+  )
+
+# create html assignments
 dates_set.each_with_index do |date, index|
-  title = physics_titles[index]
+  title = html_titles[index]
   Assignment.create!(
     published: true,
     marked: true,
     date_created: date,
     date_due:dates_due[index],
-    description: "Make notes on the following:",
-    grading_type: :score,
+    description: "Today's HTML homework is: #{lorem_ipsum}",
+    guardian_note: "It is important that this homework is completed on time and that all resources are used and carefully referenced.",
+    grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[1],
     title: title
   )
 end
-Assignment.create!(
-  date_created: Date.today + 3,
-  date_due:Date.today + 5,
-  description: "Read up on the following:",
-  grading_type: :score,
-  maximum_score: 10,
-  teaching_group: teaching_groups[1],
-  title: "Find the cross-section for a typical Compton-Scattering event"
-)
-# create chemisty assignments
+  Assignment.create!(
+    date_created: Date.today + 3,
+    date_due:Date.today + 5,
+    description: "Read up on the following:",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[1],
+    title: "Find the cross-section for a typical Compton-Scattering event"
+  )
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 5,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 173",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[1],
+    title: "Advanced Rails and setting up main project"
+  )
+
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 4,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[1],
+    title: "Integrating pundit"
+  )
+
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 3,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[1],
+    title: "Blocs and yields"
+  )
+
+# create css assignments
 dates_set.each_with_index do |date, index|
-  title = chemistry_titles[index]
+  title = css_titles[index]
   Assignment.create!(
     marked: true,
     published: true,
     date_created: date,
     date_due:dates_due[index],
-    description: "Make notes on the following:",
-    grading_type: :score,
+    description: "Today's CSS homework is: #{lorem_ipsum}",
+    guardian_note: "It is important that this homework is completed on time and that all resources are used and carefully referenced.",
+    grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[2],
     title: title
   )
 end
-Assignment.create!(
-  date_created: Date.today + 3,
-  date_due:Date.today + 5,
-  description: "Read up on the following:",
-  grading_type: :score,
-  maximum_score: 10,
-  teaching_group: teaching_groups[2],
-  title: "Write up experiment from today's lesson"
-)
-# create biology assignments
+  Assignment.create!(
+    date_created: Date.today + 3,
+    date_due:Date.today + 5,
+    description: "Read up on the following:",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[2],
+    title: "Write up experiment from today's lesson"
+  )
+
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 5,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 173",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[2],
+    title: "Advanced Rails and setting up main project"
+  )
+
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 4,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[2],
+    title: "Integrating pundit"
+  )
+
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 3,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[2],
+    title: "Blocs and yields"
+  )
+
+# create database assignments
 dates_set.each_with_index do |date, index|
-  title = biology_titles[index]
+  title = database_titles[index]
   Assignment.create!(
     published: true,
     marked: true,
     date_created: date,
     date_due:dates_due[index],
-    description: "Make notes on the following:",
-    grading_type: :score,
+    description: "Today's database homework is: #{lorem_ipsum}",
+    guardian_note: "It is important that this homework is completed on time and that all resources are used and carefully referenced.",
+    grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[3],
     title: title
   )
 end
-Assignment.create!(
-  date_created: Date.today + 3,
-  date_due:Date.today + 5,
-  description: "Read up on the following:",
-  grading_type: :score,
-  maximum_score: 10,
-  teaching_group: teaching_groups[3],
-  title: "Mitosis/Mieosis"
-)
+  Assignment.create!(
+    date_created: Date.today + 3,
+    date_due:Date.today + 5,
+    description: "Read up on the following:",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[3],
+    title: "Mitosis/Mieosis"
+  )
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 5,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
 
-# create english assignments
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 173",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[3],
+    title: "Advanced Rails and setting up main project"
+  )
+
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 4,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[3],
+    title: "Integrating pundit"
+  )
+
+  Assignment.create!(
+    date_created: Date.today,
+    date_due:Date.today + 3,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[3],
+    title: "Blocs and yields"
+  )
+
+# create ruby basics assignments
 dates_set.each_with_index do |date, index|
-  title = english_titles[index]
+  title = rails_titles[index]
   Assignment.create!(
     published: true,
     marked: true,
     date_created: date,
     date_due:dates_due[index],
-    description: "Read this book",
-    grading_type: :score,
+    description: "Today's Ruby homework is: #{lorem_ipsum}",
+    guardian_note: "It is important that this homework is completed on time and that all resources are used and carefully referenced.",
+    grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[4],
     title: title
   )
 end
-Assignment.create!(
-  date_created: Date.today + 3,
-  date_due:Date.today + 5,
-  description: "Read up on the following:",
-  grading_type: :score,
-  maximum_score: 10,
-  teaching_group: teaching_groups[4],
-  title: "Transitive/Intransitive Verbs"
-)
+  Assignment.create!(
+    date_created: Date.today + 3,
+    date_due:Date.today + 5,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 173",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[4],
+    title: "Advanced Rails and setting up main project"
+  )
+
+  Assignment.create!(
+    date_created: Date.today + 3,
+    date_due:Date.today + 4,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[4],
+    title: "Integrating pundit"
+  )
+
+  Assignment.create!(
+    date_created: Date.today + 3,
+    date_due:Date.today + 3,
+    description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
+
+    Create a new rails app to help gardeners classify plants and check off which plants they have in their garden.",
+    guardian_note: "This is a complex piece of work, so you will need to support with the Ruby 'o' Rails handbook, page 150",
+    grading_type: "OUT OF TEN",
+    maximum_score: 10,
+    teaching_group: teaching_groups[4],
+    title: "Blocs and yields"
+  )
 
 TeachingGroup.all.each do |teaching_group|
   teaching_group.assignments.last(3).each do |assignment|
@@ -238,7 +441,42 @@ TeachingGroup.all.each do |teaching_group|
 end
 
 
+comments = [
+"Great job, really impressive, keep up the good work",
+"Well done! You are really getting the grasp of this subject",
+"I am really impressed with how you have picked up the theory, but a bit more focus on the practical application is needed",
+"You are getting the hang of this subject, but please take time to re-read the notes from this class and think about how to implement it more succinctly",
+"A lower mark than I would expect, let's sit down and go through this before class tomorrow",
+"Good effort - but you will need to re-sit this homework over the weekend"
+]
 
+
+Assignment.all.each do |assignment|
+  if assignment.date_due > Date.today
+  elsif assignment.date_due < Date.today - 17
+    assignment.attempts.each do |attempt|
+      attempt.mark = rand(11)
+      attempt.comment = comments.sample
+      attempt.save
+    end
+  elsif assignment.date_due < Date.today - 9
+    assignment.attempts.each_with_index do |attempt, index|
+      if index.even?
+        attempt.mark = rand(11)
+        attempt.comment = comments.sample
+        attempt.save
+      end
+    end
+  else
+    assignment.attempts.each_with_index do |attempt, index|
+      if index % 3 == 0
+        attempt.mark = rand(11)
+        attempt.comment = comments.sample
+        attempt.save
+      end
+    end
+  end
+end
 
 
 
@@ -247,8 +485,29 @@ puts "Done."
 
 
 
+# 7.times do
+#   first_name = Faker::Name.first_name
+#   last_name = Faker::Name.last_name
+#   email = "#{first_name}.#{last_name}@lewagon.ac.uk"
+#   password = "123123"
+#   teachers << User.create!(email:email, password: password, first_name:first_name, last_name:last_name, teacher: true)
+# end
 
+# 10.times do
+#   first_name = Faker::Name.first_name
+#   last_name = Faker::Name.last_name
+#   email = "#{first_name}.#{last_name}@lewagon.ac.uk"
+#   password = "123123"
+#   students << User.create!(email:email, password: password, first_name:first_name, last_name:last_name, student: true)
+# end
 
+# 13.times do
+#   first_name = Faker::Name.first_name
+#   last_name = Faker::Name.last_name
+#   email = "#{first_name}.#{last_name}@gmail.com"
+#   password = "123123"
+#   guardians << User.create!(email:email, password: password, first_name:first_name, last_name:last_name, guardian: true)
+# end
 
 
 

@@ -36,7 +36,9 @@
       <%= render 'shared/navbar', teaching_group: @teaching_group, child: @child %>
     <% end %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div class="padded-top">
+      <%= yield %>
+    </div>
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>

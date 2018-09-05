@@ -1,8 +1,10 @@
 .white-container {
+  margin-top:10px;
   background: white;
   margin-bottom: 10px;
   padding: 30px;
   position: relative;
+  border-radius: 2px;
 }
 
 .show-page-header {
@@ -112,4 +114,10 @@
 .avatar-student-all {
   padding-right: 30px;
   margin-bottom: 5px;
+}
+
+.pending {
+  p {
+    color: red;
+  }
 }

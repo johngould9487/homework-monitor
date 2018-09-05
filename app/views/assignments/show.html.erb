@@ -1,78 +1,99 @@
-<div class="white-container">
-  <div class="show-page-header">
-    <h2><%= @assignment.title %></h2>
-    <% if current_user.teacher && @assignment.published == false %>
-        <h3 class="warning">NOT SET</h3>
-      <% elsif current_user.teacher && @assignment.marked_percentage < 100%>
-        <h3><%= @assignment.marked_percentage %>% of homework marked</h3>
-      <% elsif current_user.teacher %>
-        <h3 class="great">100% Marked</h3>
-      <% else %>
+<div class="container">
+  <div class="white-container">
+    <div class="show-page-header">
+      <h2><%= @assignment.title %></h2>
+      <% if current_user.teacher && @assignment.published == false %>
+          <h3 class="warning">NOT SET</h3>
+        <% elsif current_user.teacher && @assignment.marked_percentage < 100%>
+          <h3><%= @assignment.marked_percentage %>% of homework marked</h3>
+        <% elsif current_user.teacher %>
+          <h3 class="great">100% Marked</h3>
+          <% elsif (current_user.guardian || current_user.student) && @attempt.mark.nil?%>
+          <h3 class="warning">NOT MARKED</h3>
+          <% elsif current_user.guardian || current_user.student %>
+            <h3 class="great">MARKED</h3>
+        <% else %>
+         <p>bloop</p>
+      <% end %>
 
-    <% end %>
-
-  </div>
-  <div class="show-page-dates">
-    <div class="date">
-      <span>SET DATE</span>
-      <p>
-        <%= @assignment.date_created.strftime("#{@assignment.date_created.day.ordinalize} %B") %>
-      </p>
     </div>
-    <div class="date">
-      <span>DUE DATE</span>
-      <p>
-        <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_left %> days left)</span>
-      </p>
-    </div>
-    <div class="date">
-      <span>GRADING STRUCTURE</span>
-      <p>
-        <%= @assignment.grading_type%>
-      </p>
-    </div>
-  </div>
-  <div class="show-instructions">
-    <span>HOMEWORK INSTRUCTIONS</span>
-    <p> <%= @assignment.description %></p>
-    <div class="show-instructions-guardian">
-      <span>GUARDIAN INSTRUCTIONS (student's can't see this section)</span>
-      <p><%= @assignment.guardian_note %></p>
-    </div>
-  </div>
-  <div class="show-completed">
-    <% if current_user.teacher && @assignment.marked_percentage < 100 %>
-      <span>COMPLETED BY</span>
-      <div class="display-student-avatars">
-        <% @assignment.attempts.each do |attempt| %>
-          <div class="avatar-student-all">
-            <%= image_tag "Einstein.jpg", class: "avatar-student"%>
-            <p> <%= attempt.student.first_name%></p>
-            <span><p> <%= attempt.mark %> mark</p></span>
-          </div>
-        <% end %>
+    <div class="show-page-dates">
+      <div class="date">
+        <span>SET DATE</span>
+        <p>
+          <%= @assignment.date_created.strftime("#{@assignment.date_created.day.ordinalize} %B") %>
+        </p>
       </div>
-      <% elsif current_user.student %>
-        <div>
-          <% if !@attempt.mark == nil %>
-            <span> YOUR MARK <p> <%= @attempt.mark %> mark</p></span>
-            <span> TEACHER COMMENTS <p> <%= @attempt.comment %>comment</p> </span>
+      <div class="date">
+        <span>DUE DATE</span>
+        <p>
+        <% if @assignment.date_due < Date.today %>
+            <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_left %> days ago)</span>
           <% else %>
-            <span> YOUR MARK <p> --pending-- </p></span>
-            <span> TEACHER COMMENTS <p> --pending-- </p> </span>
+            <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_left %> days left)</span>
+        <% end %>
+        </p>
+      </div>
+      <div class="date">
+        <span>GRADING STRUCTURE</span>
+        <p>
+          <%= @assignment.grading_type%>
+        </p>
+      </div>
+    </div>
+    <div class="show-instructions">
+      <span>HOMEWORK INSTRUCTIONS</span>
+      <p> <%= @assignment.description %></p>
+      <% if current_user.teacher || current_user.guardian %>
+        <div class="show-instructions-guardian">
+          <span>GUARDIAN INSTRUCTIONS (student's can't see this section)</span>
+          <p><%= @assignment.guardian_note %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="show-completed">
+      <% if current_user.teacher  %>
+        <span>COMPLETED BY</span>
+        <div class="display-student-avatars">
+          <% @assignment.attempts.each do |attempt| %>
+            <div class="avatar-student-all">
+              <%= image_tag attempt.student.avatar, class: "avatar-student"%>
+              <p> <%= attempt.student.first_name%></p>
+              <% if attempt.mark %>
+                <span><p> <%= attempt.mark %> / 10</p></span>
+              <% else %>
+                <span class="pending"><p> --pending-- </p></span>
+                <% end %>
+            </div>
           <% end %>
         </div>
-      <% else %>
-        <div>
-          <span> <%= @child.first_name %>'s MARK <p> <%= @attempt.mark %> mark</p></span>
-          <span> TEACHER COMMENTS <p> <%= @attempt.comment %>comment</p> </span>
-        </div>
-    <% end %>
-  </div>
-  <div class="show-commands">
-  <% if current_user.teacher && @assignment.published == false %>
-      <%= link_to 'Edit Homework', edit_teaching_group_assignment_path(@teaching_group, @assignment), class: ' btn-white'  %>
-      <%= link_to 'Set homework', teaching_group_assignment_path(@teaching_group, @assignment, assignment: {published: true}), class: 'btn-blue', method: :patch %>
-    <% end %>
+        <% elsif current_user.student %>
+          <div>
+            <% if @attempt.mark.nil? %>
+              <span class="pending"> YOUR MARK <p> --pending-- </p></span>
+              <span class="pending"> TEACHER COMMENTS <p> --pending-- </p> </span>
+            <% else %>
+              <span> YOUR MARK <p> <%= @attempt.mark %> mark</p></span>
+              <span> TEACHER COMMENTS <p> <%= @attempt.comment %>comment</p> </span>
+            <% end %>
+          </div>
+        <% else %>
+          <div>
+            <% if @attempt.mark.nil? %>
+              <span class="pending"> YOUR MARK <p> --pending-- </p></span>
+              <span class="pending"> TEACHER COMMENTS <p> --pending-- </p> </span>
+            <% else %>
+              <span> <%= @child.first_name %>'s MARK <p> <%= @attempt.mark %> / 10</p></span>
+              <span> TEACHER COMMENTS <p> <%= @attempt.comment %></p> </span>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+    <div class="show-commands">
+    <% if current_user.teacher && @assignment.published == false %>
+        <%= link_to 'Edit Homework', edit_teaching_group_assignment_path(@teaching_group, @assignment), class: ' btn-white'  %>
+        <%= link_to 'Set homework', teaching_group_assignment_path(@teaching_group, @assignment, assignment: {published: true}), class: 'btn-blue', method: :patch %>
+      <% end %>
+    </div>
   </div>
 </div>

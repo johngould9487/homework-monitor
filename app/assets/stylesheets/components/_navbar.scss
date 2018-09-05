@@ -4,8 +4,8 @@
   background: white;
   transition: all 0.3s ease;
   height: 70px;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  width: 100%;
   padding: 0px 15px;
   display: flex;
   align-items: center;
@@ -85,4 +85,14 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+.child-navbar {
+  color: #333333 !important;
+  text-decoration: none !important;
+  margin-left: 20px;
+}
+
+.child-navbar.active {
+  border-bottom: 4px solid $parent-green;
 }
