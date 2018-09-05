@@ -36,6 +36,8 @@
               <li><%= link_to teaching_group.group_code, teaching_group_markbook_path(teaching_group)  %></li>
             <% elsif params[:action] == "new" %>
               <li><%= link_to teaching_group.group_code, new_teaching_group_assignment_path(teaching_group)  %></li>
+            <% else %>
+              <li><%= link_to teaching_group.group_code, teaching_group_upcoming_path(teaching_group)  %></li>
             <% end %>
           <% end %>
         </ul>
