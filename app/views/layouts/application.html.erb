@@ -30,11 +30,13 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
   <body>
-    <%= render 'shared/navbar', teaching_group: @teaching_group, child: @child %>
+    <% if params[:controller] == 'devise/sessions' && params[:action] == 'new' %>
+    <% elsif params[:controller] == 'pages' %>
+    <% else %>
+      <%= render 'shared/navbar', teaching_group: @teaching_group, child: @child %>
+    <% end %>
     <%= render 'shared/flashes' %>
-    <div class="main-body">
-      <%= yield %>
-    </div>
+    <%= yield %>
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
