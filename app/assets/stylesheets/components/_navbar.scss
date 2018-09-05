@@ -9,7 +9,6 @@
   padding: 0px 15px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   z-index: 10;
 }
 
@@ -38,6 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-left: auto;
 }
 
 /* Basic navbar item */
@@ -90,9 +90,29 @@
 .child-navbar {
   color: #333333 !important;
   text-decoration: none !important;
-  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .child-navbar.active {
   border-bottom: 4px solid $parent-green;
+}
+
+.group-code-teacher {
+  color: $teacher-blue;
+  font-weight: bold;
+  margin-left: 40px;
+}
+.group-code-student {
+  color: $student-orange;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.new {
+  display: flex;
+  align: left;
+}
+
+.children-names {
+  margin-left: 40px;
 }
