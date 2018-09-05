@@ -1,5 +1,4 @@
-<div class="navbar-wagon">
-  <!-- Logo -->
+<div class="navbar-wagon" id="navbar">  <!-- Logo -->
   <% if user_signed_in? %>
     <% if !current_user.guardian %>
       <%= link_to teaching_group_upcoming_path(teaching_group), class: "navbar-wagon-brand", data: { toggle: "tooltip", placement: "bottom" }, title: "Home" do %>
