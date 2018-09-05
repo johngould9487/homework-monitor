@@ -36,9 +36,9 @@
       </div>
     <% else %>
       <div class="homework-status homework-guardian-mark">
-        <p><%= attempt.mark %>/10</p>
-        <p><%= attempt.comment %></p>
-      </div>
+        <p data-toggle="popover" data-placement="left" title="<%= attempt.comment %>"><%= attempt.mark %>/10</p>
+        <!-- <p><%= attempt.comment %>/10</p> -->
+        </div>
     <% end %>
     <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
   <% elsif current_user.student %>
@@ -67,3 +67,4 @@
     <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
   <% end %>
 </div>
+<!-- <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button> -->
