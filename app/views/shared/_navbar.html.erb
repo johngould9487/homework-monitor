@@ -14,8 +14,12 @@
         <%= image_tag "logo-guardian.png", height: 35 %>
       <% end %>
     <% end %>
-    <%= link_to new_teaching_group_assignment_path(@teaching_group) do %>
-      <p><i class="fas fa-plus-circle"></i> Add new homework</p>
+    <% if current_user.teacher %>
+      <div class="navbar-add-homework">
+        <%= link_to new_teaching_group_assignment_path(@teaching_group) do %>
+          <p><i class="fas fa-plus-circle"></i> Add new homework</p>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
 
@@ -113,7 +117,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%#= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 </div>

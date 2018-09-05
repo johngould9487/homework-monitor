@@ -25,6 +25,14 @@
   border-radius: 50%;
 }
 
+.navbar-add-homework {
+  flex: 1 0 auto;
+  p {
+    margin-bottom: 0;
+    margin-left: 40px;
+  }
+}
+
 /* Right section */
 .navbar-wagon-right {
   display: flex;

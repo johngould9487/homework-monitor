@@ -45,9 +45,12 @@
       </span>
       <p class="homework-date">Due <%= attempt.assignment.date_due.strftime("%A #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
     </div>
-    <div class="homework-status homework-student-mark">
-      <p><%= attempt.mark %> - Mark</p>
-      <p><%= attempt.comment %> - Comment</p>
+    <div class="homework-status hidden-xs homework-student-mark">
+      <p><%= attempt.mark %> Mark</p>
+      <p><%= attempt.comment %> Comment</p>
+    </div>
+    <div class="homework-status hidden-sm hidden-md hidden-lg homework-student-mark">
+      <p><%= attempt.mark %> Mark</p>
     </div>
     <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
   <% end %>
