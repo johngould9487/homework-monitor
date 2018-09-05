@@ -1,10 +1,11 @@
 .white-container {
-  margin-top:10px;
+  margin-top:20px;
   background: white;
   margin-bottom: 10px;
-  padding: 30px;
+  padding: 50px;
   position: relative;
   border-radius: 2px;
+  overflow: hidden;
 }
 
 .show-page-header {
@@ -27,12 +28,19 @@
   .warning {
     background-color: orange;
   }
+  .ribbon-right {
+    position: absolute;
+    transform: rotate(45deg);
+    right: -44px;
+    padding: 5px 40px;
+    top: 25px;
+  }
 }
 
 .show-page-dates {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 30px;
   .date {
     span {
       font-family: $headers-font;
@@ -45,6 +53,7 @@
     }
   }
 }
+
 
 .show-commands {
   display: flex;
@@ -70,13 +79,15 @@
   border-radius: 0 0 5px 5px;
   padding: 10px;
   padding-top: 2px;
+  margin-top: 25px;
   }
 
 }
 
 .show-completed {
   display: flex;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   span {
     font-family: $headers-font;
     font-size: 12px;
@@ -91,7 +102,7 @@
     margin-left: -75px;
     text-align: center;
       span {
-      font-size: 15px;
+      font-size: 18px;
       color: $teacher-blue;
       opacity: .7;
     }
@@ -119,5 +130,26 @@
 .pending {
   p {
     color: red;
+    font-size: 15px;
   }
 }
+
+
+@media(max-width: 720px) {
+  .show-page-dates {
+    display: block;
+    /* re-define your grid for mobile and tablet */
+  }
+  .show-page-header {
+    display: flex;
+    flex-direction: column-reverse;
+    h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      width: 100%;
+      text-align: center;
+    }
+    /* re-define your grid for mobile and tablet */
+  }
+}
+

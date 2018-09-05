@@ -22,4 +22,8 @@ class Assignment < ApplicationRecord
     (date_due.to_date - DateTime.now).to_i
   end
 
+  def days_until
+    (DateTime.now - date_due.to_date).to_i
+  end
+
 end

@@ -3,7 +3,7 @@
     <div class="show-page-header">
       <h2><%= @assignment.title %></h2>
       <% if current_user.teacher && @assignment.published == false %>
-          <h3 class="warning">NOT SET</h3>
+          <h3 class="warning ribbon-right">NOT SET</h3>
         <% elsif current_user.teacher && @assignment.marked_percentage < 100%>
           <h3><%= @assignment.marked_percentage %>% of homework marked</h3>
         <% elsif current_user.teacher %>
@@ -28,7 +28,7 @@
         <span>DUE DATE</span>
         <p>
         <% if @assignment.date_due < Date.today %>
-            <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_left %> days ago)</span>
+            <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_until %> days ago)</span>
           <% else %>
             <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_left %> days left)</span>
         <% end %>
@@ -60,7 +60,7 @@
               <%= image_tag attempt.student.avatar, class: "avatar-student"%>
               <p> <%= attempt.student.first_name%></p>
               <% if attempt.mark %>
-                <span><p> <%= attempt.mark %> / 10</p></span>
+                <span class="marks"><p> <%= attempt.mark %> / 10</p></span>
               <% else %>
                 <span class="pending"><p> --pending-- </p></span>
                 <% end %>
@@ -73,8 +73,10 @@
               <span class="pending"> YOUR MARK <p> --pending-- </p></span>
               <span class="pending"> TEACHER COMMENTS <p> --pending-- </p> </span>
             <% else %>
-              <span> YOUR MARK <p> <%= @attempt.mark %> mark</p></span>
-              <span> TEACHER COMMENTS <p> <%= @attempt.comment %>comment</p> </span>
+              <span class="show-instructions"> YOUR MARK </span>
+              <p> <%= @attempt.mark %></p>
+              <span class="show-instructions"> TEACHER COMMENTS  </span>
+              <p> <%= @attempt.comment %></p>
             <% end %>
           </div>
         <% else %>
@@ -83,8 +85,8 @@
               <span class="pending"> YOUR MARK <p> --pending-- </p></span>
               <span class="pending"> TEACHER COMMENTS <p> --pending-- </p> </span>
             <% else %>
-              <span> <%= @child.first_name %>'s MARK <p> <%= @attempt.mark %> / 10</p></span>
-              <span> TEACHER COMMENTS <p> <%= @attempt.comment %></p> </span>
+              <span class="marks"> <%= @child.first_name %>'s MARK <p> <%= @attempt.mark %> / 10</p></span>
+              <span class="comments"> TEACHER COMMENTS <p> <%= @attempt.comment %></p> </span>
             <% end %>
           </div>
       <% end %>
@@ -93,7 +95,13 @@
     <% if current_user.teacher && @assignment.published == false %>
         <%= link_to 'Edit Homework', edit_teaching_group_assignment_path(@teaching_group, @assignment), class: ' btn-white'  %>
         <%= link_to 'Set homework', teaching_group_assignment_path(@teaching_group, @assignment, assignment: {published: true}), class: 'btn-blue', method: :patch %>
+        <% elsif current_user.teacher && @assignment.marked_percentage > 1 %>
+          <%= link_to 'Continue marking', teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: @assignment.id, anchor: "target-#{@assignment.id}"), class: 'btn-blue' %>
+        <% elsif current_user.teacher && @assignment.marked_percentage < 1 %>
+          <%= link_to 'Mark this homework', teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: @assignment.id, anchor: "target-#{@assignment.id}"), class: 'btn-blue' %>
       <% end %>
     </div>
   </div>
 </div>
+
+<!-- link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-under-marked' -->
