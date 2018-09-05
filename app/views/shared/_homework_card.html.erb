@@ -13,15 +13,17 @@
         </div>
       <% end %>
     <% elsif assignment.marked_percentage < 100 %>
-      <div class="homework-status homework-partially-marked">
-        <p><%= assignment.marked_percentage %>% marked</p>
-      </div>
+      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-partially-marked' do %>
+        <div>
+          <p><%= assignment.marked_percentage %>% marked</p>
+        </div>
+      <% end %>
     <% else %>
       <div class="homework-status homework-fully-marked">
         <p><%= assignment.marked_percentage %>% marked</p>
       </div>
     <% end %>
-    <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link' %>
+    <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link-teacher' %>
   <% elsif current_user.guardian %>
     <div class="homework-card-titles">
       <p><strong class="homework-guardian"><%= attempt.assignment.teaching_group.subject %></strong> </p>
@@ -40,7 +42,7 @@
         <!-- <p><%= attempt.comment %>/10</p> -->
         </div>
     <% end %>
-    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
+    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link-guardian' %>
   <% elsif current_user.student %>
     <div class="homework-card-titles">
       <p><strong class="homework-student"><%= attempt.assignment.teaching_group.subject %></strong> </p>
@@ -55,7 +57,6 @@
       <% else %>
         <p><%= attempt.mark %>/10</p>
       <% end %>
-      <p><%= attempt.comment %></p>
     </div>
     <div class="homework-status hidden-sm hidden-md hidden-lg homework-student-mark">
       <% if params[:action] == 'upcoming' %>
@@ -64,7 +65,6 @@
         <p><%= attempt.mark %>/10</p>
       <% end %>
     </div>
-    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
+    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link-student' %>
   <% end %>
 </div>
-<!-- <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button> -->
