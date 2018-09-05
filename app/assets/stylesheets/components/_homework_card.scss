@@ -44,8 +44,8 @@
 }
 
 .homework-status {
-  text-align: center;
-  width: 180px;
+  text-align: right;
+  flex: 0 1 40vw;
   padding: 10px 15px;
   border-radius: 4px;
   transition: background 0.3s ease;
