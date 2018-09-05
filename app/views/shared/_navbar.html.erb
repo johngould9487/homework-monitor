@@ -76,6 +76,7 @@
         </div>
 
         <ul class="dropdown-menu" aria-labelledby="dLabel">
+          <div id="tooltip" type="button" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip on top</button>">
           <% current_user.students.each do |child| %>
             <% if params[:action] == "upcoming" %>
               <li><%= link_to child.first_name, child_upcoming_path(child)  %></li>
