@@ -12,3 +12,7 @@ window.onscroll = function() {
   }
   prevScrollpos = currentScrollPos;
 }
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
