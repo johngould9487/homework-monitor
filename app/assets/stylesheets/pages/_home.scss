@@ -5,6 +5,8 @@
   height: 100vh;
   align-items: center;
   position: relative;
+  background-size: cover;
+  background-position: bottom;
   .logo {
     width: 50px;
     position: absolute;
@@ -13,13 +15,13 @@
   }
 }
 
-
 .banner-title {
   padding: 0 100px;
   flex: 0 0 50%;
   h2, h1 {
     font-family: $body-font;
     color: white;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
   }
 
 }
@@ -36,38 +38,88 @@
 }
 
 
+.banner-form {
+  width: 450px;
+  background: #e5e3e3;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  color: #505050;
+  padding-bottom: 10px;
+}
+
+.login-banner-main {
+  width: 450px;
+  background-color: #212020;
+  color: white;
+  height: 70px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  text-align: center;
+  h3 {
+    color: white;
+    padding: 21px;
+  }
+}
+
+.login-banner-entry {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.form-group-email {
+  padding-top:10px;
+}
+
+.home-page-display {
+  text-align: center;
+
+}
+
+.home-info-box {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.home-info {
+  padding-top: 10px;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  height: 500px;
+  width: 350px;
+  text-align: center;
+  h3 {
+    padding-top: 10px;
+  }
+  p {
+    padding-top: 10px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+}
 
 
+.guardian-info {
+  border: 4px solid $parent-green;
+  h3 {
+    color: $parent-green;
+  }
+}
 
+.student-info {
+  border: 4px solid $student-orange;
+  h3 {
+    color: $student-orange;
+  }
+}
 
+.teacher-info {
+  border: 4px solid $teacher-blue;
+    h3 {
+      color: $teacher-blue;
+    }
+}
 
-
-
-
-
-
-
-// #home-page {
-//   position: relative;
-// }
-
-// #overlay-title {
-//   padding-top: 100px;
-//   position: relative;
-//   z-index: 10;
-//   h1 {
-//     text-align: center;
-//     margin: 0px;
-//   }
-// }
-
-// #carousel-example-generic {
-//   position: absolute;
-//   width: 100vw;
-//   top: 0;
-//   z-index: 1;
-// }
-
-// .padded-top {
-//   padding-top: 70px;
-// }
+.home-page-image {
+  width: 300px;
+}
