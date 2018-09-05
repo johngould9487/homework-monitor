@@ -53,7 +53,7 @@
 
 .homework-status {
   text-align: right;
-  flex: 0 1 40vw;
+  flex: 0 1 auto;
   padding: 10px 15px;
   border-radius: 4px;
   transition: background 0.3s ease;
@@ -91,17 +91,45 @@
   background: $parent-green
 }
 
-.homework-link {
+.homework-link-teacher {
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   width: 100%;
   z-index: 2;
-  background: black;
+  background: $teacher-blue;
   opacity: 0;
 }
 
-.homework-link:hover {
-  opacity: 0.05;
+.homework-link-teacher:hover {
+  opacity: 0.1;
+}
+.homework-link-guardian {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: $parent-green;
+  opacity: 0;
+}
+
+.homework-link-guardian:hover {
+  opacity: 0.1;
+}
+.homework-link-student {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: $student-orange;
+  opacity: 0;
+}
+
+.homework-link-student:hover {
+  opacity: 0.1;
 }
