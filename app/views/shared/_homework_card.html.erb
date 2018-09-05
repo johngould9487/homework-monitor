@@ -27,26 +27,40 @@
       <span>
       <p class="homework-title homework-guardian"><%= attempt.assignment.title %></p>
       </span>
-      <p class="homework-date">Due: <%= attempt.assignment.date_due.strftime("%a #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
+      <p class="homework-date">Due: <%= attempt.assignment.date_due.strftime("%a #{attempt.assignment.date_due.day.ordinalize} %B") %> <strong class="homework-guardian"><%= attempt.assignment.teaching_group.subject %></strong> </p>
     </div>
-    <div class="homework-status homework-guardian-mark">
-      <p><%= attempt.mark %> Mark</p>
-      <p><%= attempt.comment %> Comment</p>
-    </div>
+    <% if params[:action] == 'upcoming' %>
+      <div class="homework-status homework-guardian-mark">
+        <p>Pending grade...</p>
+      </div>
+    <% else %>
+      <div class="homework-status homework-guardian-mark">
+        <p><%= attempt.mark %>/10</p>
+        <p><%= attempt.comment %></p>
+      </div>
+    <% end %>
     <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
   <% elsif current_user.student %>
     <div class="homework-card-titles">
       <span>
       <p class="homework-title homework-student"><%= attempt.assignment.title %></p>
       </span>
-      <p class="homework-date">Due: <%= attempt.assignment.date_due.strftime("%a #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
+      <p class="homework-date">Due: <%= attempt.assignment.date_due.strftime("%a #{attempt.assignment.date_due.day.ordinalize} %B") %> <strong class="homework-student"><%= attempt.assignment.teaching_group.subject %></strong> </p>
     </div>
     <div class="homework-status hidden-xs homework-student-mark">
-      <p><%= attempt.mark %> Mark</p>
-      <p><%= attempt.comment %> Comment</p>
+      <% if params[:action] == 'upcoming' %>
+        <p>Pending grade...</p>
+      <% else %>
+        <p><%= attempt.mark %>/10</p>
+      <% end %>
+      <p><%= attempt.comment %></p>
     </div>
     <div class="homework-status hidden-sm hidden-md hidden-lg homework-student-mark">
-      <p><%= attempt.mark %> Mark</p>
+      <% if params[:action] == 'upcoming' %>
+        <p>Pending grade...</p>
+      <% else %>
+        <p><%= attempt.mark %>/10</p>
+      <% end %>
     </div>
     <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
   <% end %>
