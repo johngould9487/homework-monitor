@@ -15,6 +15,12 @@
   position: relative;
 }
 
+.homework-card-titles {
+  p {
+    margin: 0;
+  }
+}
+
 .homework-title {
   white-space: nowrap;
   overflow: hidden;
@@ -22,7 +28,7 @@
   // flex: 1 1 400px;
   width: 35vw;
   letter-spacing: 1px;
-  margin-top: 15px;
+  margin-top: 0px;
 }
 
 .homework-teacher {

@@ -24,10 +24,11 @@
     <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link' %>
   <% elsif current_user.guardian %>
     <div class="homework-card-titles">
+      <p><strong class="homework-guardian"><%= attempt.assignment.teaching_group.subject %></strong> </p>
       <span>
       <p class="homework-title homework-guardian"><%= attempt.assignment.title %></p>
       </span>
-      <p class="homework-date">Due: <%= attempt.assignment.date_due.strftime("%a #{attempt.assignment.date_due.day.ordinalize} %B") %> <strong class="homework-guardian"><%= attempt.assignment.teaching_group.subject %></strong> </p>
+      <p class="homework-date">Due: <%= attempt.assignment.date_due.strftime("%a #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
     </div>
     <% if params[:action] == 'upcoming' %>
       <div class="homework-status homework-guardian-mark">
@@ -42,10 +43,11 @@
     <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link' %>
   <% elsif current_user.student %>
     <div class="homework-card-titles">
+      <p><strong class="homework-student"><%= attempt.assignment.teaching_group.subject %></strong> </p>
       <span>
       <p class="homework-title homework-student"><%= attempt.assignment.title %></p>
       </span>
-      <p class="homework-date">Due: <%= attempt.assignment.date_due.strftime("%a #{attempt.assignment.date_due.day.ordinalize} %B") %> <strong class="homework-student"><%= attempt.assignment.teaching_group.subject %></strong> </p>
+      <p class="homework-date">Due: <%= attempt.assignment.date_due.strftime("%a #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
     </div>
     <div class="homework-status hidden-xs homework-student-mark">
       <% if params[:action] == 'upcoming' %>
