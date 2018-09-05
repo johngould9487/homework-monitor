@@ -18,3 +18,24 @@ a:hover {
   text-decoration: none;
   color: $white;
 }
+
+#home-page {
+  position: relative;
+}
+
+#overlay-title {
+  padding-top: 100px;
+  position: relative;
+  z-index: 10;
+  h1 {
+    text-align: center;
+    margin: 0px;
+  }
+}
+
+#carousel-example-generic {
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  z-index: 1;
+}
