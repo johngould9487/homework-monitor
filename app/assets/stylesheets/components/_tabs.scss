@@ -8,6 +8,18 @@
   padding: 20px;
 }
 
+.tab-link-student:hover {
+  color: $student-orange;
+}
+
+.tab-link-teacher:hover {
+  color: $teacher-blue;
+}
+
+.tab-link-guardian:hover {
+  color: $parent-green;
+}
+
 .tab-link-student.active {
   border-bottom: 4px solid $student-orange;
   padding-bottom: 5px;
