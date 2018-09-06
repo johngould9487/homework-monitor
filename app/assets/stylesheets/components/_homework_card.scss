@@ -134,3 +134,23 @@
   opacity: 0.1;
 }
 
+.not-set-hwcard {
+h3 {
+    font-size:20px;
+    background-color: $teacher-blue;
+    border-radius: 5px;
+    color: white;
+    margin: 0;
+    padding: 10px 20px;
+  }
+  .warning {
+    background-color: orange;
+  }
+  .ribbon-right {
+    position: absolute;
+    transform: rotate(45deg);
+    right: -44px;
+    padding: 5px 40px;
+    top: 25px;
+  }
+}
