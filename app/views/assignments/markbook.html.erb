@@ -12,9 +12,17 @@
                 <%= assignment.title %> <i class="fas fa-caret-down"></i>
               </a>
             </p>
+            <p class="homework-date">Due: <%= assignment.date_due.strftime("%a #{assignment.date_due.day.ordinalize} %B") %></p>
           </span>
-          <div class="markbook-status">
-            <p><%= assignment.marked_percentage %>% marked</p>
+          <div>
+            <% if !assignment.published %>
+            <% elsif assignment.marked_percentage < 50 %>
+              <p style="color:white" class="homework-status homework-under-marked"><%= assignment.marked_percentage %>% marked</p>
+            <% elsif assignment.marked_percentage < 100 %>
+              <p style="color:white" class="homework-status homework-partially-marked"><%= assignment.marked_percentage %>% marked</p>
+            <% else %>
+              <p style="color:white" class="homework-status homework-fully-marked"><%= assignment.marked_percentage %>% marked</p>
+            <% end %>
           </div>
         </div>
 

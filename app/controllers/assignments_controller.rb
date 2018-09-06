@@ -20,6 +20,7 @@ class AssignmentsController < ApplicationController
       end
       authorize(@attempts.first)
     end
+    @assignments = @assignments.sort_by { |assignment| assignment.date_due }
   end
 
   def past
@@ -40,11 +41,13 @@ class AssignmentsController < ApplicationController
       end
       authorize(@attempts.first)
     end
+    @assignments = @assignments.sort_by { |assignment| assignment.date_due }.reverse
   end
 
   def markbook
     @teaching_group = TeachingGroup.find(params[:teaching_group_id])
     @assignments = Assignment.where(teaching_group: @teaching_group)
+    @assignments = @assignments.sort_by { |assignment| assignment.date_due }.reverse
     authorize(@assignments.first)
   end
 
