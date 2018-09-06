@@ -106,8 +106,8 @@
           <%= link_to 'Continue marking', teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: @assignment.id, anchor: "target-#{@assignment.id}"), class: 'btn-blue' %>
         <% elsif current_user.teacher && @assignment.marked_percentage < 1 %>
           <%= link_to 'Mark this homework', teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: @assignment.id, anchor: "target-#{@assignment.id}"), class: 'btn-blue' %>
-        <%# elsif current_user.student  %>
-            <%#= link_to 'Back to homework overview', teaching_group_upcoming_path(teaching_group_id), class: 'btn-blue' %>
+        <% elsif current_user.student  %>
+            <%= link_to 'Back to homework overview', teaching_group_upcoming_path(params[:teaching_group_id], class: 'btn-blue' %>
       <% end %>
     </div>
   </div>

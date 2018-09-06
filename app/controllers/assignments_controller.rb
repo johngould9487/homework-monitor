@@ -14,7 +14,7 @@ class AssignmentsController < ApplicationController
         attempt.student == current_user && attempt.assignment.date_due > Date.today && attempt.assignment.teaching_group == @teaching_group
       end
       authorize(@attempts.first)
-      @assignments = @assignments.sort_by { |assignment| assignment.date_due }
+      @attempts = @attempts.sort_by { |attempt| attempt.assignment.date_due }
     else
       @child = User.find(params[:child_id])
       @attempts = Attempt.all.select do |attempt|
@@ -30,20 +30,23 @@ class AssignmentsController < ApplicationController
       @teaching_group = TeachingGroup.find(params[:teaching_group_id])
       @assignments = Assignment.where(teaching_group: @teaching_group).where('date_due < ?', Date.today)
       authorize(@assignments.first)
+      @assignments = @assignments.sort_by { |assignment| assignment.date_due }.reverse
     elsif current_user.student
       @teaching_group = TeachingGroup.find(params[:teaching_group_id])
       @attempts = Attempt.all.select do |attempt|
         attempt.student == current_user && attempt.assignment.date_due <= Date.today && attempt.assignment.teaching_group == @teaching_group
       end
+      @attempts = @attempts.sort_by { |attempt| attempt.assignment.date_due }.reverse
       authorize(@attempts.first)
     else
       @child = User.find(params[:child_id])
       @attempts = Attempt.all.select do |attempt|
         attempt.student == User.find(params[:child_id]) && attempt.assignment.date_due <= Date.today
       end
+      @attempts = @attempts.sort_by { |attempt| attempt.assignment.date_due }.reverse
       authorize(@attempts.first)
     end
-    @assignments = @assignments.sort_by { |assignment| assignment.date_due }.reverse
+
   end
 
   def markbook
