@@ -33,9 +33,9 @@
         <span>DUE DATE</span>
         <p>
         <% if @assignment.date_due < Date.today %>
-            <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_until %> days ago)</span>
+            <%= @assignment.date_due.strftime("#{@assignment.date_due.day.ordinalize} %B") %> <span>(<%= @assignment.days_until %> days ago)</span>
           <% else %>
-            <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_left %> days left)</span>
+            <%= @assignment.date_due.strftime("#{@assignment.date_due.day.ordinalize} %B") %> <span>(<%= @assignment.days_left %> days left)</span>
         <% end %>
         </p>
       </div>
@@ -106,8 +106,10 @@
           <%= link_to 'Continue marking', teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: @assignment.id, anchor: "target-#{@assignment.id}"), class: 'btn-blue' %>
         <% elsif current_user.teacher && @assignment.marked_percentage < 1 %>
           <%= link_to 'Mark this homework', teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: @assignment.id, anchor: "target-#{@assignment.id}"), class: 'btn-blue' %>
-        <% elsif current_user.student  %>
-            <%= link_to 'Back to homework overview', teaching_group_upcoming_path(params[:teaching_group_id], class: 'btn-blue' %>
+        <% elsif current_user.student %>
+            <%= link_to 'Back to homework overview', teaching_group_upcoming_path(params[:teaching_group_id]), class: 'btn-orange' %>
+        <% elsif current_user.guardian %>
+          <%= link_to 'Back to homework overview', child_upcoming_path(@child), class: 'btn-green' %>
       <% end %>
     </div>
   </div>
