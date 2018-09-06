@@ -6,7 +6,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // position: relative;
+  position: relative;
+  overflow: hidden;
+  .ribbon-right {
+    position: absolute;
+    transform: rotate(45deg);
+    right: -38px;
+    top: 18px;
+    background-color: orange;
+    font-size: 14px;
+    border-radius: 5px;
+    color: #ffffff;
+    margin: 0;
+    padding: 10px 40px;
+  }
 }
 
 .markbook-button {
