@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-
+  overflow: hidden;
 }
 
 .homework-card-titles {
@@ -133,3 +133,4 @@
 .homework-link-student:hover {
   opacity: 0.1;
 }
+
