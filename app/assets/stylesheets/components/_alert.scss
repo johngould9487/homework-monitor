@@ -7,9 +7,18 @@
   text-align: center;
   color: white;
 }
-.alert-info {
+.alert-teacher {
   background: $teacher-blue;
 }
+
+.alert-guardian {
+  background: $guardian-green;
+}
+
+.alert-info {
+  background: $student-orange;
+}
+
 .alert-warning {
   background: $red;
 }
