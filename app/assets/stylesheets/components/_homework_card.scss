@@ -57,7 +57,7 @@
   padding: 10px 15px;
   border-radius: 4px;
   transition: background 0.3s ease;
-  margin-right: 20px;
+  margin-right: 16px;
   z-index: 3;
   text-decoration: none;
   border: none;
@@ -134,22 +134,24 @@
   opacity: 0.1;
 }
 
-// h3 {
-//     font-size:20px;
-//     background-color: $teacher-blue;
-//     border-radius: 5px;
-//     color: white;
-//     margin: 0;
-//     padding: 10px 20px;
-//   }
+.not-set-hwcard {
+h3 {
+    font-size:20px;
+    background-color: $teacher-blue;
+    border-radius: 5px;
+    color: white;
+    margin: 0;
+    padding: 10px 20px;
+  }
+  .warning {
+    background-color: orange;
+  }
+  .ribbon-right {
+    position: absolute;
+    transform: rotate(45deg);
+    right: -44px;
+    padding: 5px 40px;
+    top: 25px;
+  }
+}
 
-//   .warning {
-//     background-color: orange;
-//   }
-//   .ribbon-right {
-//     position: absolute;
-//     transform: rotate(45deg);
-//     right: -44px;
-//     padding: 5px 40px;
-//     top: 25px;
-//   }

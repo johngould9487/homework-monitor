@@ -1,4 +1,3 @@
-
 <div class="homework-card">
   <% if current_user.teacher %>
     <div class="homework-card-titles">
@@ -9,7 +8,9 @@
     </div>
 
     <% if assignment.published == false %>
+      <div class="not-set-hwcard">
         <h3 class="warning ribbon-right">NOT SET</h3>
+      </div>
     <% elsif assignment.marked_percentage < 50 %>
       <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-under-marked' do %>
       <div>
