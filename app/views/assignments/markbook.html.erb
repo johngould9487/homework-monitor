@@ -12,10 +12,17 @@
                 <%= assignment.title %> <i class="fas fa-caret-down"></i>
               </a>
             </p>
+            <p class="homework-date">Due: <%= assignment.date_due.strftime("%a #{assignment.date_due.day.ordinalize} %B") %></p>
           </span>
-          <div class="markbook-status">
-            <p><%= assignment.marked_percentage %>% marked</p>
-          </div>
+          <% if !assignment.published %>
+            <h3 class="warning ribbon-right">NOT SET</h3>
+          <% elsif assignment.marked_percentage < 50 %>
+            <p style="color:white" class="markbook-no-border homework-status homework-under-marked"><%= assignment.marked_percentage %>% marked</p>
+          <% elsif assignment.marked_percentage < 100 %>
+            <p style="color:white" class="markbook-no-border homework-status homework-partially-marked"><%= assignment.marked_percentage %>% marked</p>
+          <% else %>
+            <p style="color:white" class="markbook-no-border homework-status homework-fully-marked"><%= assignment.marked_percentage %>% marked</p>
+          <% end %>
         </div>
 
         <div id="accordion-<%= assignment.id %>" class="panel-collapse collapse <%= 'in' if assignment.id == params[:assignment_id_accordion].to_i %>" role="tabpanel" aria-labelledby="headingOne">
@@ -38,6 +45,7 @@
               <div class="attempt-flex">
                 <div class="markbook-name">
                   <p><%= attempt.student.first_name %> <%= attempt.student.last_name %></p>
+                  <%= image_tag attempt.student.avatar, class: "avatar-student", alt: "alttext" %>
                 </div>
                 <div class="markbook-mark">
                   <p><%= attempt.mark if attempt.mark %></p>
@@ -46,16 +54,22 @@
                   <p><%= attempt.comment if attempt.comment %></p>
                 </div>
                 <div class="markbook-action">
-                  <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#markModal<%= attempt.id %>">
-                    Mark
-                  </button>
+                  <% if attempt.mark || attempt.comment %>
+                    <button type="button" class="btn btn-sm btn-dud " data-toggle="modal" data-target="#markModal<%= attempt.id %>">
+                      Edit
+                    </button>
+                  <% else %>
+                    <button type="button" class="btn btn-sm btn-primary " data-toggle="modal" data-target="#markModal<%= attempt.id %>">
+                      Mark
+                    </button>
+                  <% end %>
                 </div>
               </div>
               <!-- Modal -->
               <div class="modal" id="markModal<%= attempt.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header modal-style">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                       <h4 class="modal-title" id="myModalLabel">Add Mark to Student's Homework </h4>
                     </div>
@@ -63,7 +77,7 @@
                       <%= simple_form_for attempt do |f| %>
                         <%= f.input :mark %>
                         <%= f.input :comment %>
-                        <%= f.submit %>
+                        <%= f.submit "Confirm", id: "confirm-#{assignment.id}-#{attempt.id}", class: "btn btn-primary" %>
                       <% end %>
                     </div>
                   </div>
@@ -76,8 +90,6 @@
     </div>
   <% end %>
 </div>
-
-
 
 
 

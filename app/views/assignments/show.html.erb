@@ -1,21 +1,26 @@
 <div class="container">
   <div class="white-container">
     <div class="show-page-header">
-      <h2><%= @assignment.title %></h2>
+      <% if current_user.teacher %>
+          <h2 class="teacher-underline"><%= @assignment.title %></h2>
+        <% elsif current_user.guardian %>
+          <h2 class="guardian-underline"><%= @assignment.title %></h2>
+        <% else %>
+         <h2 class="student-underline"><%= @assignment.title %></h2>
+      <% end %>
       <% if current_user.teacher && @assignment.published == false %>
           <h3 class="warning ribbon-right">NOT SET</h3>
         <% elsif current_user.teacher && @assignment.marked_percentage < 100%>
-          <h3><%= @assignment.marked_percentage %>% of homework marked</h3>
+          <h3 class="percentage-marked"><%= @assignment.marked_percentage %>% of homework marked</h3>
         <% elsif current_user.teacher %>
           <h3 class="great">100% Marked</h3>
-          <% elsif (current_user.guardian || current_user.student) && @attempt.mark.nil?%>
-          <h3 class="warning">NOT MARKED</h3>
-          <% elsif current_user.guardian || current_user.student %>
+        <% elsif (current_user.guardian || current_user.student) && @attempt.mark.nil?%>
+          <h3 class="guardian-warning guardian-ribbon-right">NOT MARKED</h3>
+        <% elsif current_user.guardian || current_user.student %>
             <h3 class="great">MARKED</h3>
         <% else %>
          <p>bloop</p>
       <% end %>
-
     </div>
     <div class="show-page-dates">
       <div class="date">
@@ -28,9 +33,9 @@
         <span>DUE DATE</span>
         <p>
         <% if @assignment.date_due < Date.today %>
-            <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_until %> days ago)</span>
+            <%= @assignment.date_due.strftime("#{@assignment.date_due.day.ordinalize} %B") %> <span>(<%= @assignment.days_until %> days ago)</span>
           <% else %>
-            <%= @assignment.date_due.strftime("#{@assignment.date_created.day.ordinalize} %B") %> <span>(<%= @assignment.days_left %> days left)</span>
+            <%= @assignment.date_due.strftime("#{@assignment.date_due.day.ordinalize} %B") %> <span>(<%= @assignment.days_left %> days left)</span>
         <% end %>
         </p>
       </div>
@@ -46,7 +51,7 @@
       <p> <%= @assignment.description %></p>
       <% if current_user.teacher || current_user.guardian %>
         <div class="show-instructions-guardian">
-          <span>GUARDIAN INSTRUCTIONS (student's can't see this section)</span>
+          <span>GUARDIAN INSTRUCTIONS (students can't see this section)</span>
           <p><%= @assignment.guardian_note %></p>
         </div>
       <% end %>
@@ -74,19 +79,25 @@
               <span class="pending"> TEACHER COMMENTS <p> --pending-- </p> </span>
             <% else %>
               <span class="show-instructions"> YOUR MARK </span>
-              <p> <%= @attempt.mark %></p>
+                <p> <%= @attempt.mark %></p>
               <span class="show-instructions"> TEACHER COMMENTS  </span>
-              <p> <%= @attempt.comment %></p>
+                <p> <%= @attempt.comment %></p>
             <% end %>
           </div>
         <% else %>
-          <div>
-            <% if @attempt.mark.nil? %>
-              <span class="pending"> YOUR MARK <p> --pending-- </p></span>
-              <span class="pending"> TEACHER COMMENTS <p> --pending-- </p> </span>
-            <% else %>
-              <span class="marks"> <%= @child.first_name %>'s MARK <p> <%= @attempt.mark %> / 10</p></span>
-              <span class="comments"> TEACHER COMMENTS <p> <%= @attempt.comment %></p> </span>
+          <div style="display: flex;">
+            <% @children.each do |child| %>
+              <div style="margin-right: 30px;">
+                <% if @attempt.mark.nil? %>
+                  <span class="pending"> <%= child.first_name.upcase %>'s MARK <p> --pending-- </p></span>
+                  <span class="pending"> TEACHER COMMENTS <p> --pending-- </p> </span>
+                <% else %>
+                  <span class="marks"> <%= child.first_name.upcase %>'s MARK </span>
+                   <p> <%= @attempt.mark %> / 10</p>
+                  <span class="comments"> TEACHER COMMENTS</span>
+                   <p> <%= @attempt.comment %></p>
+                <% end %>
+              </div>
             <% end %>
           </div>
       <% end %>
@@ -99,6 +110,10 @@
           <%= link_to 'Continue marking', teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: @assignment.id, anchor: "target-#{@assignment.id}"), class: 'btn-blue' %>
         <% elsif current_user.teacher && @assignment.marked_percentage < 1 %>
           <%= link_to 'Mark this homework', teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: @assignment.id, anchor: "target-#{@assignment.id}"), class: 'btn-blue' %>
+        <% elsif current_user.student %>
+            <%= link_to 'Back to homework overview', teaching_group_upcoming_path(params[:teaching_group_id]), class: 'btn-orange' %>
+        <% elsif current_user.guardian %>
+          <%= link_to 'Back to homework overview', child_upcoming_path(@child), class: 'btn-green' %>
       <% end %>
     </div>
   </div>

@@ -30,8 +30,10 @@
         </div>
       <% end %>
     <% end %>
+
     <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment, child_id: child_id), class: 'homework-link-teacher' %>
     <% elsif current_user.guardian %>
+
     <div class="homework-card-titles">
       <p><strong class="homework-guardian"><%= attempt.assignment.teaching_group.subject %></strong> </p>
       <span>
@@ -49,8 +51,10 @@
         <!-- <p><%= attempt.comment %>/10</p> -->
     </div>
     <% end %>
+
     <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment, child_id: child_id), class: 'homework-link-guardian' %>
     <% elsif current_user.student %>
+
     <div class="homework-card-titles">
       <p><strong class="homework-student"><%= attempt.assignment.teaching_group.subject %></strong> </p>
       <span>

@@ -13,11 +13,11 @@
     </div>
     <div class="right-column">
       <div class="white-background-sub">
-        <%= f.input :date_created, as: :string, required: false, input_html: {class: "datepicker"}, label: "Date set", placeholder: "Monday 8th" %>
-        <%= f.input :date_due, as: :string, required: false, input_html: {class: "datepicker"}, label: "Date due", placeholder: "Wednesday 10th" %>
+        <%= f.input :date_created, as: :string, required: false, input_html: {class: "datepicker"}, label: "Date set", placeholder: "Choose date..." %>
+        <%= f.input :date_due, as: :string, required: false, input_html: {class: "datepicker"}, label: "Date due", placeholder: "Choose date..." %>
       </div>
       <div class="white-background ">
-        <%= f.input :grading_type, collection: [ "1-9", "A-F", "Percentages", "Out Of Ten", "Out Of 100", "Other"]%>
+        <%= f.input :grading_type, collection: [ "1-9", "A-F", "Percentages", "Out Of Ten", "Out Of 100", "Other"], placeholder: "Choose grading type..."%>
       </div>
       <div class="save-btn">
         <%= f.button :submit, "Save draft", class: "btn-white" %>
