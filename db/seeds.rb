@@ -182,7 +182,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[0],
-    title: "Blocs and yields"
+    title: "Blocks and yields"
   )
 
 # create html assignments
@@ -202,15 +202,6 @@ dates_set.each_with_index do |date, index|
   )
 end
   Assignment.create!(
-    date_created: Date.today + 3,
-    date_due:Date.today + 5,
-    description: "Read up on the following:",
-    grading_type: "OUT OF TEN",
-    maximum_score: 10,
-    teaching_group: teaching_groups[1],
-    title: "Find the cross-section for a typical Compton-Scattering event"
-  )
-  Assignment.create!(
     date_created: Date.today,
     date_due:Date.today + 5,
     description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
@@ -220,7 +211,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[1],
-    title: "Advanced Rails and setting up main project"
+    title: "HTML basics - know your code"
   )
 
   Assignment.create!(
@@ -233,7 +224,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[1],
-    title: "Integrating pundit"
+    title: "Setting up a html file"
   )
 
   Assignment.create!(
@@ -246,7 +237,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[1],
-    title: "Blocs and yields"
+    title: "Adding box shadows by Andy Levis"
   )
 
 # create css assignments
@@ -266,16 +257,6 @@ dates_set.each_with_index do |date, index|
   )
 end
   Assignment.create!(
-    date_created: Date.today + 3,
-    date_due:Date.today + 5,
-    description: "Read up on the following:",
-    grading_type: "OUT OF TEN",
-    maximum_score: 10,
-    teaching_group: teaching_groups[2],
-    title: "Write up experiment from today's lesson"
-  )
-
-  Assignment.create!(
     date_created: Date.today,
     date_due:Date.today + 5,
     description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
@@ -285,9 +266,8 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[2],
-    title: "Advanced Rails and setting up main project"
+    title: "Why do we need CSS?"
   )
-
   Assignment.create!(
     date_created: Date.today,
     date_due:Date.today + 4,
@@ -298,9 +278,8 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[2],
-    title: "Integrating pundit"
+    title: "Color vs Colour, Gray vs Grey"
   )
-
   Assignment.create!(
     date_created: Date.today,
     date_due:Date.today + 3,
@@ -311,7 +290,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[2],
-    title: "Blocs and yields"
+    title: "Hover 101 - the dream"
   )
 
 # create database assignments
@@ -331,15 +310,6 @@ dates_set.each_with_index do |date, index|
   )
 end
   Assignment.create!(
-    date_created: Date.today + 3,
-    date_due:Date.today + 5,
-    description: "Read up on the following:",
-    grading_type: "OUT OF TEN",
-    maximum_score: 10,
-    teaching_group: teaching_groups[3],
-    title: "Mitosis/Mieosis"
-  )
-  Assignment.create!(
     date_created: Date.today,
     date_due:Date.today + 5,
     description: "Welcome to advanced Ruby on Rails! Well done for getting this far. Today's homework is all about testing out your knowledge.
@@ -349,7 +319,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[3],
-    title: "Advanced Rails and setting up main project"
+    title: "SQL and the database"
   )
 
   Assignment.create!(
@@ -362,7 +332,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[3],
-    title: "Integrating pundit"
+    title: "Integrating XML files"
   )
 
   Assignment.create!(
@@ -375,7 +345,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[3],
-    title: "Blocs and yields"
+    title: "db:migrate - why do we do this?"
   )
 
 # create ruby basics assignments
@@ -404,9 +374,8 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[4],
-    title: "Advanced Rails and setting up main project"
+    title: "Ruby is better than Java and Python - a discussion"
   )
-
   Assignment.create!(
     date_created: Date.today + 3,
     date_due:Date.today + 4,
@@ -417,7 +386,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[4],
-    title: "Integrating pundit"
+    title: "While loops and If statements"
   )
 
   Assignment.create!(
@@ -430,7 +399,7 @@ end
     grading_type: "OUT OF TEN",
     maximum_score: 10,
     teaching_group: teaching_groups[4],
-    title: "Blocs and yields"
+    title: "Iterating over an array - can we be bothered?"
   )
 
 TeachingGroup.all.each do |teaching_group|
@@ -441,14 +410,14 @@ TeachingGroup.all.each do |teaching_group|
 end
 
 
-comments = [
-"Great job, really impressive, keep up the good work",
-"Well done! You are really getting the grasp of this subject",
-"I am really impressed with how you have picked up the theory, but a bit more focus on the practical application is needed",
-"You are getting the hang of this subject, but please take time to re-read the notes from this class and think about how to implement it more succinctly",
-"A lower mark than I would expect, let's sit down and go through this before class tomorrow",
-"Good effort - but you will need to re-sit this homework over the weekend"
-]
+
+comment_1 = "Great job, really impressive, keep up the good work",
+comment_2 = "Well done! You are really getting the grasp of this subject",
+comment_3 = "I am really impressed with how you have picked up the theory, but a bit more focus on the practical application is needed",
+comment_4 = "You are getting the hang of this subject, but please take time to re-read the notes from this class and think about how to implement it more succinctly",
+comment_5 = "A lower mark than I would expect, let's sit down and go through this before class tomorrow",
+comment_6 = "Good effort - but you will need to re-sit this homework over the weekend"
+
 
 
 Assignment.all.each do |assignment|
@@ -457,6 +426,19 @@ Assignment.all.each do |assignment|
     assignment.attempts.each do |attempt|
       attempt.mark = rand(11)
       attempt.comment = comments.sample
+        # if attempt.mark == 0
+        #   attempt.comment = comment_6
+        # elsif attempt.mark < 5
+        #   attempt.comment = comment_5
+        # elsif attempt.mark < 6
+        #   attempt.comment = comment_4
+        # elsif attempt.mark < 7
+        #   attempt.comment = comment_3
+        # elsif attempt.mark < 9
+        #   attempt.comment = comment_2
+        # else
+        #   attempt.comment = comment_1
+        # end
       attempt.save
     end
   elsif assignment.date_due < Date.today - 9

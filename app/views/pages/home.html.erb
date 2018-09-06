@@ -1,49 +1,49 @@
 <div class="home-banner" style="background-image: url(<%= image_path('background.svg') %>)">
   <%= image_tag 'logo-white.png', class: 'logo' %>
   <div class="banner-title">
-    <h1>Homework organisation made <strong>easy</strong>, for <strong>everyone</strong>.</h1>
+    <h1>Homework monitor: The bridge between <strong>students</strong>, <strong>teachers</strong> and <strong>guardians</strong>.</h1>
   </div>
   <div class="banner-sign-up">
     <div class="banner-form">
       <div class="login-banner-main">
-      <h3>Log in</h3>
+        <h3>Log in</h3>
       </div>
       <div class="login-banner-entry">
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-group-email">
-           <!--  <input type="email" class="form-control" id="inputEmail" placeholder="Email Address"> -->
-            <%= f.input :email,
-              required: false,
-              autofocus: true,
-              input_html: { autocomplete: "email" } %>
-        </div>
-        <div class="form-group-password">
-              <%= f.input :password,
-              required: false,
-              input_html: { autocomplete: "current-password" } %>
-        </div>
-        <%= f.button :submit, "Let's go", class: "btn-blue-login" %>
-      <% end %>
-    </div>
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group-email">
+             <!--  <input type="email" class="form-control" id="inputEmail" placeholder="Email Address"> -->
+              <%= f.input :email,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "email" } %>
+          </div>
+          <div class="form-group-password">
+                <%= f.input :password,
+                required: false,
+                input_html: { autocomplete: "current-password" } %>
+          </div>
+          <%= f.button :submit, "Let's go", class: "btn-blue-login" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 <div class="container">
-  <div class="home-image-display">
+  <div class="home-page-display">
     <h2>How does it work?</h2>
     <div class="home-info-box">
       <div class="home-info guardian-info">
         <%= image_tag 'freelancer.svg', class: "home-page-image" %>
-        <h3>For the guardians</h3>
+        <h3>For guardians</h3>
         <ul class="home-info-list">
-          <li><i class="far fa-check-circle"></i><p>See all your children's homework in realtime</p></li>
+          <li><i class="far fa-check-circle"></i><p>See all your children's homework and when it was set</p></li>
           <li><i class="far fa-check-circle"></i><p>Check extra guardian notes from teachers</p></li>
           <li><i class="far fa-check-circle"></i><p>View all homework marks for the year</p></li>
         </ul>
       </div>
       <div class="home-info student-info">
         <%= image_tag 'school.svg', class: "home-page-image" %>
-        <h3>For the students</h3>
+        <h3>For students</h3>
         <ul class="home-info-list">
           <li><i class="far fa-check-circle"></i><p>All your homework for all classes in one place</p></li>
           <li><i class="far fa-check-circle"></i><p>Never forget what instructions your teachers set</p></li>
@@ -52,10 +52,12 @@
       </div>
       <div class="home-info teacher-info">
         <%= image_tag 'calculator.svg', class: "home-page-image" %>
-        <h3>For the teachers</h3>
-        <p>Easily create new homework and set in realtime</p>
-        <p>Mark all homework in one place</p>
-        <p>Send private notes to guardians for extra instructions</p>
+        <h3>For teachers</h3>
+        <ul class="home-info-list">
+          <li><i class="far fa-check-circle"></i><p>Easily create and distribute new homework</p></li>
+          <li><i class="far fa-check-circle"></i><p>Mark and edit all homework in one place</p></li>
+          <li><i class="far fa-check-circle"></i><p>Send private notes to guardians for extra instructions</p></li>
+        </ul>
       </div>
     </div>
   </div>
