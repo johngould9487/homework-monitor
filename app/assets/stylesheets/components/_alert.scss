@@ -8,15 +8,15 @@
   color: white;
 }
 .alert-teacher {
-  background: $teacher-blue;
+  background-color: $teacher-blue;
 }
 
 .alert-guardian {
-  background: $parent-green;
+  background-color: $parent-green;
 }
 
-.alert-info {
-  background: $student-orange;
+.alert-student {
+  background-color: $student-orange;
 }
 
 .alert-warning {
