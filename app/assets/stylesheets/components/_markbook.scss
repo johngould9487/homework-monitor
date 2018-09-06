@@ -18,6 +18,11 @@
   z-index: 10;
 }
 
+.modal-style {
+  background: $teacher-blue !important;
+  color: white;
+}
+
 .markbook-status {
   text-align: right;
   flex: 0 1 40vw;
@@ -32,6 +37,11 @@
     color: $teacher-blue;
     margin: 0;
   }
+}
+
+.markbook-no-border {
+  margin-right: 0;
+  margin-bottom: 0;
 }
 
 .markbook-group {
@@ -55,6 +65,10 @@
 
 .markbook-action {
   flex: 0 0 auto;
+  button {
+    width: 70px;
+    text-align: center !important;
+  }
 }
 
 .header {
