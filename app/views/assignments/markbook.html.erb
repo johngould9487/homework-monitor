@@ -45,6 +45,7 @@
               <div class="attempt-flex">
                 <div class="markbook-name">
                   <p><%= attempt.student.first_name %> <%= attempt.student.last_name %></p>
+                  <%= image_tag attempt.student.avatar, class: "avatar-student", alt: "alttext" %>
                 </div>
                 <div class="markbook-mark">
                   <p><%= attempt.mark if attempt.mark %></p>

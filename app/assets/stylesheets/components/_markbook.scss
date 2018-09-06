@@ -51,6 +51,9 @@
 
 .markbook-name {
   flex: 0 0 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .markbook-mark {
