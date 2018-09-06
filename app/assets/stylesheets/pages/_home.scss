@@ -79,6 +79,7 @@
 .home-info-box {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 20px;
 }
 
 .home-info {
@@ -90,9 +91,9 @@
   text-align: center;
   h3 {
     padding-top: 10px;
+    margin-bottom:30px;
   }
   p {
-    padding-top: 10px;
     font-size: 16px;
     line-height: 1.2;
   }
@@ -121,5 +122,19 @@
 }
 
 .home-page-image {
-  width: 300px;
+  // width: 300px;
+  height: 220px;
+  margin-bottom: 30px;
+}
+
+.home-info-list {
+  margin-right: 35px;
+  li {
+    display: flex;
+  }
+  .far {
+    color: $parent-green;
+    font-size: 30px;
+    margin-right: 10px;
+  }
 }
