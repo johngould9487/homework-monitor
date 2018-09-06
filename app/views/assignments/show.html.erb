@@ -85,15 +85,19 @@
             <% end %>
           </div>
         <% else %>
-          <div>
-            <% if @attempt.mark.nil? %>
-              <span class="pending"> <%= @child.first_name.upcase %>'s MARK <p> --pending-- </p></span>
-              <span class="pending"> TEACHER COMMENTS <p> --pending-- </p> </span>
-            <% else %>
-              <span class="marks"> <%= @child.first_name.upcase %>'s MARK </span>
-               <p> <%= @attempt.mark %> / 10</p>
-              <span class="comments"> TEACHER COMMENTS</span>
-               <p> <%= @attempt.comment %></p>
+          <div style="display: flex;">
+            <% @children.each do |child| %>
+              <div style="margin-right: 30px;">
+                <% if @attempt.mark.nil? %>
+                  <span class="pending"> <%= child.first_name.upcase %>'s MARK <p> --pending-- </p></span>
+                  <span class="pending"> TEACHER COMMENTS <p> --pending-- </p> </span>
+                <% else %>
+                  <span class="marks"> <%= child.first_name.upcase %>'s MARK </span>
+                   <p> <%= @attempt.mark %> / 10</p>
+                  <span class="comments"> TEACHER COMMENTS</span>
+                   <p> <%= @attempt.comment %></p>
+                <% end %>
+              </div>
             <% end %>
           </div>
       <% end %>
