@@ -12,25 +12,25 @@
         <h3 class="warning ribbon-right">NOT SET</h3>
       </div>
     <% elsif assignment.marked_percentage < 50 %>
-      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-under-marked' do %>
+      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}", child_id: child_id), class: 'homework-status homework-under-marked' do %>
       <div>
         <p><%= assignment.marked_percentage %>% marked</p>
       </div>
     <% end %>
     <% elsif assignment.marked_percentage < 100 %>
-    <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-partially-marked' do %>
+    <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}", child_id: child_id), class: 'homework-status homework-partially-marked' do %>
     <div>
       <p><%= assignment.marked_percentage %>% marked</p>
     </div>
     <% end %>
     <% else %>
-      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-fully-marked' do %>
+      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}", child_id: child_id), class: 'homework-status homework-fully-marked' do %>
         <div>
           <p><%= assignment.marked_percentage %>% marked</p>
         </div>
       <% end %>
     <% end %>
-    <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link-teacher' %>
+    <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment, child_id: child_id), class: 'homework-link-teacher' %>
     <% elsif current_user.guardian %>
     <div class="homework-card-titles">
       <p><strong class="homework-guardian"><%= attempt.assignment.teaching_group.subject %></strong> </p>
@@ -49,7 +49,7 @@
         <!-- <p><%= attempt.comment %>/10</p> -->
     </div>
     <% end %>
-    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link-guardian' %>
+    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment, child_id: child_id), class: 'homework-link-guardian' %>
     <% elsif current_user.student %>
     <div class="homework-card-titles">
       <p><strong class="homework-student"><%= attempt.assignment.teaching_group.subject %></strong> </p>
@@ -72,6 +72,6 @@
         <p><%= attempt.mark %>/10</p>
       <% end %>
     </div>
-    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link-student' %>
+    <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment, child_id: child_id), class: 'homework-link-student' %>
   <% end %>
 </div>
