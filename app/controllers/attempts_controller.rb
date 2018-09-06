@@ -3,7 +3,7 @@ class AttemptsController < ApplicationController
     @attempt = Attempt.find(params[:id])
     authorize @attempt
     if @attempt.update(attempt_params)
-      redirect_to teaching_group_markbook_path(teaching_group_id: @attempt.assignment.teaching_group)
+      redirect_to teaching_group_markbook_path(teaching_group_id: @attempt.assignment.teaching_group) + "?assignment_id_accordion=#{@attempt.assignment.id}#target-#{@attempt.assignment.id}"
     else
       render 'assignments/markbook'
     end
