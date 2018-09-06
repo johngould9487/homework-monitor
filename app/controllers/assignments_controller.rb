@@ -59,6 +59,7 @@ class AssignmentsController < ApplicationController
   def show
     @teaching_group = TeachingGroup.find(params[:teaching_group_id])
     @child = current_user.students.first
+    @children = current_user.students
     if current_user.student
       attempts = Attempt.all.select do |attempt|
         attempt.student == current_user && attempt.assignment == @assignment
