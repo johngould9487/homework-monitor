@@ -1,3 +1,4 @@
+
 <div class="homework-card">
   <% if current_user.teacher %>
     <div class="homework-card-titles">
@@ -6,33 +7,29 @@
       </span>
       <p class="homework-date">Due: <%= assignment.date_due.strftime("%a #{assignment.date_due.day.ordinalize} %B") %></p>
     </div>
-    <% if assignment.marked_percentage == 0 %>
-      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-under-marked', data: { delay: 0, toggle: "tooltip", placement: "left" }, title: "Mark this homework" do %>
-        <div>
-          <p><%= assignment.marked_percentage %>% marked</p>
-        </div>
-      <% end %>
+
+    <% if assignment.published == false %>
+        <h3 class="warning ribbon-right">NOT SET</h3>
     <% elsif assignment.marked_percentage < 50 %>
-      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-under-marked', data: { delay: 0, toggle: "tooltip", placement: "left" }, title: "Continue marking" do %>
-        <div>
-          <p><%= assignment.marked_percentage %>% marked</p>
-        </div>
-      <% end %>
+      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-under-marked' do %>
+    <div>
+      <p><%= assignment.marked_percentage %>% marked</p>
+    </div>
+    <% end %>
     <% elsif assignment.marked_percentage < 100 %>
-      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-partially-marked', data: { delay: 0, toggle: "tooltip", placement: "left" }, title: "Continue marking" do %>
-        <div>
-          <p><%= assignment.marked_percentage %>% marked</p>
-        </div>
-      <% end %>
+    <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-partially-marked' do %>
+    <div>
+      <p><%= assignment.marked_percentage %>% marked</p>
+    </div>
+    <% end %>
     <% else %>
-      <%= link_to teaching_group_markbook_path(params[:teaching_group_id], assignment_id_accordion: assignment.id, anchor: "target-#{assignment.id}"), class: 'homework-status homework-fully-marked', data: { delay: 0, toggle: "tooltip", placement: "left" }, title: "View marks" do %>
-        <div>
-          <p><%= assignment.marked_percentage %>% marked</p>
-        </div>
-      <% end %>
+    <div class="homework-status homework-fully-marked">
+      <p><%= assignment.marked_percentage %>% marked</p>
+    </div>
+
     <% end %>
     <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link-teacher' %>
-  <% elsif current_user.guardian %>
+    <% elsif current_user.guardian %>
     <div class="homework-card-titles">
       <p><strong class="homework-guardian"><%= attempt.assignment.teaching_group.subject %></strong> </p>
       <span>
@@ -41,17 +38,17 @@
       <p class="homework-date">Due: <%= attempt.assignment.date_due.strftime("%a #{attempt.assignment.date_due.day.ordinalize} %B") %></p>
     </div>
     <% if params[:action] == 'upcoming' %>
-      <div class="homework-status homework-guardian-mark">
-        <p>Pending grade...</p>
-      </div>
+    <div class="homework-status homework-guardian-mark">
+      <p>Pending grade...</p>
+    </div>
     <% else %>
-      <div class="homework-status homework-guardian-mark">
-        <p data-toggle="popover" data-placement="left" title="<%= attempt.comment %>"><%= attempt.mark %>/10</p>
+    <div class="homework-status homework-guardian-mark">
+      <p data-toggle="popover" data-placement="left" title="<%= attempt.comment %>"><%= attempt.mark %>/10</p>
         <!-- <p><%= attempt.comment %>/10</p> -->
-        </div>
+    </div>
     <% end %>
     <%= link_to '', teaching_group_assignment_path(attempt.assignment.teaching_group, attempt.assignment), class: 'homework-link-guardian' %>
-  <% elsif current_user.student %>
+    <% elsif current_user.student %>
     <div class="homework-card-titles">
       <p><strong class="homework-student"><%= attempt.assignment.teaching_group.subject %></strong> </p>
       <span>
