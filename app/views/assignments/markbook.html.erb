@@ -9,7 +9,7 @@
           <span>
             <p class="panel-title homework-title homework-teacher">
               <a role="markbook-button" data-toggle="collapse" data-parent="#accordion" href="#accordion-<%= assignment.id %>" aria-expanded="true" aria-controls="collapseOne">
-                <%= assignment.title %> <i class="fas fa-caret-down"></i>
+                <i class="fas fa-caret-down"></i> <%= assignment.title %>
               </a>
             </p>
             <p class="homework-date">Due: <%= assignment.date_due.strftime("%a #{assignment.date_due.day.ordinalize} %B") %></p>
