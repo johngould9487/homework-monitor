@@ -25,10 +25,16 @@
 }
 
 .navbar-add-homework {
-  flex: 1 0 auto;
+  a {
+      p {
+        margin-left: 0px;
+      }
+    }
+
   p {
     margin-bottom: 0;
     margin-left: 40px;
+    width: 200px;
   }
 }
 
@@ -98,16 +104,34 @@
 }
 
 .group-code-teacher {
-  color: $teacher-blue;
+  p {
+    margin-bottom: 0;
+    a {
+      color: $teacher-blue;
+    }
+  }
   font-weight: bold;
   margin-left: 40px;
 }
 .group-code-student {
-  color: $student-orange;
-  font-weight: bold;
-  margin-left: 20px;
+  p {
+    margin-bottom: 0;
+    a {
+      color: $student-orange;
+      }
+  }
+    font-weight: bold;
+    margin-bottom: 0;
+  margin-left: 40px;
 }
 
+@media (max-width: 440px) {
+  .group-code-student {
+    p {
+      margin-top: 14px;
+    }
+  }
+}
 .new {
   display: flex;
   align: left;
@@ -115,4 +139,9 @@
 
 .children-names {
   margin-left: 40px;
+}
+
+
+.fa-plus-circle {
+  color: $teacher-blue;
 }

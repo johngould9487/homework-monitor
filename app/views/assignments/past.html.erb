@@ -6,7 +6,7 @@
       <div class="row">
         <% @assignments.each do |assignment| %>
           <div class="col-xs-12">
-            <%= render 'shared/homework_card', assignment: assignment %>
+            <%= render 'shared/homework_card', assignment: assignment, child_id: params[:child_id] %>
           </div>
         <% end %>
       </div>
@@ -14,7 +14,7 @@
       <div class="row">
         <% @attempts.each do |attempt| %>
           <div class="col-xs-12">
-            <%= render 'shared/homework_card', attempt: attempt %>
+            <%= render 'shared/homework_card', attempt: attempt, child_id: params[:child_id]%>
           </div>
         <% end %>
       </div>
@@ -22,7 +22,7 @@
       <div class="row">
         <% @attempts.each do |attempt| %>
           <div class="col-xs-12">
-            <%= render 'shared/homework_card', attempt: attempt %>
+            <%= render 'shared/homework_card', attempt: attempt, child_id: params[:child_id] %>
           </div>
         <% end %>
       </div>
