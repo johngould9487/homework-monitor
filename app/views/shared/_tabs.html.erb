@@ -1,14 +1,14 @@
 <div class="tabs hidden-xs", style="text-align:center">
   <% if current_user.guardian %>
-    <%= link_to "Upcoming homeworks", child_upcoming_path(@child), class: "tab-link-guardian #{'active' if params[:action] == 'upcoming'}"  %>
-    <%= link_to "Past homeworks", child_past_path(@child), class: "tab-link-guardian #{'active' if params[:action] == 'past'}"  %>
+    <%= link_to "Upcoming homework", child_upcoming_path(@child), class: "tab-link-guardian #{'active' if params[:action] == 'upcoming'}"  %>
+    <%= link_to "Past homework", child_past_path(@child), class: "tab-link-guardian #{'active' if params[:action] == 'past'}"  %>
   <% elsif current_user.teacher %>
-    <%= link_to "Upcoming homeworks", teaching_group_upcoming_path(teaching_group), class: "tab-link-teacher #{'active' if params[:action] == 'upcoming'}"  %>
-    <%= link_to "Past homeworks", teaching_group_past_path(teaching_group), class: "tab-link-teacher #{'active' if params[:action] == 'past'}"  %>
+    <%= link_to "Upcoming homework", teaching_group_upcoming_path(teaching_group), class: "tab-link-teacher #{'active' if params[:action] == 'upcoming'}"  %>
+    <%= link_to "Past homework", teaching_group_past_path(teaching_group), class: "tab-link-teacher #{'active' if params[:action] == 'past'}"  %>
     <%= link_to "Markbook", teaching_group_markbook_path(teaching_group), class: "tab-link-teacher #{'active' if params[:action] == 'markbook'}"  %>
   <% elsif current_user.student %>
-    <%= link_to "Upcoming homeworks", teaching_group_upcoming_path(teaching_group), class: "tab-link-student #{'active' if params[:action] == 'upcoming'}"  %>
-    <%= link_to "Past homeworks", teaching_group_past_path(teaching_group), class: "tab-link-student #{'active' if params[:action] == 'past'}"  %>
+    <%= link_to "Upcoming homework", teaching_group_upcoming_path(teaching_group), class: "tab-link-student #{'active' if params[:action] == 'upcoming'}"  %>
+    <%= link_to "Past homework", teaching_group_past_path(teaching_group), class: "tab-link-student #{'active' if params[:action] == 'past'}"  %>
   <% end %>
 </div>
 <div class="tabs hidden-sm hidden-md hidden-lg", style="text-align:center">
