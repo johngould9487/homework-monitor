@@ -7,6 +7,7 @@
       </span>
       <p class="homework-date">Due: <%= assignment.date_due.strftime("%a #{assignment.date_due.day.ordinalize} %B") %></p>
     </div>
+
     <% if assignment.published == false %>
         <h3 class="warning ribbon-right">NOT SET</h3>
     <% elsif assignment.marked_percentage < 50 %>
@@ -25,6 +26,7 @@
     <div class="homework-status homework-fully-marked">
       <p><%= assignment.marked_percentage %>% marked</p>
     </div>
+
     <% end %>
     <%= link_to '', teaching_group_assignment_path(assignment.teaching_group, assignment), class: 'homework-link-teacher' %>
     <% elsif current_user.guardian %>
