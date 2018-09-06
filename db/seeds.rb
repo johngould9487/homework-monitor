@@ -410,12 +410,12 @@ TeachingGroup.all.each do |teaching_group|
 end
 
 
-
-comment_1 = "Great job, really impressive, keep up the good work",
-comment_2 = "Well done! You are really getting the grasp of this subject",
-comment_3 = "I am really impressed with how you have picked up the theory, but a bit more focus on the practical application is needed",
-comment_4 = "You are getting the hang of this subject, but please take time to re-read the notes from this class and think about how to implement it more succinctly",
-comment_5 = "A lower mark than I would expect, let's sit down and go through this before class tomorrow",
+comment_0 = "ignore"
+comment_1 = "Great job, really impressive, keep up the good work"
+comment_2 = "Well done! You are really getting the grasp of this subject"
+comment_3 = "I am really impressed with how you have picked up the theory, but a bit more focus on the practical application is needed"
+comment_4 = "You are getting the hang of this subject, but please take time to re-read the notes from this class and think about how to implement it more succinctly"
+comment_5 = "A lower mark than I would expect, let's sit down and go through this before class tomorrow"
 comment_6 = "Good effort - but you will need to re-sit this homework over the weekend"
 
 
@@ -425,27 +425,42 @@ Assignment.all.each do |assignment|
   elsif assignment.date_due < Date.today - 17
     assignment.attempts.each do |attempt|
       attempt.mark = rand(11)
-      attempt.comment = comments.sample
-        # if attempt.mark == 0
-        #   attempt.comment = comment_6
-        # elsif attempt.mark < 5
-        #   attempt.comment = comment_5
-        # elsif attempt.mark < 6
-        #   attempt.comment = comment_4
-        # elsif attempt.mark < 7
-        #   attempt.comment = comment_3
-        # elsif attempt.mark < 9
-        #   attempt.comment = comment_2
-        # else
-        #   attempt.comment = comment_1
-        # end
+      if attempt.mark == 0
+        attempt.comment = comment_6
+      elsif [1,2,3,4].include?(attempt.mark)
+        attempt.comment = comment_5
+      elsif attempt.mark == 5
+        attempt.comment = comment_4
+      elsif attempt.mark == 6
+        attempt.comment = comment_3
+      elsif [7,8].include?(attempt.mark)
+        attempt.comment = comment_2
+      elsif attempt.mark == 9
+        attempt.comment = comment_1
+      elsif attempt.mark == 10
+        attempt.comment = comment_1
+      end
       attempt.save
     end
   elsif assignment.date_due < Date.today - 9
     assignment.attempts.each_with_index do |attempt, index|
       if index.even?
         attempt.mark = rand(11)
-        attempt.comment = comments.sample
+        if attempt.mark == 0
+          attempt.comment = comment_6
+        elsif [1,2,3,4].include?(attempt.mark)
+          attempt.comment = comment_5
+        elsif attempt.mark == 5
+          attempt.comment = comment_4
+        elsif attempt.mark == 6
+          attempt.comment = comment_3
+        elsif [7,8].include?(attempt.mark)
+          attempt.comment = comment_2
+        elsif attempt.mark == 9
+          attempt.comment = comment_1
+        elsif attempt.mark == 10
+          attempt.comment = comment_1
+        end
         attempt.save
       end
     end
@@ -453,13 +468,53 @@ Assignment.all.each do |assignment|
     assignment.attempts.each_with_index do |attempt, index|
       if index % 3 == 0
         attempt.mark = rand(11)
-        attempt.comment = comments.sample
+        if attempt.mark == 0
+          attempt.comment = comment_6
+        elsif [1,2,3,4].include?(attempt.mark)
+          attempt.comment = comment_5
+        elsif attempt.mark == 5
+          attempt.comment = comment_4
+        elsif attempt.mark == 6
+          attempt.comment = comment_3
+        elsif [7,8].include?(attempt.mark)
+          attempt.comment = comment_2
+        elsif attempt.mark == 9
+          attempt.comment = comment_1
+        elsif attempt.mark == 10
+          attempt.comment = comment_1
+        end
         attempt.save
       end
     end
   end
 end
 
+# Assignment.all.each do |assignment|
+#   assignment.attempts.each_with_index do |attempt, index|
+#     if attempt.assignment.date_due > Date.today
+#     elsif attempt.assignment.date_due < Date.today - 17
+#       attempt.mark = rand(11)
+#     elsif (attempt.assignment.date_due < Date.today - 9) && index.even?
+#       attempt.mark = rand(11)
+#     elsif index % 3 == 0
+#       attempt.mark = rand(11)
+#     end
+#     if attempt.mark == 0
+#       attempt.comment = comment_6
+#     elsif [1,2,3,4].include?(attempt.mark)
+#       attempt.comment = comment_5
+#     elsif attempt.mark == 5
+#       attempt.comment = comment_4
+#     elsif attempt.mark == 6
+#       attempt.comment = comment_3
+#     elsif [7,8].include?attempt.mark < 9
+#       attempt.comment = comment_2
+#     else
+#       attempt.comment = comment_1
+#     end
+#     attempt.save
+#   end
+# end
 
 
 puts "Done."
