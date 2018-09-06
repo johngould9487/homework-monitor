@@ -15,6 +15,7 @@
             <p class="homework-date">Due: <%= assignment.date_due.strftime("%a #{assignment.date_due.day.ordinalize} %B") %></p>
           </span>
           <% if !assignment.published %>
+            <h3 class="warning ribbon-right">NOT SET</h3>
           <% elsif assignment.marked_percentage < 50 %>
             <p style="color:white" class="markbook-no-border homework-status homework-under-marked"><%= assignment.marked_percentage %>% marked</p>
           <% elsif assignment.marked_percentage < 100 %>
@@ -75,7 +76,7 @@
                       <%= simple_form_for attempt do |f| %>
                         <%= f.input :mark %>
                         <%= f.input :comment %>
-                        <%= f.submit "Confirm", class: "btn btn-primary" %>
+                        <%= f.submit "Confirm", id: "confirm-#{assignment.id}-#{attempt.id}", class: "btn btn-primary" %>
                       <% end %>
                     </div>
                   </div>
@@ -88,8 +89,6 @@
     </div>
   <% end %>
 </div>
-
-
 
 
 
