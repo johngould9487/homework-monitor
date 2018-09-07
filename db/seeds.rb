@@ -35,7 +35,7 @@ students = [
 User.create!(email: "Rinus@lewagon.ac.uk", password: "123123", first_name: "Rinus", last_name: "Strobel", student: true, avatar:"https://res.cloudinary.com/duspt82gb/image/upload/v1536140144/Homework%20monitor/Linus.jpg" ),
 User.create!(email: "Barry@lewagon.ac.uk", password: "123123", first_name: "Barry" , last_name: "Kingdon" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Harry.jpg" ),
 User.create!(email: "Neddie@lewagon.ac.uk", password: "123123", first_name: "Neddie" , last_name: "Scadding", student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Freddie.jpg"),
-User.create!(email: "Christian@lewagon.ac.uk", password: "123123", first_name: "Christian" , last_name:"Bale" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Christian.jpg"),
+User.create!(email: "Chitty@lewagon.ac.uk", password: "123123", first_name: "Chitty" , last_name:"Liu" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536317623/Chitty.jpg"),
 User.create!(email: "Chesley@lewagon.ac.uk", password: "123123", first_name: "Chesley", last_name: "Hawkes" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Wesley_S.jpg"),
 User.create!(email: "Taria@lewagon.ac.uk", password: "123123", first_name: "Taria" , last_name: "Sanchez-Barrueta" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Maria.jpg"),
 User.create!(email: "Ronan@lewagon.ac.uk", password: "123123", first_name: "Ronan", last_name: "Keeting" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Roan_M.jpg"),
@@ -69,19 +69,19 @@ teaching_groups << TeachingGroup.create!(group_code:"C55/Ss5", course:"Front-end
 teaching_groups << TeachingGroup.create!(group_code:"D4t/B45", course:"Back-end", subject:"Databases")
 teaching_groups << TeachingGroup.create!(group_code:"RU8/Yop", course:"Back-end", subject:"Ruby basics")
 
-indices = [[0, 0], [0, 1], [1, 0], [2, 1], [3, 2], [4, 2], [4, 3], [5, 4], [6, 3], [6, 4]]
+indices = [[0, 0], [0, 1], [1, 0], [2, 1], [3, 2], [6, 2], [4, 3], [5, 4], [6, 3], [6, 4]]
 indices.each do |index_pair|
   TeacherGroupMembership.create!(teacher: teachers[index_pair[0]], teacher_teaching_group: teaching_groups[index_pair[1]])
 end
 
-indices = [[1, 2, 3, 4, 5, 6], [1, 2, 3, 7, 8], [1, 2, 7, 9, 10], [1, 2, 4, 8, 9, 10], [1, 3, 4, 7, 9, 10]]
+indices = [[1, 2, 3, 4, 5, 6], [1, 2, 3, 7, 8], [1, 2, 7, 9, 10], [1, 4, 7, 8, 9, 10], [1, 3, 4, 7, 9, 10]]
 teaching_groups.each_with_index do |teaching_group, teaching_group_index|
   indices[teaching_group_index].each do |student_number|
     StudentGroupMembership.create!(student: students[student_number - 1], student_teaching_group: teaching_group)
   end
 end
 
-indices = [[0,0], [0,1], [1,0], [1,1], [2,2], [3,3], [4,3], [4,4], [5,4], [6,5], [7,5], [8,6], [9,6], [8,7], [9,7], [10,8], [11,9], [12,9]]
+indices = [[0,1], [0,9], [0,2], [1,1], [2,2], [3,3], [4,3], [4,4], [5,4], [6,5], [7,5], [8,6], [9,6], [8,7], [9,7], [10,8], [11,9], [12,9]]
 indices.each do |index_pair|
   FamilyConnection.create!(student:students[index_pair[1]], guardian:guardians[index_pair[0]])
 end
