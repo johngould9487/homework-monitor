@@ -32,7 +32,7 @@ User.create!(email: "Arthur@lewagon.ac.uk", password: "123123", first_name: "Art
 
 # STUDENTS
 students = [
-User.create!(email: "Rinus@lewagon.ac.uk", password: "123123", first_name: "Rinus", last_name: "Strobel", student: true, avatar:"https://res.cloudinary.com/duspt82gb/image/upload/v1536140144/Homework%20monitor/Linus.jpg" ),
+User.create!(email: "Bess@lewagon.ac.uk", password: "123123", first_name: "Bess", last_name: "Lee" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Jess.jpg"),
 User.create!(email: "Barry@lewagon.ac.uk", password: "123123", first_name: "Barry" , last_name: "Kingdon" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Harry.jpg" ),
 User.create!(email: "Neddie@lewagon.ac.uk", password: "123123", first_name: "Neddie" , last_name: "Scadding", student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140134/Homework%20monitor/Freddie.jpg"),
 User.create!(email: "Chitty@lewagon.ac.uk", password: "123123", first_name: "Chitty" , last_name:"Liu" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536317623/Chitty.jpg"),
@@ -41,7 +41,7 @@ User.create!(email: "Taria@lewagon.ac.uk", password: "123123", first_name: "Tari
 User.create!(email: "Ronan@lewagon.ac.uk", password: "123123", first_name: "Ronan", last_name: "Keeting" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Roan_M.jpg"),
 User.create!(email: "Suiza@lewagon.ac.uk", password: "123123", first_name: "Suiza", last_name: "Pinto" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Luiza.jpg" ),
 User.create!(email: "Woli@lewagon.ac.uk", password: "123123", first_name: "Woli", last_name: "Where's", student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Oli_M.jpg"),
-User.create!(email: "Bess@lewagon.ac.uk", password: "123123", first_name: "Bess", last_name: "Lee" , student: true, avatar: "https://res.cloudinary.com/duspt82gb/image/upload/v1536140133/Homework%20monitor/Jess.jpg")
+User.create!(email: "Rinus@lewagon.ac.uk", password: "123123", first_name: "Rinus", last_name: "Strobel", student: true, avatar:"https://res.cloudinary.com/duspt82gb/image/upload/v1536140144/Homework%20monitor/Linus.jpg" )
 ]
 
 #GUARDIANS
@@ -74,14 +74,14 @@ indices.each do |index_pair|
   TeacherGroupMembership.create!(teacher: teachers[index_pair[0]], teacher_teaching_group: teaching_groups[index_pair[1]])
 end
 
-indices = [[1, 2, 3, 4, 5, 6], [1, 2, 3, 7, 8], [1, 2, 7, 9, 10], [1, 4, 7, 8, 9, 10], [1, 3, 4, 7, 9, 10]]
+indices = [[10, 2, 3, 4, 5, 6], [10, 2, 3, 7, 8], [1, 2, 7, 9, 10], [1, 4, 7, 8, 9, 10], [1, 3, 4, 7, 9, 10]]
 teaching_groups.each_with_index do |teaching_group, teaching_group_index|
   indices[teaching_group_index].each do |student_number|
     StudentGroupMembership.create!(student: students[student_number - 1], student_teaching_group: teaching_group)
   end
 end
 
-indices = [[0,1], [0,9], [0,2], [1,1], [2,2], [3,3], [4,3], [4,4], [5,4], [6,5], [7,5], [8,6], [9,6], [8,7], [9,7], [10,8], [11,9], [12,9]]
+indices = [[0,0], [0,1], [0,2], [1,1], [2,2], [3,3], [4,3], [4,4], [5,4], [6,5], [7,5], [8,6], [9,6], [8,7], [9,7], [10,8], [11,9], [12,9]]
 indices.each do |index_pair|
   FamilyConnection.create!(student:students[index_pair[1]], guardian:guardians[index_pair[0]])
 end
